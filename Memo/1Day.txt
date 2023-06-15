@@ -1,0 +1,68 @@
+- 지시어(Directive)
+ Engine 에서 서블릿으로 전달
+ 파일을 추가 할때 incluede 지시어 
+ 테이블 라이브러리 지시어 
+ 페이지 지시어 
+ ex) <%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+	<%@ page buffer="1kb"%> -> 버퍼의 사이즈를 1kb로 하겠다.(기본값은 8kb)
+
+- Buffer
+jsp -> servlet -> .class 로 컴파일러 
+입력이 있을 때 마다 한 데이터씩 버퍼로 전송, 
+버퍼가 가득차면 버퍼의 내요을 한 번에 전송
+<%@ page buffer="none"%> -> buffer를 none으로 사용하는 경우는 없다!
+
+- incluede
+생명주기 : Life Cycle에 대해서 이해하고 있어야 한다.
+ex) <%@ include file = "IncludeFile.jsp" %>  
+<!--다른 JSP 파일(IncludeFile.jsp) 포함-->
+	
+- trimDirectiveWhitespaces="true"(페이지소스에서 앞에 빈 공백제거)
+
+- 스크립트 요소(Script Elements)
+<%! 메서드 선언 %> : 선언부에서는 스크립틀릿이나 표현식에서 사용할 멤버변수나 메서드를 선언. 
+서블릿으로 변환시 _jspService() 메서드 '외부'에 선언.
+
+<% 자바 코드 %> : JSP 페이지가 요청을 받을 때 실행되야 할 자바코드를 작성하는 영역.
+서블릿으로 변환시 _jspService() 메서드 '내부'에 그대로 기술.
+
+<%= 자바 표현식 %> : 출력부, 눈으로 보이도록 설정하는 것
+프로그래밍 언어에서 표현식은 '실행결과로 하나의 값이 남는 문장'을 
+
+
+workspace -> .metadata -> .plugins -> org.eclipse.wst.service.core -> 
+tmp() -> work -> Catalina -> localhost -> KopoJspTest -> org -> apache-jsp
+에 .class / .java파일로 만들어져 있다~
+
+- 내장 객체(Implicit Object)
+!!내장 객체의 종류!!
+(request, response, out, session, application, pageContext, page, config, exception)
+
+	* Get : 내가 전달할 주소를 URL 주소에 붙여서 보내는것(헤더에 붙여서 보내기 때문에 공개적으로 보냄)
+	ex) <a href="./RequestWebInfo.jsp?eng=Hello&han=안녕">   ?key = value
+	* Post : 데이터를 body에 숨겨서 보내는것(비공개적) 
+	ex) <form action="RequestWebInfo.jsp" method="post">
+	
+클라이언트 -> 서버로의 요청: request(요청 헤더: Get/Post) -> 서버	
+서버 -> 클라이언트로의 응답: response(응답 헤더: HTTP) -> 클라이언트
+
+- response.sendRedirect
+- request.getRequestDispatcher
+
+
+
+
+request.setCharacterEncoding("UTF-8");
+String id = request.getParameter("user_id");
+String pwd = request.getParameter("user_pwd"); 
+if (id.equalsIgnoreCase("노을") && pwd.equalsIgnoreCase("1234")) {
+    response.sendRedirect("ResponseWelcome.jsp");
+}
+else {
+    request.getRequestDispatcher("ResponseMain.jsp?loginErr=1")
+       .forward(request, response); 
+}
+
+
+ .forward(request, response) 부분 좀더 알아보고 사용해보자
