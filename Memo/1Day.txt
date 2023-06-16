@@ -1,6 +1,6 @@
 - 지시어(Directive)
  Engine 에서 서블릿으로 전달
- 파일을 추가 할때 incluede 지시어 
+ 파일을 추가 할때 include 지시어 
  테이블 라이브러리 지시어 
  페이지 지시어 
  ex) <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -10,10 +10,10 @@
 - Buffer
 jsp -> servlet -> .class 로 컴파일러 
 입력이 있을 때 마다 한 데이터씩 버퍼로 전송, 
-버퍼가 가득차면 버퍼의 내요을 한 번에 전송
+버퍼가 가득차면 버퍼의 내용을 한 번에 전송
 <%@ page buffer="none"%> -> buffer를 none으로 사용하는 경우는 없다!
 
-- incluede
+- include
 생명주기 : Life Cycle에 대해서 이해하고 있어야 한다.
 ex) <%@ include file = "IncludeFile.jsp" %>  
 <!--다른 JSP 파일(IncludeFile.jsp) 포함-->

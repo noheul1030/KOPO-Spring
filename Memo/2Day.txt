@@ -1,0 +1,66 @@
+- 서버 : 웹에서 서비스 시스템(파일)
+- 웹서버: HTTP -> 정적/동적생성 -> 응답: s/w(HTM,CSS,JS)
+- 웹컨테이너 : 요청 -> 동적처리 -> 웹서버
+- WAS(Web app server): 웹 애플리케이션이 구동 할 수 있도록 환경을 제공하는 소프트웨어
+ ex) Tomcat, Web logic,web spare 등등 
+- HTTP(Hyper text transfer protocal):www
+ 클라이언트 서버/웹서버간의 통신규약으로 만들어 지는 것이 HTTP, 암호화 되어있다.
+- 프로토콜 : Network, 컴퓨터들이 서로 주고받는 통신규약, 번역기 역할(매우 중요)
+ ex) 이메일 : SMTP / 파일 : FTP 프로토콜 사용
+- 포트 : 일종의 항구역할. 컴퓨터들끼리 data를 주고받을 수 있는 통로가 port
+ 포트가 안맞게 되면 data의 송수신이 불가.
+ 
+ 
+ 
+ 
+ - 정적 웹 페이지 구동 방식
+ 
+ 1. 웹브라우저(클라이언트) 요청 -> 
+ 2. 웹서버 (<->저장소(HTML,이미지 등 ))응답
+
+- 동적 웹 페이지 구동 방식
+
+ 1. 웹브라우저(클라이언트) 요청 -> 
+ 2. ★전처리 저장소,DB -> 
+ 3. 웹서버 (<->저장소(HTML,이미지 등 )) -> 웹브라우저 응답
+  
+- 서블릿 구동 방식(저장소와 DB생략)
+ 
+ 1. 웹브라우저(클라이언트) 요청 -> 
+ 2. 웹서버 -> 서블릿 컨테이너 (서블릿 .java->.class 파일로 컴파일러) -> 
+ 3. 서블릿 컨테이너 (서블릿) -> 웹서버 -> 웹 브라우저로 응답
+  
+- JSP 구동 방식 
+
+ 1. 웹브라우저(클라이언트) 요청 -> 
+ 2. 웹서버 -> 웹 컨테이너(서블릿+JSP 엔진) ->
+	.jsp 변환 -> .java 컴파일 -> .class 서블릿
+ 3. 웹 컨테이너(서블릿+JSP 엔진) -> 웹 서버 -> 웹 브라우저 응답
+ 
+ 
+ 
+- Implicit Object
+ ex) public void _jspService(){
+	 .... 여기에 내용 작성
+	 .... final javax.sevlet.jsp....
+ 
+	}
+	
+- 내장 객체
+ 1. page : 동일한 page
+ 2. request : 요청에 의해서 전달된 page로 내용 공유
+ 3. session : 웹 브라우저가 닫힐 때까지 공유
+ 4. web application : 웹 애플리케이션이 종료될 때까지(server가 종료될 때까지)
+ 
+- Attribute
+	xxx.set Attribute() -> 속성 설정
+	xxx.get Attribute() -> 속성 읽기	
+	
+- Auto Boxing VS Auto UnBoxing
+
+- call by valus VS call by reference
+
+- deep copy
+- shallow copy
+
+
