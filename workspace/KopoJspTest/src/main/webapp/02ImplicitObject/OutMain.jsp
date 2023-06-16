@@ -19,7 +19,9 @@
 
     // 다양한 타입의 값 출력
     out.print(1);
+    out.print("<br>");
     out.print(false);
+    out.print("<br>");
     out.print('가');
     %>
 </body>
