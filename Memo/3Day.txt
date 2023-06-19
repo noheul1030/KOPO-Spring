@@ -1,0 +1,19 @@
+- response.sendRedirect : 우회해서 view를 전달
+
+- .forward(request, response); :
+  request -> 데이터를 첨부 전달
+  forward에 첨부할 때는 .getRequestDispatcher()를 사용하였다.
+  
+< 내장 객체의 유효 범위와 속성 >
+- 1. Page Context : page context 안에 있는 내용은 다른 page에서는 사용이 
+		불가하다. 다른 페이지에서 사용하려면 include를 통해 사용가능
+- 2. Request
+- 3. Session : 하나의 클라이언트에 대한 정보 저장 / 서버에 정보 저장
+		로그인 아이디 패스워드 정도로만 저장되게 하고 최소한의 저장을 
+		하도록 권장하고 있다.
+- 4. Application
+
+
+- 쿠키 = 클라이언트 pc에 저장되는 데이터(session은 웹 서버에 저장되는 데이터)
+	
+
