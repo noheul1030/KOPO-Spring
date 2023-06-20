@@ -1,0 +1,13 @@
+sqlplus
+
+system, 비밀번호 1234 입력
+
+create user kopo11 identified by 1234;
+
+grant connect, resource to kopo11;
+
+conn kopo11/1234;
+
+select * from tab;
+
+
