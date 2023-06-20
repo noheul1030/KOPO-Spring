@@ -11,7 +11,7 @@
   </welcome-file-list>
   
 <!-- 02ImplicitObject/ApplicationMain2.jsp 실습 -->
-  <context-param>
+<!--   <context-param>
   	<param-name>INIT_PARAM1</param-name>
   	<param-value>초기화변수 1</param-value>
   </context-param>
@@ -24,15 +24,35 @@
   <context-param>
   	<param-name>INIT_PARAM3</param-name>
   	<param-value>초기화변수 3</param-value>
+  </context-param> -->
+  
+  
+  
+  <context-param>
+  	<param-name>OracleDriver</param-name>
+  	<param-value>oracle.jdbc.OracleDriver</param-value>
+  </context-param>  
+  
+  <context-param>
+  	<param-name>OracleURL</param-name>
+  	<param-value>jdbc:oracle:thin:@localhost:1521:xe</param-value>
   </context-param>
   
   <context-param>
-  	<param-name>INIT_PARAM4</param-name>
-  	<param-value>초기화변수 4</param-value>
+  	<param-name>OracleID</param-name>
+  	<param-value>kopo11</param-value>
+  </context-param>
+
+  <context-param>
+  	<param-name>OraclePwd</param-name>
+  	<param-value>1234</param-value>
   </context-param>
   
-<!--   02ImplicitObject/Exception2.jsp 실습
-  <error-page>
+ 
+ 
+  
+<!--   02ImplicitObject/Exception2.jsp 실습 -->
+<!--   <error-page>
   	<error-code>404</error-code>
 	<location>/02ImplicitObject/Exception2.jsp</location>
   </error-page>
@@ -45,6 +65,6 @@
   <error-page>
   	<error-code>500</error-code>
 	<location>/02ImplicitObject/Exception2.jsp</location>
-  </error-page> -->
+  </error-page>  -->
   
 </web-app>
