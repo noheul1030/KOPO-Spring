@@ -36,6 +36,9 @@
     <!-- Editable user database that can also be used by
          UserDatabaseRealm to authenticate users
     -->
+	<Resource auth="Container" driverClassName="oracle.jdbc.OracleDriver" initialSize="0" maxIdel="20" maxTotal="20" maxWaitMillis="5000" minIdel="5" name="dbcp_myoracle" password="1234" type="javax.sql.DataSource" url="jdbc:oracle:thin:@localhost:1521:xe" username="kopo11"/>
+	
+	
     <Resource auth="Container" description="User database that can be updated and saved" factory="org.apache.catalina.users.MemoryUserDatabaseFactory" name="UserDatabase" pathname="conf/tomcat-users.xml" type="org.apache.catalina.UserDatabase"/>
   </GlobalNamingResources>
 
