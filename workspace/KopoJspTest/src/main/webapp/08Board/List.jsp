@@ -83,8 +83,7 @@ if (boardLists.isEmpty()) {
             </td>
         </tr>
 <%
-}
-else {
+}else {
     // 게시물이 있을 때 
     int virtualNum = 0;  // 화면상에서의 게시물 번호
     for (BoardDTO dto : boardLists)
