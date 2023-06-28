@@ -40,11 +40,11 @@ public class BoardDAO extends JDBConnect {
 	public List<BoardDTO> selectList(Map<String, Object> map){
 		List<BoardDTO> bbs = new Vector<BoardDTO>(); // 결과 담을 변수
 		
-		String query = "select count(*) from board";
+		String query = "select * from board";
 		
-		if(map.get("serchWord") != null) {
-			query += " where " + map.get("serchField") + " "
-					+ " like '%" + map.get("serchWord") + "%'";			
+		if(map.get("searchWord") != null) {
+			query += " where " + map.get("searchField") + " "
+					+ " like '%" + map.get("searchWord") + "%'";			
 		}
 		query += " order by num desc ";
 		
@@ -66,8 +66,7 @@ public class BoardDAO extends JDBConnect {
 		}catch(Exception e) {
 			System.out.println("게시물 조회 중 에러 발생");
 			e.printStackTrace();
-		}
-		
+		}		
 		return bbs;
 	}
 }
