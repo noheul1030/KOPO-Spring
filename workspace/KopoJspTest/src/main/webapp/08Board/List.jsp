@@ -35,7 +35,8 @@ dao.close(); // DB 연결 닫기
 	  background-position: 100%;
 	  background-size: 400%;
 	  transition: background 300ms ease-in-out;
-	  border-radius: 5px;
+	  border-radius: 5px;	  
+	  height : 35px;
 	}
 	
 	.fourth:hover {

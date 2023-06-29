@@ -10,6 +10,8 @@
 <%		} else { %>
 			<a href='../06Session/Logout.jsp'>로그아웃</a>
 <%		} %>
+ 			&nbsp;&nbsp;&nbsp; 
+            <a href="../08Board/List.jsp">게시판</a>
 		</td>
 	</tr>	
 </table>
