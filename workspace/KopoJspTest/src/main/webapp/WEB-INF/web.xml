@@ -31,6 +31,16 @@
   	<session-timeout>20</session-timeout> <!-- 기본 단위가 '분'단위 -->  
   </session-config>
   
+  <context-param>
+  	<param-name>POSTS_PER_PAGE</param-name>  	
+  	<param-value>10</param-value>
+  </context-param>
+
+  <context-param>
+  	<param-name>PAGES_PER_BLOCK</param-name>  	
+  	<param-value>5</param-value>
+  </context-param>
+  
 <!-- 02ImplicitObject/ApplicationMain2.jsp 실습 -->
 <!--   <context-param>
   	<param-name>INIT_PARAM1</param-name>
