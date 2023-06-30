@@ -11,3 +11,12 @@ conn kopo11/1234;
 select * from tab;
 
 
+
+
+// 페이지네이션
+select * from (
+	select tb.*, rownum rNum from(
+		select * from board order by num desc
+	)tb
+) 
+where rNum between 1 and 10;
