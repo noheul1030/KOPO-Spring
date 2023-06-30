@@ -69,6 +69,7 @@ public class BoardDAO extends JDBConnect {
 		}		
 		return bbs;
 	}
+	
     // 검색 조건에 맞는 게시물 목록을 반환합니다(페이징 기능 지원).
     public List<BoardDTO> selectListPage(Map<String, Object> map) {
         List<BoardDTO> bbs = new Vector<BoardDTO>();  // 결과(게시물 목록)를 담을 변수
@@ -141,6 +142,29 @@ public class BoardDAO extends JDBConnect {
         }
         catch (Exception e) {
             System.out.println("게시물 입력 중 예외 발생");
+            e.printStackTrace();
+        }
+        
+        return result;
+    }
+    
+    public int updateWrite(String ID,String num,String title,String content) {
+    	int result = 0;
+        
+        try {
+            // UPDATE 쿼리문 작성 
+            String query = "update board set title=?,content=? where num=? and id=?";  
+
+            psmt = con.prepareStatement(query);  // 동적 쿼리 
+            psmt.setString(1, title);  
+            psmt.setString(2, content);
+            psmt.setString(3, num);  
+            psmt.setString(4, ID);  
+            
+            result = psmt.executeUpdate(); 
+        }
+        catch (Exception e) {
+            System.out.println("게시물 수정 중 예외 발생");
             e.printStackTrace();
         }
         
