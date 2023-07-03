@@ -12,7 +12,6 @@ select * from tab;
 
 
 
-
 // 페이지네이션
 select * from (
 	select tb.*, rownum rNum from(
