@@ -16,6 +16,14 @@ public class Sample {
 	@Column
 	private String title;
 	
+	@Column
+	private String type;
+	
+	@Column
+	private String name;
+	
+	
+	
 	public Long getId() {
 		return id;
 	}
@@ -29,4 +37,22 @@ public class Sample {
 	public void setTitle(String title) {
 		this.title = title;
 	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	
 }

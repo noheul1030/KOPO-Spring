@@ -7,7 +7,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import kr.ac.kopo.ctc.kopo11.board.service.BoardItemService;
 
+import kr.ac.kopo.ctc.kopo11.board.domain.Sample;
 @Controller
+@RequestMapping(value = "/hello")
 public class HelloController {
 	
 	@Autowired
@@ -16,7 +18,7 @@ public class HelloController {
 	@RequestMapping(value = "/hello")
 	public String hellSpringBoot(Model model) {
 		
-		int sum = boardItemService.add(3,5);
+		int sum = boardItemService.add(3,5);		
 		
 		model.addAttribute("sum",sum);
 		
