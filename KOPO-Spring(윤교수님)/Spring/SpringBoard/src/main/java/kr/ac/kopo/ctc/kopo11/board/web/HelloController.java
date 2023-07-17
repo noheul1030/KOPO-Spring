@@ -15,14 +15,14 @@ public class HelloController {
 	@Autowired
 	private BoardItemService boardItemService;
 	
-	@RequestMapping(value = "/hello")
-	public String hellSpringBoot(Model model) {
-		
-		int sum = boardItemService.add(3,5);		
-		
-		model.addAttribute("sum",sum);
-		
-		model.addAttribute("name","노을");
-		return "hello";
-	}
+//	@RequestMapping(value = "/hello")
+//	public String hellSpringBoot(Model model) {
+//		
+//		int sum = boardItemService.add(3,5);		
+//		
+//		model.addAttribute("sum",sum);
+//		
+//		model.addAttribute("name","노을");
+//		return "hello";
+//	}
 }

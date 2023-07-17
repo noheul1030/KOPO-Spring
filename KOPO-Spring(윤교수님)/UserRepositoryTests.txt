@@ -1,4 +1,5 @@
-package kr.ac.kopo.ctc.kopo11.board.dao;
+package kr.ac.kopo.ctc.kopo11.board.repo;
+
 
 import java.util.HashMap;
 import java.util.Map;
@@ -9,8 +10,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 
 import kr.ac.kopo.ctc.kopo11.board.domain.Sample;
-import kr.ac.kopo.ctc.kopo11.board.repo.UserRepository;
-import kr.ac.kopo.ctc.kopo11.board.repo.UserSpecs;
+
 
 @SpringBootTest
 public class UserRepositoryTests {

@@ -7,4 +7,20 @@
       from
          sample
    </select>      
+   
+   <select id="findAllByCondition" resultType="kr.ac.kopo.ctc.kopo11.board.domain.Sample">
+	  select 
+          *
+      from
+          sample u
+      where 
+          1 = 1
+	   <include refid="whereCondition"/>
+   </select>
+   
+   <sql id="whereCondition">
+	   <if test="name != null">
+		   and u.name = #{name}
+	   </if>
+	</sql>
 </mapper>
