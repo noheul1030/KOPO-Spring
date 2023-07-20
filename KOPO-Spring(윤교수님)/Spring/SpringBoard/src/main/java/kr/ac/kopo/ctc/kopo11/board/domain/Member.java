@@ -6,6 +6,7 @@ import java.util.Collection;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
@@ -24,12 +25,18 @@ public class Member {
 	@Column
 	private int age;
 	
-	@OneToMany(cascade=CascadeType.ALL, mappedBy="member")
+	@OneToMany(cascade=CascadeType.ALL, mappedBy="member", fetch = FetchType.LAZY)
 	private Collection<Phone> phones;
 	
-	public Member(String string) {
+	public Member(String string, Integer age) {
 		this.name = string;
+		this.age = age;
 	}
+	
+	public Member() {
+		
+	}	
+
 	public Collection<Phone> getPhones(){
 		if( phones == null ) {
 			phones = new ArrayList<Phone>();
@@ -47,10 +54,36 @@ public class Member {
 	
 	@Override
 	public String toString() {
-		String result = "["+id+"]" + name;
+		String result = "["+id+"]" + name + "," + age;
 		for( Phone p : getPhones()) {
 			result += "\n" + p.toString();
 		}
 		return result;
+	}
+
+		
+	
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public int getAge() {
+		return age;
+	}
+
+	public void setAge(int age) {
+		this.age = age;
 	}	
 }

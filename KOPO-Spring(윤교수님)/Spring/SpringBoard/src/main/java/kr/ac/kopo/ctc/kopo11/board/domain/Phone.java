@@ -24,14 +24,40 @@ public class Phone {
 	public Phone(String string) {
 		this.no = string;
 	}
+	
+	public Phone() {
+		
+	}	
 
 	@Override
 	public String toString() {
 		String result = "[phone_" + id + "]" + no;
 		return result;
 	}
+	public Member getMember() {
+		return member;
+	}
 
 	public void setMember(Member member2) {
 		this.member = member2;		
 	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public String getNo() {
+		return no;
+	}
+
+	public void setNo(String no) {
+		this.no = no;
+	}
+	
+	
+	
 }

@@ -17,6 +17,7 @@ import kr.ac.kopo.ctc.kopo11.board.domain.Sample;
 import kr.ac.kopo.ctc.kopo11.board.repo.SampleRepository;
 import kr.ac.kopo.ctc.kopo11.board.repo.mapper.SampleCondition;
 import kr.ac.kopo.ctc.kopo11.board.repo.mapper.SampleMapper;
+import kr.ac.kopo.ctc.kopo11.board.service.SampleService;
 
 @Controller
 public class SampleController {
@@ -25,6 +26,8 @@ public class SampleController {
 	private SampleRepository sampleRepository;
 	@Autowired
 	private SampleMapper sampleMapper;
+	@Autowired
+	private SampleService sampleService;
 
 	// 리스트에 담긴 내용을 출력하는 메서드
 	@RequestMapping("/sample1")
@@ -82,5 +85,19 @@ public class SampleController {
 		List<Sample> findByCondition = sampleMapper.findAllByCondition(sampleCondition, rowBounds);
 
 		return findByCondition;
+	}
+	
+	
+	// Transactional Controller
+	@RequestMapping(value = "/noTransactional")
+	@ResponseBody
+	public String noTransactional() {
+		return sampleService.testNoTransactional();
+	}
+
+	@RequestMapping(value = "/Transactional")
+	@ResponseBody
+	public String Transactional() {
+		return sampleService.testTransactional();
 	}
 }

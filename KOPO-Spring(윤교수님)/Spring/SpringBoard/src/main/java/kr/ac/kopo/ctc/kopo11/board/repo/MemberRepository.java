@@ -17,4 +17,6 @@ public interface MemberRepository extends JpaRepository<Member, Integer>{
 	List<Member> findByNameAndAgeLessThanSQL(@Param("name")String name, @Param("age") int age);
 	
 	List<Member> findByNameAndAgeLessThanOrderByAgeDesc(String name, int age);
+	
+	Member findById(int id);
 }
