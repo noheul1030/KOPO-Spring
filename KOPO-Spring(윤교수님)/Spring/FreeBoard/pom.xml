@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>kr.ac.kopo.ctc.kopo11.board</groupId>
-	<artifactId>SpringBoard</artifactId>
+	<artifactId>FreeBoard</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
 	<name>SpringBoard</name>
