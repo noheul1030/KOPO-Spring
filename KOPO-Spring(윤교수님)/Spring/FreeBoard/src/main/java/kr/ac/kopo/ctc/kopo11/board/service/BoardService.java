@@ -1,28 +1,48 @@
 package kr.ac.kopo.ctc.kopo11.board.service;
 
-import java.sql.ResultSet;
+import java.time.LocalDate;
+import java.util.List;
+
+import kr.ac.kopo.ctc.kopo11.board.domain.BoardItem;
 
 public interface BoardService {
 	// 날짜
-	String date();
+	LocalDate date();
+	
+	// 게시글 임의등록 Test
+	void insertTest();
+	
+	// New 게시글 등록 
+	void newInsert(String title,String content);
+	
+	// 전체 게시물 조회
+	List<BoardItem> findAll();
+
+	// id값으로 삭제
+	void deleteId(Integer id);		
+
+	// id값으로 한건 조회
+	BoardItem oneSelectView(Integer id);		
+	
+	// 조회수 카운트
+	void visit(Integer id);
+	
+	
+	
+	
+	
+	
+	
 	
 	// 마지막 게시글 count
 	int LastNumber();
 	
 	
-	// 3. 공지번호,제목,날짜,내용 값 저장
-	void newinsert(String title, String date, String content);
-	void reinsert(String title, String date, String content, int rootid, int relevel, int recnt);
-	
-	// 4. 컬럼 삭제
-	void delete(int id);		
 		
 	// 5. 컬럼 값 수정 update
 	void update(int number,String title, String content);
+
 	
-	// 6. table 한건 조회
-	ResultSet selectOne(String key);		
 	
-	// 7. 조회수 카운트
-	void visit(String key);
+
 }
