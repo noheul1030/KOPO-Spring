@@ -13,34 +13,25 @@ public interface BoardService {
 	void insertTest();
 	
 	// New 게시글 등록 
-	void newInsert(String title,String content);
+	public void newInsert(BoardItem board);
 	
 	// 전체 게시물 조회
 	List<BoardItem> findAll();
 
 	// id값으로 삭제
-	void deleteId(Integer id);		
+	void deleteId(Long id);		
 
 	// id값으로 한건 조회
-	BoardItem oneSelectView(Integer id);		
+	BoardItem oneSelectView(Long id);		
 	
 	// 조회수 카운트
-	void visit(Integer id);
+	void visit(Long id);	
 	
-	
-	
-	
-	
-	
-	
-	
-	// 마지막 게시글 count
-	int LastNumber();
-	
-	
+//	//오토인크리먼트 값 가져오기
+//	public int idCount();	
 		
-	// 5. 컬럼 값 수정 update
-	void update(int number,String title, String content);
+	// 컬럼 값 수정 update
+	void update(BoardItem board);
 
 	
 	

@@ -82,22 +82,26 @@
 	<body>
 	
 	<form name="myForm" method="post" onsubmit="return validateForm()">
-	<input type="hidden" name="updating" value="none">
+	<input type="hidden" name="updating" value="updating">
 	<table border='1'> <!-- 테이블 테두리 1 지정 -->
+		<tr> <!-- 셀 스타일 지정,text 출력 -->
+			<td bgcolor='#dde5ff' width= 10%>번호</td>
+			<td align='left' width= 85%><input type='text' name="id" value='${update.id}' readonly style="all: unset; margin-left:5px;"></td>
+		</tr>
 		<tr> <!-- 셀 스타일 지정,text 출력 -->
 			<td bgcolor='#dde5ff' width= 10%>제목</td>
 			<!-- 값이 들어올때 유효성을 검사하고 맞지 않을 경우 경고문구 팝업 -->
-			<td align= 'left' width= 85%><input type='text' maxlength='70' pattern="^(?!\s*$)(?!^*$){1,70}$" name= 'title' value='제목을 입력하세요 '
+			<td align= 'left' width= 85%><input type='text' maxlength='70' pattern="^(?!\s*$)(?!^*$){1,70}$" name= 'title' value='${update.title}'
 			 required title="앞공백 X, 70글자 이상 X"></td>
 		</tr>
 		<tr> <!-- 셀 스타일 지정,text 출력 -->
 			<td bgcolor='#dde5ff' width= 10%>일자</td>
-			<td align='left' width = 85%><input type='text' name='date' value='${date}' readonly style="all: unset; margin-left:5px;"></td>
+			<td align='left' width = 85%><input type='text' name='date' value='${update.date}' readonly style="all: unset; margin-left:5px;"></td>
 		</tr>
 		<tr> <!-- 셀 스타일 지정,text 출력 -->
 			<td bgcolor='#dde5ff' width= 10%>내용</td>
 			<td colspan='3' align= 'left' width= 85%>
-			<textarea name='content'style="height: 300px;max-height: 300px; overflow-x: auto; overflow-y: scroll;resize: none;"maxlength="6000000"></textarea>
+			<textarea name='content'style="height: 300px;max-height: 300px; overflow-x: auto; overflow-y: scroll;resize: none;"maxlength="6000000">${update.content}</textarea>
 			</td>
 		</tr>
 	</table>
@@ -109,7 +113,7 @@
 				<input class='fourth' type='submit' value='취소' formaction = 'list' 
 					style="width: 60px; height: 30px; padding: 0px;font-weight: bold;"onclick="window.location.href = 'list';">
 			<!-- 버튼 클릭 시 freeboard_write.jsp 이동 -->		
-				<input class='fourth' type='submit' value='쓰기' formaction = 'write' 
+				<input class='fourth' type='submit' value='수정' formaction = 'write' 
 					style="width: 60px; height: 30px; padding: 0px;font-weight: bold;">
 			</td>
 		</tr>

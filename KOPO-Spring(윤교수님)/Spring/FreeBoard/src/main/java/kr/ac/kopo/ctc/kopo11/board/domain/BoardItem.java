@@ -1,34 +1,36 @@
 package kr.ac.kopo.ctc.kopo11.board.domain;
 
-import java.time.LocalDate;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 // 원글 
 @Entity
+@Table(name = "board_item")
 public class BoardItem {
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column
-	private Integer id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private Long id;
 	@Column
 	private String title;
 	@Column
-	private LocalDate date;
+	private String date;
 	@Column
 	private String content;
 	@Column
 	private Integer viewcnt;
+	
+	
 
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -40,11 +42,11 @@ public class BoardItem {
 		this.title = title;
 	}
 
-	public LocalDate getDate() {
+	public String getDate() {
 		return date;
 	}
 
-	public void setDate(LocalDate date) {
+	public void setDate(String date) {
 		this.date = date;
 	}
 

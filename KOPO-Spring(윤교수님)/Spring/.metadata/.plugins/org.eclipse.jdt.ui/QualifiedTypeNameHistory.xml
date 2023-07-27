@@ -1,11 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="jakarta.persistence.CascadeType"/>
-    <fullyQualifiedTypeName name="java.util.Collection"/>
-    <fullyQualifiedTypeName name="org.springframework.data.annotation.Id"/>
-    <fullyQualifiedTypeName name="java.lang.reflect.Member"/>
-    <fullyQualifiedTypeName name="org.apache.ibatis.annotations.Param"/>
-    <fullyQualifiedTypeName name="org.springframework.test.context.junit4.SpringRunner"/>
     <fullyQualifiedTypeName name="kr.ac.kopo.ctc.kopo11.board.domain.Member"/>
     <fullyQualifiedTypeName name="kr.ac.kopo.ctc.kopo11.board.domain.Phone"/>
     <fullyQualifiedTypeName name="jakarta.persistence.FetchType"/>
@@ -55,9 +49,15 @@
     <fullyQualifiedTypeName name="kr.ac.kopo.ctc.kopo11.board.domain.BoardItem"/>
     <fullyQualifiedTypeName name="org.springframework.ui.Model"/>
     <fullyQualifiedTypeName name="java.time.LocalDate"/>
-    <fullyQualifiedTypeName name="java.util.List"/>
     <fullyQualifiedTypeName name="org.springframework.data.repository.query.Param"/>
     <fullyQualifiedTypeName name="jakarta.transaction.Transactional"/>
     <fullyQualifiedTypeName name="kr.ac.kopo.ctc.kopo11.board.service.BoardServiceImpl"/>
     <fullyQualifiedTypeName name="kr.ac.kopo.ctc.kopo11.board.service.BoardService"/>
+    <fullyQualifiedTypeName name="org.hibernate.resource.transaction.internal.SynchronizationRegistryStandardImpl"/>
+    <fullyQualifiedTypeName name="java.util.List"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestMethod"/>
+    <fullyQualifiedTypeName name="org.springframework.data.jpa.repository.Query"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PostMapping"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.GetMapping"/>
+    <fullyQualifiedTypeName name="jakarta.persistence.Table"/>
 </qualifiedTypeNameHistroy>
