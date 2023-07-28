@@ -4,8 +4,6 @@ import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import kr.ac.kopo.ctc.kopo11.board.domain.BoardItem;
@@ -56,9 +54,10 @@ public class BoardServiceImpl implements BoardService {
 	// 전체 게시물 조회
 	@Override
 	public List<BoardItem> findAll() {
-		PageRequest pageable = PageRequest.of(0, 20); // 페이지 번호 0부터 시작
-		Page<BoardItem> page = boardRepository.findAll(pageable);
-		return page.getContent();
+//		PageRequest pageable = PageRequest.of(0, 20); // 페이지 번호 0부터 시작
+//		Page<BoardItem> page = boardRepository.findAll(pageable);
+//		return page.getContent();
+		return (List<BoardItem>) boardRepository.findAll();
 	}
 
 	// id값으로 삭제

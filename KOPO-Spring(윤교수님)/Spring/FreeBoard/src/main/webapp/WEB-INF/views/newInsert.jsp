@@ -87,7 +87,7 @@
 		<tr> <!-- 셀 스타일 지정,text 출력 -->
 			<td bgcolor='#dde5ff' width= 10%>제목</td>
 			<!-- 값이 들어올때 유효성을 검사하고 맞지 않을 경우 경고문구 팝업 -->
-			<td align= 'left' width= 85%><input type='text' maxlength='70' pattern="^(?!\s*$)(?!^*$){1,70}$" name= 'title' value='제목을 입력하세요 '
+			<td align= 'left' width= 85%><input type='text' maxlength='70' pattern="^(?!\s*$)(?!^*$){1,70}$" name= 'title' placeholder='제목을 입력하세요 '
 			 required title="앞공백 X, 70글자 이상 X"></td>
 		</tr>
 		<tr> <!-- 셀 스타일 지정,text 출력 -->

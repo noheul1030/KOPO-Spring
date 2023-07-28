@@ -492,3 +492,801 @@ java.lang.InterruptedException
 
 !ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-27 17:49:04.422
 !MESSAGE Classpath changed for project: FreeBoard
+!SESSION 2023-07-28 08:15:29.833 -----------------------------------------------
+eclipse.buildId=4.19.0.202306150758
+java.version=17.0.7
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=ko_KR
+Framework arguments:  -product org.springframework.boot.ide.branding.sts4
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.springframework.boot.ide.branding.sts4
+
+!ENTRY org.eclipse.emf.ecore 2 0 2023-07-28 08:15:54.023
+!MESSAGE Both 'org.eclipse.jst.j2ee.core' and 'org.eclipse.jst.j2ee.core' register a package for 'application.xmi'
+
+!ENTRY org.eclipse.e4.ui.css.swt.theme 4 0 2023-07-28 08:16:00.431
+!MESSAGE /css/gef_dark.css
+!STACK 0
+java.io.FileNotFoundException: /css/gef_dark.css
+	at org.eclipse.osgi.storage.url.bundleentry.Handler.findBundleEntry(Handler.java:55)
+	at org.eclipse.osgi.storage.url.BundleResourceHandler.openConnection(BundleResourceHandler.java:182)
+	at java.base/java.net.URL.openConnection(URL.java:1094)
+	at org.eclipse.osgi.storage.url.BundleURLConverter.resolve(BundleURLConverter.java:55)
+	at org.eclipse.core.runtime.FileLocator.resolve(FileLocator.java:288)
+	at org.eclipse.core.internal.runtime.PlatformURLConverter.resolve(PlatformURLConverter.java:53)
+	at org.eclipse.core.runtime.FileLocator.resolve(FileLocator.java:288)
+	at org.eclipse.e4.ui.css.swt.internal.theme.ThemeEngine.setTheme(ThemeEngine.java:468)
+	at org.eclipse.e4.ui.css.swt.internal.theme.ThemeEngine.setTheme(ThemeEngine.java:436)
+	at org.eclipse.e4.ui.css.swt.internal.theme.ThemeEngine.restore(ThemeEngine.java:607)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.setCSSTheme(PartRenderingEngine.java:1417)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.initializeStyling(PartRenderingEngine.java:1324)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$5.run(PartRenderingEngine.java:1050)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:338)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:1046)
+	at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(E4Workbench.java:155)
+	at org.eclipse.ui.internal.Workbench.lambda$3(Workbench.java:643)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:338)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:550)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:171)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:152)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:203)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:136)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:104)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:402)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:255)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:659)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:596)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1467)
+
+!ENTRY org.eclipse.jface 2 0 2023-07-28 08:16:00.827
+!MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
+!SUBENTRY 1 org.eclipse.jface 2 0 2023-07-28 08:16:00.827
+!MESSAGE A conflict occurred for CTRL+SHIFT+T:
+Binding(CTRL+SHIFT+T,
+	ParameterizedCommand(Command(org.eclipse.jdt.ui.navigate.open.type,Open Type,
+		Open a type in a Java editor,
+		Category(org.eclipse.ui.category.navigate,Navigate,null,true),
+		WorkbenchHandlerServiceHandler("org.eclipse.jdt.ui.navigate.open.type"),
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+Binding(CTRL+SHIFT+T,
+	ParameterizedCommand(Command(org.eclipse.lsp4e.symbolinworkspace,Go to Symbol in Workspace,
+		,
+		Category(org.eclipse.lsp4e.category,Language Servers,null,true),
+		WorkbenchHandlerServiceHandler("org.eclipse.lsp4e.symbolinworkspace"),
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+
+!ENTRY org.eclipse.egit.ui 2 0 2023-07-28 08:16:04.272
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\노을'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 08:16:05.912
+!MESSAGE Boot project ADDED: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 08:16:05.913
+!MESSAGE Starting Boot LS...
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 08:16:05.967
+!MESSAGE Started Boot LS process
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2023-07-28 08:16:06.022
+!MESSAGE Command list starting LS: org.springframework.tooling.boot.ls
+START:
+C:\Users\노을\Desktop\sts-4.19.0.RELEASE\plugins\org.eclipse.justj.openjdk.hotspot.jre.full.win32.x86_64_17.0.7.v20230425-1502\jre\bin\javaw.exe
+-cp
+C:\Users\노을\Desktop\sts-4.19.0.RELEASE\plugins\org.springframework.tooling.boot.ls_1.47.0.202306150731\servers\spring-boot-language-server\BOOT-INF\classes;C:\Users\노을\Desktop\sts-4.19.0.RELEASE\plugins\org.springframework.tooling.boot.ls_1.47.0.202306150731\servers\spring-boot-language-server\BOOT-INF\lib\*
+-Dsts.lsp.client=eclipse
+-Dlsp.completions.indentation.enable=true
+-Xmx1024m
+-XX:+HeapDumpOnOutOfMemoryError
+-XX:TieredStopAtLevel=1
+-Xlog:jni+resolve=off
+-Dspring.config.location=file:C:\Users\노을\Desktop\sts-4.19.0.RELEASE\plugins\org.springframework.tooling.boot.ls_1.47.0.202306150731\servers\spring-boot-language-server\BOOT-INF\classes\application.properties
+-XX:ErrorFile=C:/Spring/.metadata/.plugins/org.springframework.tooling.boot.ls/fatal-error-spring-boot_1690499766021
+org.springframework.ide.vscode.boot.app.BootLanguageServerBootApp
+--languageserver.hover-timeout=225
+END
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 08:16:06.023
+!MESSAGE DelegatingStreamConnectionProvider - Starting Boot LS
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 08:16:06.090
+!MESSAGE Boot project ADDED: SpringBoard
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2023-07-28 08:16:06.104
+!MESSAGE Started org.springframework.tooling.boot.ls LS process 12004
+
+!ENTRY org.eclipse.lsp4e 4 0 2023-07-28 08:16:06.236
+!MESSAGE org.springframework.ide.vscode.commons.protocol.spring.SpringModelLanguageServer cannot be found by org.springframework.tooling.boot.ls_1.47.0.202306150731
+!STACK 0
+java.lang.ClassNotFoundException: org.springframework.ide.vscode.commons.protocol.spring.SpringModelLanguageServer cannot be found by org.springframework.tooling.boot.ls_1.47.0.202306150731
+	at org.eclipse.osgi.internal.loader.BundleLoader.generateException(BundleLoader.java:541)
+	at org.eclipse.osgi.internal.loader.BundleLoader.findClass0(BundleLoader.java:536)
+	at org.eclipse.osgi.internal.loader.BundleLoader.findClass(BundleLoader.java:416)
+	at org.eclipse.osgi.internal.loader.ModuleClassLoader.loadClass(ModuleClassLoader.java:168)
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:520)
+	at org.eclipse.osgi.internal.framework.EquinoxBundle.loadClass(EquinoxBundle.java:622)
+	at org.eclipse.lsp4e.LanguageServersRegistry$ExtensionLanguageServerDefinition.getServerInterface(LanguageServersRegistry.java:196)
+	at org.eclipse.lsp4e.LanguageServerWrapper.lambda$1(LanguageServerWrapper.java:291)
+	at java.base/java.util.concurrent.CompletableFuture$UniRun.tryFire(CompletableFuture.java:787)
+	at java.base/java.util.concurrent.CompletableFuture.postComplete(CompletableFuture.java:510)
+	at java.base/java.util.concurrent.CompletableFuture$AsyncSupply.run(CompletableFuture.java:1773)
+	at java.base/java.util.concurrent.CompletableFuture$AsyncSupply.exec(CompletableFuture.java:1760)
+	at java.base/java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:373)
+	at java.base/java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(ForkJoinPool.java:1182)
+	at java.base/java.util.concurrent.ForkJoinPool.scan(ForkJoinPool.java:1655)
+	at java.base/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1622)
+	at java.base/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:165)
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 09:18:10.351
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 09:22:34.290
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 09:22:42.871
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 09:22:56.613
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 09:23:17.511
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 09:23:53.201
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 09:24:08.134
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 09:24:19.870
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 09:26:57.703
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 09:26:58.815
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 09:27:17.931
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 09:27:34.650
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 09:31:00.725
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 09:31:08.631
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 09:33:31.393
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 09:33:50.448
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 09:34:24.755
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 09:34:47.619
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 09:50:50.525
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 09:50:59.108
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 09:51:51.334
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 09:53:24.257
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.eclipse.lsp4e 2 0 2023-07-28 09:53:53.205
+!MESSAGE Javadoc unavailable. Failed to obtain it.
+!STACK 0
+java.lang.InterruptedException
+	at java.base/java.util.concurrent.CompletableFuture.reportGet(CompletableFuture.java:386)
+	at java.base/java.util.concurrent.CompletableFuture.get(CompletableFuture.java:2096)
+	at org.eclipse.lsp4e.jdt.LSJavaHoverProvider.getHoverInfo2(LSJavaHoverProvider.java:65)
+	at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:163)
+	at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:130)
+	at org.eclipse.jdt.internal.ui.text.java.hover.JavaEditorTextHoverProxy.getHoverInfo2(JavaEditorTextHoverProxy.java:89)
+	at org.eclipse.jface.text.TextViewerHoverManager$1.run(TextViewerHoverManager.java:155)
+
+!ENTRY org.eclipse.jdt.ui 4 10001 2023-07-28 09:53:53.205
+!MESSAGE Internal Error
+!STACK 1
+Java Model Exception: Error in Java Model (code 969): update(BoardItem) [in ReBoardService [in [Working copy] ReBoardService.java [in kr.ac.kopo.ctc.kopo11.board.service [in src/main/java [in FreeBoard]]]]] does not exist
+	at org.eclipse.jdt.internal.core.JavaElement.newNotPresentException(JavaElement.java:574)
+	at org.eclipse.jdt.internal.core.JavaElement.openWhenClosed(JavaElement.java:617)
+	at org.eclipse.jdt.internal.core.JavaElement.getElementInfo(JavaElement.java:328)
+	at org.eclipse.jdt.internal.core.JavaElement.getElementInfo(JavaElement.java:314)
+	at org.eclipse.jdt.internal.core.SourceRefElement.getSourceRange(SourceRefElement.java:233)
+	at org.eclipse.jdt.internal.core.Member.getJavadocRange(Member.java:301)
+	at org.eclipse.jdt.internal.ui.text.javadoc.JavadocContentAccess2.getHTMLContentFromSource(JavadocContentAccess2.java:645)
+	at org.eclipse.jdt.internal.ui.text.javadoc.JavadocContentAccess2.getHTMLContent(JavadocContentAccess2.java:521)
+	at org.eclipse.jdt.internal.ui.text.java.hover.JavadocHover.getHoverInfo(JavadocHover.java:753)
+	at org.eclipse.jdt.internal.ui.text.java.hover.JavadocHover.internalGetHoverInfo(JavadocHover.java:671)
+	at org.eclipse.jdt.internal.ui.text.java.hover.JavadocHover.getHoverInfo2(JavadocHover.java:663)
+	at org.eclipse.lsp4e.jdt.LSJavaHoverProvider.lambda$0(LSJavaHoverProvider.java:63)
+	at java.base/java.util.concurrent.CompletableFuture$AsyncRun.run(CompletableFuture.java:1804)
+	at java.base/java.util.concurrent.CompletableFuture$AsyncRun.exec(CompletableFuture.java:1796)
+	at java.base/java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:373)
+	at java.base/java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(ForkJoinPool.java:1182)
+	at java.base/java.util.concurrent.ForkJoinPool.scan(ForkJoinPool.java:1655)
+	at java.base/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1622)
+	at java.base/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:165)
+!SUBENTRY 1 org.eclipse.jdt.core 4 969 2023-07-28 09:53:53.206
+!MESSAGE update(BoardItem) [in ReBoardService [in [Working copy] ReBoardService.java [in kr.ac.kopo.ctc.kopo11.board.service [in src/main/java [in FreeBoard]]]]] does not exist
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 09:53:56.312
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 09:54:57.030
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 09:54:59.148
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 09:55:12.830
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 09:55:28.237
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 09:55:35.496
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 09:56:00.692
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 09:56:39.310
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 09:57:23.320
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 09:57:32.138
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 09:58:43.995
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 09:58:46.091
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 09:59:08.317
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 09:59:20.604
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 10:00:01.935
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 10:00:03.014
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 10:00:17.715
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 10:01:27.495
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 10:02:08.559
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 10:02:31.277
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 10:04:18.548
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 10:04:44.012
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.eclipse.lsp4e 2 0 2023-07-28 10:04:53.868
+!MESSAGE Javadoc unavailable. Failed to obtain it.
+!STACK 0
+java.lang.InterruptedException
+	at java.base/java.util.concurrent.CompletableFuture.reportGet(CompletableFuture.java:386)
+	at java.base/java.util.concurrent.CompletableFuture.get(CompletableFuture.java:2096)
+	at org.eclipse.lsp4e.jdt.LSJavaHoverProvider.getHoverInfo2(LSJavaHoverProvider.java:65)
+	at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:163)
+	at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:130)
+	at org.eclipse.jdt.internal.ui.text.java.hover.JavaEditorTextHoverProxy.getHoverInfo2(JavaEditorTextHoverProxy.java:89)
+	at org.eclipse.jface.text.TextViewerHoverManager$1.run(TextViewerHoverManager.java:155)
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 10:05:37.696
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 10:05:39.816
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 10:06:42.238
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 10:06:54.765
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 10:07:07.890
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 10:07:10.480
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.eclipse.lsp4e 2 0 2023-07-28 10:07:34.646
+!MESSAGE Javadoc unavailable. Failed to obtain it.
+!STACK 0
+java.lang.InterruptedException
+	at java.base/java.util.concurrent.CompletableFuture.reportGet(CompletableFuture.java:386)
+	at java.base/java.util.concurrent.CompletableFuture.get(CompletableFuture.java:2096)
+	at org.eclipse.lsp4e.jdt.LSJavaHoverProvider.getHoverInfo2(LSJavaHoverProvider.java:65)
+	at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:163)
+	at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:130)
+	at org.eclipse.jdt.internal.ui.text.java.hover.JavaEditorTextHoverProxy.getHoverInfo2(JavaEditorTextHoverProxy.java:89)
+	at org.eclipse.jface.text.TextViewerHoverManager$1.run(TextViewerHoverManager.java:155)
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 10:07:45.907
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 10:08:39.259
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 10:09:05.421
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 10:09:57.288
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 10:10:13.098
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 10:10:21.267
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 10:15:23.114
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 10:16:37.223
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 10:17:23.182
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 10:17:28.404
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 10:17:54.840
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 10:18:09.862
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 10:18:13.005
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 10:19:41.790
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 10:20:02.632
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 10:20:56.277
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 10:21:02.378
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 10:21:12.240
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 10:21:19.578
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 10:22:57.135
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 10:23:03.538
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 10:25:28.010
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 10:26:56.227
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 10:27:42.147
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 10:47:08.322
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 10:47:14.055
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 10:49:19.747
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 10:49:59.798
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 10:50:11.866
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 10:50:50.871
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 10:50:53.943
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 10:51:12.085
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 10:51:48.230
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 10:51:56.088
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 10:52:22.396
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 10:52:41.363
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 10:56:07.469
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 10:56:30.008
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 10:56:41.699
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 10:57:59.939
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 10:58:06.963
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 10:59:44.811
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 11:00:04.893
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 11:00:45.523
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 11:06:32.964
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 11:06:55.644
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 11:33:32.977
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 11:36:42.070
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 11:37:45.659
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 11:39:52.155
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 11:40:23.860
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 11:42:53.402
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 11:43:22.609
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 11:44:50.468
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 12:21:02.955
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 12:22:22.596
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 12:25:15.509
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 12:26:18.331
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 12:28:25.422
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 12:29:30.180
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 12:34:28.498
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 12:34:39.349
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 12:34:55.009
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 12:35:24.254
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 12:36:46.592
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.eclipse.lsp4e 2 0 2023-07-28 12:37:26.251
+!MESSAGE Javadoc unavailable. Failed to obtain it.
+!STACK 0
+java.lang.InterruptedException
+	at java.base/java.util.concurrent.CompletableFuture.reportGet(CompletableFuture.java:386)
+	at java.base/java.util.concurrent.CompletableFuture.get(CompletableFuture.java:2096)
+	at org.eclipse.lsp4e.jdt.LSJavaHoverProvider.getHoverInfo2(LSJavaHoverProvider.java:65)
+	at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:163)
+	at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:130)
+	at org.eclipse.jdt.internal.ui.text.java.hover.JavaEditorTextHoverProxy.getHoverInfo2(JavaEditorTextHoverProxy.java:89)
+	at org.eclipse.jface.text.TextViewerHoverManager$1.run(TextViewerHoverManager.java:155)
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 12:37:29.469
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 13:08:17.216
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 13:12:30.129
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 13:12:32.223
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 13:12:36.438
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 13:12:40.347
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.eclipse.lsp4e 2 0 2023-07-28 13:12:40.978
+!MESSAGE Could not detect hyperlinks due to timeout after 800 miliseconds
+!STACK 0
+java.util.concurrent.TimeoutException
+	at java.base/java.util.concurrent.CompletableFuture.timedGet(CompletableFuture.java:1960)
+	at java.base/java.util.concurrent.CompletableFuture.get(CompletableFuture.java:2095)
+	at org.eclipse.lsp4e.operations.declaration.OpenDeclarationHyperlinkDetector.detectHyperlinks(OpenDeclarationHyperlinkDetector.java:68)
+	at org.eclipse.ui.texteditor.HyperlinkDetectorRegistry$HyperlinkDetectorDelegate.detectHyperlinks(HyperlinkDetectorRegistry.java:81)
+	at org.eclipse.jface.text.hyperlink.HyperlinkManager.findHyperlinks(HyperlinkManager.java:289)
+	at org.eclipse.jface.text.hyperlink.HyperlinkManager.findHyperlinks(HyperlinkManager.java:262)
+	at org.eclipse.jface.text.hyperlink.HyperlinkManager.mouseMove(HyperlinkManager.java:457)
+	at org.eclipse.swt.widgets.TypedListener.handleEvent(TypedListener.java:216)
+	at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:89)
+	at org.eclipse.swt.widgets.Display.sendEvent(Display.java:4274)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1066)
+	at org.eclipse.swt.widgets.Display.runDeferredEvents(Display.java:4072)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3660)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$5.run(PartRenderingEngine.java:1155)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:338)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:1046)
+	at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(E4Workbench.java:155)
+	at org.eclipse.ui.internal.Workbench.lambda$3(Workbench.java:643)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:338)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:550)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:171)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:152)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:203)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:136)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:104)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:402)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:255)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:659)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:596)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1467)
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 1 0 2023-07-28 13:12:42.364
+!MESSAGE executing callback sts4.classpath.LlaqSbhl FAILED
+
+!ENTRY org.springframework.tooling.ls.eclipse.commons 4 0 2023-07-28 13:12:42.365
+!MESSAGE TimeoutException
+!STACK 0
+java.util.concurrent.TimeoutException
+	at java.base/java.util.concurrent.CompletableFuture.timedGet(CompletableFuture.java:1960)
+	at java.base/java.util.concurrent.CompletableFuture.get(CompletableFuture.java:2095)
+	at org.springframework.tooling.ls.eclipse.commons.LSP4ECommandExecutor.executeClientCommand(LSP4ECommandExecutor.java:31)
+	at org.springframework.tooling.jdt.ls.commons.classpath.SendClasspathNotificationsJob.flush(SendClasspathNotificationsJob.java:178)
+	at org.springframework.tooling.jdt.ls.commons.classpath.SendClasspathNotificationsJob.run(SendClasspathNotificationsJob.java:149)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.lsp4e 2 0 2023-07-28 13:13:30.475
+!MESSAGE Javadoc unavailable. Failed to obtain it.
+!STACK 0
+java.lang.InterruptedException
+	at java.base/java.util.concurrent.CompletableFuture.reportGet(CompletableFuture.java:386)
+	at java.base/java.util.concurrent.CompletableFuture.get(CompletableFuture.java:2096)
+	at org.eclipse.lsp4e.jdt.LSJavaHoverProvider.getHoverInfo2(LSJavaHoverProvider.java:65)
+	at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:163)
+	at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:130)
+	at org.eclipse.jdt.internal.ui.text.java.hover.JavaEditorTextHoverProxy.getHoverInfo2(JavaEditorTextHoverProxy.java:89)
+	at org.eclipse.jface.text.TextViewerHoverManager$1.run(TextViewerHoverManager.java:155)
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 13:14:15.776
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 13:14:48.176
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 13:15:39.083
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 13:16:16.796
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 13:16:19.429
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.eclipse.lsp4e 2 0 2023-07-28 13:17:51.480
+!MESSAGE Javadoc unavailable. Failed to obtain it.
+!STACK 0
+java.lang.InterruptedException
+	at java.base/java.util.concurrent.CompletableFuture.reportGet(CompletableFuture.java:386)
+	at java.base/java.util.concurrent.CompletableFuture.get(CompletableFuture.java:2096)
+	at org.eclipse.lsp4e.jdt.LSJavaHoverProvider.getHoverInfo2(LSJavaHoverProvider.java:65)
+	at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:163)
+	at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:130)
+	at org.eclipse.jdt.internal.ui.text.java.hover.JavaEditorTextHoverProxy.getHoverInfo2(JavaEditorTextHoverProxy.java:89)
+	at org.eclipse.jface.text.TextViewerHoverManager$1.run(TextViewerHoverManager.java:155)
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 13:19:21.264
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 13:19:59.561
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 13:20:02.686
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 13:20:36.373
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 13:21:07.654
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 13:27:37.720
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 13:27:43.190
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 13:27:46.308
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 13:28:14.976
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 13:28:38.016
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 13:28:42.625
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 13:30:03.456
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 13:30:06.914
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 13:31:14.806
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 13:32:07.090
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 13:32:17.226
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 13:32:24.839
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 13:32:32.771
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 13:33:49.471
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 13:34:02.929
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 13:34:57.753
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 13:35:12.640
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 13:35:21.560
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 13:35:47.492
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 13:35:54.077
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 13:36:24.924
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 13:37:30.264
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 13:37:32.398
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.eclipse.jface 2 0 2023-07-28 13:59:05.382
+!MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
+!SUBENTRY 1 org.eclipse.jface 2 0 2023-07-28 13:59:05.382
+!MESSAGE A conflict occurred for CTRL+SHIFT+C:
+Binding(CTRL+SHIFT+C,
+	ParameterizedCommand(Command(org.eclipse.tm4e.languageconfiguration.toggleLineCommentCommand,Toggle Line Comment,
+		,
+		Category(org.eclipse.tm4e.languageconfiguration.category,TM4E Language Configuration,null,true),
+		WorkbenchHandlerServiceHandler("org.eclipse.tm4e.languageconfiguration.toggleLineCommentCommand"),
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.textEditorScope,,,system)
+Binding(CTRL+SHIFT+C,
+	ParameterizedCommand(Command(org.springframework.tooling.boot.ls.ToggleComment,Toggle Comment,
+		,
+		Category(org.springframework.ide.eclipse.commands,Spring Generic Text Editor,Spring Language Server Commands,true),
+		WorkbenchHandlerServiceHandler("org.springframework.tooling.boot.ls.ToggleComment"),
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.textEditorScope,,,system)
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 14:37:47.290
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 14:38:28.264
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 14:41:16.810
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 14:41:40.903
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 14:45:43.687
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 14:45:51.867
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 15:18:55.019
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 15:21:24.896
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 15:23:02.610
+!MESSAGE Classpath changed for project: FreeBoard
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-07-28 15:23:30.161
+!MESSAGE Classpath changed for project: FreeBoard

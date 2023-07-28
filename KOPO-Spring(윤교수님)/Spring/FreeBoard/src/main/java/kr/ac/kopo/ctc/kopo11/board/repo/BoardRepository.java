@@ -1,7 +1,6 @@
 package kr.ac.kopo.ctc.kopo11.board.repo;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import kr.ac.kopo.ctc.kopo11.board.domain.BoardItem;
@@ -12,9 +11,9 @@ import kr.ac.kopo.ctc.kopo11.board.domain.BoardItem;
 @Repository
 public interface BoardRepository extends JpaRepository<BoardItem,Long>{
 
-	
-	@Query("SELECT MAX(b.id) + 1 FROM BoardItem b")
-    Integer findNextAutoId();
+//	
+//	@Query("SELECT MAX(b.id) + 1 FROM BoardItem b")
+//    Integer findNextAutoId();
 	
 	
 	

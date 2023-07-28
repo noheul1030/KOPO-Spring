@@ -33,7 +33,4 @@ public interface BoardService {
 	// 컬럼 값 수정 update
 	void update(BoardItem board);
 
-	
-	
-
 }
