@@ -54,7 +54,7 @@ public class BoardServiceImpl implements BoardService {
 	// 전체 게시물 조회
 	@Override
 	public List<BoardItem> findAll() {
-//		PageRequest pageable = PageRequest.of(0, 20); // 페이지 번호 0부터 시작
+//		PageRequest pageable = PageRequest.of(0, 10); // 페이지 번호 0부터 시작
 //		Page<BoardItem> page = boardRepository.findAll(pageable);
 //		return page.getContent();
 		return (List<BoardItem>) boardRepository.findAll();

@@ -7,6 +7,6 @@ import kr.ac.kopo.ctc.kopo11.board.domain.BoardComment;
 
 @Repository
 public interface ReBoardRepository extends JpaRepository<BoardComment,Long>{
-
+	
 }
 

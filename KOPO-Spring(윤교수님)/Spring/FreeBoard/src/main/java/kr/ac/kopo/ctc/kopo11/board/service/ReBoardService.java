@@ -4,7 +4,6 @@ import java.time.LocalDate;
 import java.util.List;
 
 import kr.ac.kopo.ctc.kopo11.board.domain.BoardComment;
-import kr.ac.kopo.ctc.kopo11.board.domain.BoardItem;
 
 public interface ReBoardService {
 	// 날짜
@@ -14,7 +13,7 @@ public interface ReBoardService {
 	List<BoardComment> reFindAll();
 	
 	// id값으로 댓글 삭제
-	void reDeleteId(Long reid);		
+	void reDeleteId(BoardComment reBoard);		
 	
 	// 컬럼 댓글 값 수정 update
 	void reUpdate(BoardComment reBoard);

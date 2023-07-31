@@ -1,18 +1,23 @@
 package kr.ac.kopo.ctc.kopo11.board.web;
 
 import java.util.Collection;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import kr.ac.kopo.ctc.kopo11.board.domain.BoardComment;
 import kr.ac.kopo.ctc.kopo11.board.domain.BoardItem;
+import kr.ac.kopo.ctc.kopo11.board.repo.BoardRepository;
 import kr.ac.kopo.ctc.kopo11.board.service.BoardService;
 
 @Controller
@@ -20,6 +25,8 @@ public class BoardItemController {
 
 	@Autowired
 	private BoardService boardService;
+	@Autowired
+	private BoardRepository boardRepository;
 
 
 	public BoardItemController(BoardService boardService) {
@@ -60,9 +67,29 @@ public class BoardItemController {
 
 	// 전체 list 저장
 	@RequestMapping(value = "/list")
-	public String findAll(Model model) {
-		List<BoardItem> findAll = boardService.findAll();
-		model.addAttribute("list", findAll);
+	public String findAll(Model model, @PageableDefault(size = 10, sort = "id", direction = Sort.Direction.DESC) Pageable pageable, 
+			@RequestParam(value = "search", required = false, defaultValue = "") String title) {
+		
+		// 검색 키워드(title)를 이용하여 게시물 검색
+	    Page<BoardItem> boardItems;
+	    if (!title.isEmpty()) {
+	        boardItems = boardRepository.findByTitleContainingIgnoreCase(title, pageable);
+	    } else {
+	        boardItems = boardRepository.findAll(pageable);
+	    }
+	    
+	    // 나머지 페이징 및 정렬 로직은 그대로 유지
+	    int pageNumber = boardItems.getPageable().getPageNumber();
+	    int totalPages = boardItems.getTotalPages();
+	    int pageBlock = 10;
+	    int startBlockPage = ((pageNumber) / pageBlock) * pageBlock + 1;
+	    int endBlockPage = startBlockPage + pageBlock - 1;
+	    endBlockPage = totalPages < endBlockPage ? totalPages : endBlockPage;
+		
+		model.addAttribute("startBlockPage", startBlockPage);
+		model.addAttribute("endBlockPage", endBlockPage);
+		model.addAttribute("list", boardItems);
+		
 		return "list";
 	}
 

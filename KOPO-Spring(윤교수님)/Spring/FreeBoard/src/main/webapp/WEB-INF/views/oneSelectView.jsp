@@ -118,14 +118,14 @@ span {
 			<table border='1'>
 				<tr>
 					<!-- 셀 스타일 지정,text 출력 -->
-					<td bgcolor='#dde5ff' width=16%><span>댓글</span></td>
-					<td align='left' width=85%><textarea name="recontent"
+					<td bgcolor='#dde5ff' width= '50px'><span>댓글</span></td>
+					<td align='left'><textarea name="recontent"
 							style="height: 50px; max-height: 300px; overflow-x: auto; overflow-y: scroll; resize: none;"maxlength="100"></textarea>
 						<input type="hidden" name="id" value="${oneSelectView.id}">
 					</td>
-					<td><input class='fourth' type='submit' value='작성'
+					<td width='40'><input class='fourth' type='submit' value='작성'
 						formaction='reply/writereply'
-						style="width: 60px; height: 30px; padding: 0px; font-weight: bold;">
+						style="width: 40px; height: 30px; padding: 0px; font-weight: bold;">
 					</td>
 				</tr>
 			</table>
@@ -137,7 +137,6 @@ span {
 				<td bgcolor='#dde5ff' width='50'><span>번호</span></td>
 				<td bgcolor='#dde5ff'><span>댓글내용</span></td>
 				<td bgcolor='#dde5ff' width='90'><span>등록일</span></td>
-				<td bgcolor='#dde5ff' width='40'><span>수정</span></td>
 				<td bgcolor='#dde5ff' width='40'><span>삭제</span></td>
 			</tr>
 			<c:if test="${empty relist}">
@@ -151,12 +150,8 @@ span {
 					<tr class='tr' align=center>
 						<td><input type='text' name='reid' value='${boardComment.reid}' readonly style="all: unset; margin-left:10px; width:30px;text-align:center;"></td>
 						<td><span style=" margin-left:5px; text-align:left;">${boardComment.recontent}</span></td>
-						<td><span>${boardComment.redate}</span></td>
-						<td><input type='submit' value='수정'
-						formaction='reply/writereply'
-						style="width: 40px; height: 30px; padding: 0px; font-weight: bold;"></td>
-						<td align=center><input type='submit' value='삭제'
-						formaction='reply/reDelete'
+						<td><span>${boardComment.redate}</span></td>						
+						<td align=center><input type='submit' value='삭제' formaction='reply/reDelete?id=${oneSelectView.id}&reid=${boardComment.reid}'
 						style="width: 40px; height: 30px; padding: 0px; font-weight: bold;"></td>
 					</tr>
 				</c:forEach>

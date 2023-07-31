@@ -32,7 +32,7 @@ public class BoardItem {
 	@Column
 	private Integer viewcnt;
 
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "boardItem", fetch = FetchType.EAGER)
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "boardItem", fetch = FetchType.LAZY)
 	private Collection<BoardComment> boardComment;
 
 	public Long getId() {

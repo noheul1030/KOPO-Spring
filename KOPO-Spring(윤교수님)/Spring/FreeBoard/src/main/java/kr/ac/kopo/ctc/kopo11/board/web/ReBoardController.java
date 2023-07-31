@@ -28,10 +28,6 @@ public class ReBoardController {
 	// 작성된 게시물 저장(새로운 글은 newInsert/ 수정 글은 update)
 	@PostMapping("/writereply")
 	public void rewrite(int id, BoardComment reboard, HttpServletResponse resp) throws IOException {
-
-		System.out.println("아이디 : " + id);
-		System.out.println("댓글 내용 : " + reboard.getRecontent());
-
 		reboardService.saveComment(id, reboard);
 
 		resp.sendRedirect("/oneSelectView?id=" + id);
@@ -53,15 +49,15 @@ public class ReBoardController {
 		model.addAttribute("relist", findAll);
 		return "relist";
 	}
-	
-	
-	
-	// 하나의 게시글 삭제
-		@PostMapping("/reDelete")
-		public void deleteBoard(int id, BoardComment reboard, HttpServletResponse resp) throws IOException {
-			// 아이디에 해당하는 게시물을 삭제합니다.
-			reboardService.reDeleteId(reboard.getReid());
-			resp.sendRedirect("/oneSelectView?id=" + id);
-		}
+
+	// 하나의 댓글 삭제
+	@PostMapping("/reDelete")
+	public void deleteBoard(int id, BoardComment reboard, HttpServletResponse resp) throws IOException {
+		// 아이디에 해당하는 게시물을 삭제합니다.
+		System.out.println("아이디 : " + reboard.getReid());
+
+		reboardService.reDeleteId(reboard);
+		resp.sendRedirect("/oneSelectView?id=" + id);
+	}
 
 }
