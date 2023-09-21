@@ -1,4 +1,4 @@
-package com.noheul;
+package com.resort.stringboot;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
