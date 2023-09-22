@@ -13,8 +13,42 @@ public class ControllerTest {
 	public String main() {
 		return "main";
 	}
+	@GetMapping("/about")
+	public String about() {
+		return "about";
+	}
+	@GetMapping("/contact")
+	public String contact() {
+		return "contact";
+	}
 	@GetMapping("/index")
 	public String index() {
 		return "index";
+	}
+	@GetMapping("/properties")
+	public String properties() {
+		return "properties";
+	}
+	@GetMapping("/propertySingle")
+	public String propertySingle() {
+		return "property-single";
+	}
+	@GetMapping("/services")
+	public String services() {
+		return "services";
+	}
+
+	
+	@GetMapping("/resortMain")
+	public String resortMain() {
+		return "resortMain";
+	}
+	@GetMapping("/signUp")
+	public String signUp() {
+		return "signUp";
+	}
+	@GetMapping("/login")
+	public String login() {
+		return "login";
 	}
 }
