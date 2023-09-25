@@ -25,6 +25,10 @@ public class ControllerTest {
 	public String index() {
 		return "index";
 	}
+	@GetMapping("/index_1")
+	public String index1() {
+		return "index_1";
+	}
 	@GetMapping("/properties")
 	public String properties() {
 		return "properties";
