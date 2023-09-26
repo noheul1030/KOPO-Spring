@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<th:block th:replace="fragments/header :: headerFragment"></th:block>
+
+<body>
+	<th:block layout:fragment="content">
+
+		<div class="hero page-inner overlay" style="background-image: url('images/hero_bg_3.jpg')">
+			<div class="container">
+				<div class="row justify-content-center align-items-center">
+					<div class="col-lg-9 text-center mt-5">
+						<h1 class="heading" data-aos="fade-up">Location</h1>
+
+						<nav aria-label="breadcrumb" data-aos="fade-up" data-aos-delay="200">
+							<ol class="breadcrumb text-center justify-content-center">
+								<li class="breadcrumb-item"><a href="/">Home</a></li>
+								<li class="breadcrumb-item active text-white-50" aria-current="page">
+									Location
+								</li>
+							</ol>
+						</nav>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="section">
+			<div class="container">
+				<div class="row mb-5 align-items-center">
+					<div class="col-lg-6">
+						<h2 class="font-weight-bold text-primary heading">
+							Location
+						</h2>
+						<br><br>
+					</div>
+
+					<div id="map" style="width: 100%; height: 500px;"></div>
+				</div>
+
+				<div class="common-content">
+					<div id="mapInfo">
+						<h4 class="font-weight-bold text-primary heading"><img src="icon/map.png"> SUNSET RESORT 주소</h4>
+						<br>
+						<div>
+							<a href="https://map.kakao.com/link/to/Sunset Resort,33.430475,126.928236" target="_blank">
+								찾아오는길 : https://map.kakao.com/link/to/Sunset Resort,33.430475,126.928236
+							</a>
+						</div>
+						<br>
+						<div class="common-basic-info basic-info basic-info-notice">
+							<div class="info">
+								<table border="1" class="table">
+									<colgroup>
+										<col style="width: 130px;">
+										<col>
+									</colgroup>
+									<tbody>
+										<tr>
+											<th scope="row">도로명 주소</th>
+											<td>제주특별자치도 서귀포시 성산읍 섭지코지로 107 SUNSET RESORT 제주</td>
+										</tr>
+										<tr>
+											<th scope="row">지번 주소</th>
+											<td>제주도 서귀포시 성산읍 고성리 127-2번지</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+							<br>
+							<div class="info2">
+								<ul class="list">
+									<li><strong class="head">분양/회원문의</strong> 1577-#### (#2)</li>
+									<li><strong class="head">객실예약문의</strong> 1577-#### (#1)</li>
+									<li><strong class="head">고객센터</strong> 064-731-####</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<br><br>
+
+					<div class="common-content vehicles-area ">
+						<h4 class="font-weight-bold text-primary heading">
+							<img src="icon/car.png"> 택시 및 자가용
+						</h4>
+						<br>
+						<p class="desc"><strong>공항 &gt; SUNSET RESORT 제주 :</strong> 공항에서 50분 소요</p>
+
+
+						<div class="wrap">
+							<ul class="list">
+								<li>
+									<span class="num">1</span>
+									<strong class="title">동부산업도로 이용</strong><br>
+									제주국제공항 → 신제주 → 연삼로 or 연북로 방면 →<br>
+									번영로(동부관광도로)진입구간 → <br>
+									화북방향 삼양 검문소(국도 1132번 진입) → 조천읍(1132번) →<br>
+									구좌읍(1132번) → 성산읍(섭지코지) → SUNSET RESORT 제주
+								</li>
+								<li>
+									<span class="num">2</span>
+									<strong class="title">중산간도로 이용</strong><br>
+									제주국제공항 → 신제주 → 해군제주방어 사령부 →<br>
+									난자농업연구소 → 제주대학교 교차로 → 교래리 입구 →<br>
+									비자림로(1112) → 교래사거리 → 산굼부리 → 대천통사거리 →<br>
+									서성로(1119번 도로) → 성산읍(섭지코지)→ SUNSET RESORT 제주
+								</li>
+								<li>
+									<span class="num">3</span>
+									<strong class="title">일주도로 이용</strong><br>
+									제주국제공항 → 연삼로 or 연북로 방면 →<br>
+									번영로(동부관광도로) 집입구간 →<br>
+									화북방향 삼양 검문소(1132번 진입) → 조천읍(1132번) →<br>
+									구좌읍(1132번) → 성산읍(섭지코지) → SUNSET RESORT 제주
+								</li>
+							</ul>
+						</div>
+
+						<p class="desc"><strong>고성리 하차 후 택시 이용 :</strong> 거리 3.1 km</p>
+						<ul class="ref-bu-list">
+							<li>※하단 공항무료 셔틀 하단 컨텐츠 포함</li>
+						</ul>
+						<br>
+						<p class="desc"><strong>전기차 충전소 : 유원지 주차장 C,D 구역</strong></p>
+						<ul class="ref-bu-list">
+							<li>- 완속충전기 3대 구비 (1시간 30분 소요)</li>
+							<li>- 현금 불가, 멤버십/신용카드/모바일페이 모두 가능</li>
+						</ul>
+						<br><br>
+
+						<h4 class="font-weight-bold text-primary heading">
+							<img src="icon/bus.png"> 급행 버스
+						</h4>
+						<br>
+						<div class="table-container deco center inner-bordered">
+							<table border="1" class="table">
+								<caption>급행 버스 정보 안내 확인 테이블</caption>
+								<colgroup>
+									<col style="width: 20%;">
+									<col style="width: 80%;">
+								</colgroup>
+								<thead>
+									<tr>
+										<th scope="col">급행버스 탑승장</th>
+										<th scope="col">급행버스 번호</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>공항 2번 출구[앞]</td>
+										<td>
+											<a href="http://bus.jeju.go.kr/search/line?searchText=101"
+												target="_blank"><b>101번</b></a>,
+											<a href="http://bus.jeju.go.kr/search/line?searchText=111"
+												target="_blank"><b>111번</b></a>,
+											<a href="http://bus.jeju.go.kr/search/line?searchText=112"
+												target="_blank"><b>112번</b></a>(소요시간: 약 70분) [공항 -> 고성리 하차]
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<ul class="ref-bu-list">
+							<li>※ 버스노선 번호를 클릭하시면 상세한 시간표 확인이 가능합니다.</li>
+						</ul>
+						<br><br>
+
+						<h4 class="font-weight-bold text-primary heading">공항 무료 셔틀</h4>
+						<br>
+						<div class="shuttle-wrap">
+							<div class="item">
+								<p class="desc"><strong>공항 &gt; SUNSET RESORT 제주</strong></p>
+								<div class="table-container deco center inner-bordered">
+									<table border="1" class="table">
+										<caption>공항 무료 셔틀 공항에서 SUNSET RESORT 제주 정보 안내 확인 테이블</caption>
+										<colgroup>
+											<col>
+											<col>
+											<col>
+										</colgroup>
+										<thead>
+											<tr>
+												<th scope="col">구분</th>
+												<th scope="col">1회차</th>
+												<th scope="col">2회차</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<th scope="row">출발시간</th>
+												<td>12:00</td>
+												<td>16:00</td>
+											</tr>
+											<tr>
+												<th scope="row">도착시간</th>
+												<td>13:10</td>
+												<td>17:10</td>
+											</tr>
+											<tr>
+												<th scope="row">탑승장소</th>
+												<td colspan="2">제주공항 B-Zone (1, 2번) 주차장</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+							<div class="item">
+								<p class="desc"><strong>SUNSET RESORT 제주 &gt; 공항</strong></p>
+								<div class="table-container deco center inner-bordered">
+									<table border="1" class="table">
+										<caption>공항 무료 셔틀 SUNSET RESORT 제주에서 공항 정보 안내 확인 테이블</caption>
+										<colgroup>
+											<col>
+											<col>
+											<col>
+										</colgroup>
+										<thead>
+											<tr>
+												<th scope="col">구분</th>
+												<th scope="col">1회차</th>
+												<th scope="col">2회차</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<th scope="row">출발시간</th>
+												<td>10:30</td>
+												<td>14:30</td>
+											</tr>
+											<tr>
+												<th scope="row">도착시간</th>
+												<td>11:40</td>
+												<td>15:40</td>
+											</tr>
+											<tr>
+												<th scope="row">탑승장소</th>
+												<td colspan="2">오렌지동 CU 앞</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="shuttle-desc-wrap">
+					<div class="shuttle-desc-list">
+						<ul>
+							<li>셔틀버스는 정시 출발을 원칙으로 하고 있습니다.</li>
+							<li>버스 탑승은 SUNSET 호텔&amp;리조트 회원 및<br>SUNSET RESORT 제주 투숙고객분만 이용이 가능합니다.</li>
+							<li>탑승은 선착순으로 이루어집니다.</li>
+							<li>도착 시간은 도로 교통 상황에 따라 다소 지연될 수 있습니다. 양해 부탁드립니다.</li>
+						</ul>
+					</div>
+				</div>
+				<!-- footer // -->
+			</div>
+		</div>
+		<script type="text/javascript"
+			src="//dapi.kakao.com/v2/maps/sdk.js?appkey=14701877429b6ceb38e910e16e891ae7"></script>
+		<script>
+			var container = document.getElementById('map');
+			var options = {
+				center: new kakao.maps.LatLng(33.430475, 126.928236),
+				level: 3
+			};
+
+			var map = new kakao.maps.Map(container, options);
+			// 지도를 클릭한 위치에 표출할 마커입니다
+			var marker = new kakao.maps.Marker({
+				// 지도 중심좌표에 마커를 생성합니다
+				position: map.getCenter()
+			});
+			// 지도에 마커를 표시합니다
+			marker.setMap(map);
+		</script>
+
+
+	</th:block>
+</body>
+
+<th:block th:replace="fragments/footer :: footerFragment"></th:block>
+
+</html>
