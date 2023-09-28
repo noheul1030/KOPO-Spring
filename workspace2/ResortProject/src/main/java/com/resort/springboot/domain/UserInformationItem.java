@@ -1,46 +1,80 @@
 package com.resort.springboot.domain;
 
+import org.springframework.security.crypto.password.PasswordEncoder;
+
+import com.resort.springboot.dto.UserInformationDto;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import lombok.Data;
+import jakarta.persistence.Table;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
+@NoArgsConstructor
+@Getter
+@Table(name = "Member")
 @Entity
-@Data
 public class UserInformationItem {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column
-	private Long userNumber;
+	@GeneratedValue(strategy = GenerationType.AUTO)	
+	// 1.회원 ID
+	@Column(name = "id")
+	private Long id;
 	
-	// 회원 ID
-	@Column(length = 50, nullable = false, unique = true)
-	private String id;
-	
-	// 회원 비밀번호
+	// 2.회원 비밀번호
 	@Column(nullable = false)
-	private String passward;
+	private String password;
 	
-	// 이메일
+	// 3.이메일
 	@Column(nullable = false, unique = true)
 	private String email;
 	
-	// 회원 이름
+	// 4.회원 이름
 	@Column(nullable = false)
 	private String name;
 	
-	// 성별
+	// 5.성별
 	@Column(nullable = false)
 	private String sex;
 	
-	// 전화번호
+	// 6.전화번호
 	@Column(nullable = false)
 	private String phoneNumber;
 	
-	// 권한
-	@Column(nullable = false)
-	private String authority;
+//	// 7.권한
+//	@Column(nullable = false)
+//	private String authority;
 	
+	@Enumerated(EnumType.STRING)
+    private MemberRole role;
+
+	
+	@Builder
+	public UserInformationItem(String password, String email, String name, String sex,
+			String phoneNumber, MemberRole role) {
+		this.password = password;
+		this.email = email;
+		this.name = name;
+		this.sex = sex;
+		this.phoneNumber = phoneNumber;
+		this.role = role;
+	}
+	
+	public static UserInformationItem createMember(UserInformationDto dto, PasswordEncoder passwordEncoder) {
+		UserInformationItem member = UserInformationItem.builder()
+        		.password(passwordEncoder.encode(dto.getPassword()))  //암호화처리
+        		.email(dto.getEmail())
+                .name(dto.getName())
+                .sex(dto.getSex())
+                .phoneNumber(dto.getPhoneNumber())
+                .role(MemberRole.USER)
+                .build();
+        return member;
+    }
 }
