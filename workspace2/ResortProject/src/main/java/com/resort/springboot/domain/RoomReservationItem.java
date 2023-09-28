@@ -17,8 +17,8 @@ public class RoomReservationItem {
 	private Long reservationNumber;
 	
 	// 회원 ID
-	@Column(length = 50, nullable = false)
-	private String id;
+	@Column(nullable = false)
+	private String email;
 	
 	// TOP SUITE ROOM
 	@Column

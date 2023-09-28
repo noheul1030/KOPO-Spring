@@ -17,10 +17,10 @@ public class ResortNoticeItem {
 	private Long noticeId;
 	
 	@Column
-	private String id;
+	private String email;
 	
 	@Column
-	private String passward;
+	private String password;
 	
 	@Column
 	private String title;
