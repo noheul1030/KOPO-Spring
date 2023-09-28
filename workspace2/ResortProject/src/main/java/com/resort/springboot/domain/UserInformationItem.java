@@ -1,8 +1,6 @@
 package com.resort.springboot.domain;
 
-import org.springframework.security.crypto.password.PasswordEncoder;
-
-import com.resort.springboot.dto.UserInformationDto;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -11,23 +9,33 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 
-@NoArgsConstructor
-@Getter
-@Table(name = "Member")
+//@NoArgsConstructor
+//@Data
+//@Table(name = "UserInformationItem")
+//@Entity
+
+
+@AllArgsConstructor
+@RequiredArgsConstructor
 @Entity
+@Getter
+@Setter
+@Builder
 public class UserInformationItem {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)	
+	@GeneratedValue(strategy = GenerationType.IDENTITY)	
 	// 1.회원 ID
 	@Column(name = "id")
 	private Long id;
 	
 	// 2.회원 비밀번호
+	@JsonIgnore
 	@Column(nullable = false)
 	private String password;
 	
@@ -55,26 +63,26 @@ public class UserInformationItem {
     private MemberRole role;
 
 	
-	@Builder
-	public UserInformationItem(String password, String email, String name, String sex,
-			String phoneNumber, MemberRole role) {
-		this.password = password;
-		this.email = email;
-		this.name = name;
-		this.sex = sex;
-		this.phoneNumber = phoneNumber;
-		this.role = role;
-	}
-	
-	public static UserInformationItem createMember(UserInformationDto dto, PasswordEncoder passwordEncoder) {
-		UserInformationItem member = UserInformationItem.builder()
-        		.password(passwordEncoder.encode(dto.getPassword()))  //암호화처리
-        		.email(dto.getEmail())
-                .name(dto.getName())
-                .sex(dto.getSex())
-                .phoneNumber(dto.getPhoneNumber())
-                .role(MemberRole.USER)
-                .build();
-        return member;
-    }
+//	@Builder
+//	public UserInformationItem(String password, String email, String name, String sex,
+//			String phoneNumber, MemberRole role) {
+//		this.password = password;
+//		this.email = email;
+//		this.name = name;
+//		this.sex = sex;
+//		this.phoneNumber = phoneNumber;
+//		this.role = role;
+//	}
+//	
+//	public static UserInformationItem createMember(UserInformationDto dto, PasswordEncoder passwordEncoder) {
+//		UserInformationItem member = UserInformationItem.builder()
+//        		.password(passwordEncoder.encode(dto.getPassword()))  //암호화처리
+//        		.email(dto.getEmail())
+//                .name(dto.getName())
+//                .sex(dto.getSex())
+//                .phoneNumber(dto.getPhoneNumber())
+//                .role(MemberRole.USER)
+//                .build();
+//        return member;
+//    }
 }

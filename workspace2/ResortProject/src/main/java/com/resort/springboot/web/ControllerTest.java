@@ -59,13 +59,13 @@ public class ControllerTest {
 		return "services";
 	}
 	
-	@GetMapping("/signUp")
-	public String signUp() {
-		return "signUp";
-	}
-
-	@GetMapping("/login")
-	public String login() {
-		return "login";
-	}
+//	@GetMapping("/signUp")
+//	public String signUp() {
+//		return "signUp";
+//	}
+//
+//	@GetMapping("/login")
+//	public String login() {
+//		return "login";
+//	}
 }
