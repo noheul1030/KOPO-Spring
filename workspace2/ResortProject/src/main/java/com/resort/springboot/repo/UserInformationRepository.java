@@ -8,4 +8,6 @@ import com.resort.springboot.domain.UserInformationItem;
 @Repository
 public interface UserInformationRepository extends JpaRepository<UserInformationItem,Long>{
 
+	UserInformationItem findByEmail(String email);
+
 }
