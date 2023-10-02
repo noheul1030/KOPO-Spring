@@ -3,7 +3,6 @@ package com.resort.springboot.dto;
 import java.io.Serializable;
 
 import org.hibernate.validator.constraints.Length;
-import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.resort.springboot.domain.MemberRole;
 import com.resort.springboot.domain.UserInformationItem;
@@ -63,7 +62,7 @@ public class UserInformationDto {
 		            .name(name)
 		            .sex(sex)
 		            .phoneNumber(phoneNumber)
-		            .role(MemberRole.USER)
+		            .role(MemberRole.ADMIN)
 		            .build();
 		    return member;
 		}
@@ -72,7 +71,11 @@ public class UserInformationDto {
 	@Getter
     public static class Response implements Serializable {		
         
-        private final Long id;
+        /**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
+		private final Long id;
     	private final String password;
     	private final String email;
     	private final String name;

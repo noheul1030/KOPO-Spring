@@ -55,9 +55,9 @@ public class UserInformationItem {
 	@Column(nullable = false)
 	private String phoneNumber;
 	
-	// 7.권한
-	@Column(nullable = false)
-	private String authority;
+//	// 7.권한
+//	@Column(nullable = false)
+//	private String authority;
 	
 	@Enumerated(EnumType.STRING)
     private MemberRole role;

@@ -28,7 +28,7 @@ public class UserController {
 	}
 	
 	// 회원가입
-	@PostMapping("/signUp")
+	@PostMapping("signUp")
 	public String signUp(@Valid UserInformationDto.Request userDto, Errors errors, Model model) {
 
 		if (errors.hasErrors()) {
@@ -54,6 +54,7 @@ public class UserController {
 	
 	@PostMapping("/index")
     public ResponseEntity<String> handlePostRequest() {
+		
         // POST 요청 처리 로직
         return ResponseEntity.ok("POST 요청이 처리되었습니다.");
     }
