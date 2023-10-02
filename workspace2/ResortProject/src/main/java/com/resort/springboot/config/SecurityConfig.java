@@ -23,7 +23,7 @@ public class SecurityConfig {
 	SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 		http.authorizeHttpRequests((authorizeHttpRequests) -> authorizeHttpRequests
 				.requestMatchers(new AntPathRequestMatcher("/**")).permitAll())
-				.csrf((csrf) -> csrf.ignoringRequestMatchers(new AntPathRequestMatcher("/**")))
+				.csrf((csrf) -> csrf.ignoringRequestMatchers(new AntPathRequestMatcher("/**")).disable())
 				.headers((headers) -> headers.addHeaderWriter(
 						new XFrameOptionsHeaderWriter(XFrameOptionsHeaderWriter.XFrameOptionsMode.SAMEORIGIN)));
 
@@ -31,7 +31,7 @@ public class SecurityConfig {
 	}
 
 	@Bean
-	public PasswordEncoder passwordEncoder() {
+	PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
 	}
 }
