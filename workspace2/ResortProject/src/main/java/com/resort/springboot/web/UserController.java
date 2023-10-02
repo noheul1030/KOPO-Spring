@@ -2,6 +2,7 @@ package com.resort.springboot.web;
 
 import java.util.Map;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -50,4 +51,10 @@ public class UserController {
 	public String login() {
 		return "login";
 	}
+	
+	@PostMapping("/index")
+    public ResponseEntity<String> handlePostRequest() {
+        // POST 요청 처리 로직
+        return ResponseEntity.ok("POST 요청이 처리되었습니다.");
+    }
 }
