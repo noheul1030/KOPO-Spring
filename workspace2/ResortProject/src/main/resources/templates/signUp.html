@@ -6,7 +6,7 @@
             <h4>회원가입</h4>
         </div>
     </div>
-    <form th:action="@{/join}" th:object="${userDto}" method="post">
+    <form th:action="@{/}" th:object="${userDto}" method="post">
         <div class="mb-3">
             <label for="email" class="form-label">이메일</label>
             <input type="email" th:field="*{email}" class="form-control">
