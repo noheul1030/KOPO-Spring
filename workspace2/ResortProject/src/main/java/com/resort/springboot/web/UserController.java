@@ -2,15 +2,14 @@ package com.resort.springboot.web;
 
 import java.util.Map;
 
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import com.resort.springboot.dto.UserInformationDto;
-import com.resort.springboot.service.UserInformationServiceImpl;
+import com.resort.springboot.dto.UserDto;
+import com.resort.springboot.service.UserService;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -19,17 +18,17 @@ import lombok.RequiredArgsConstructor;
 @Controller
 public class UserController {
 
-	private final UserInformationServiceImpl userService;
+	private final UserService userService;
 	
 	@GetMapping("/signUp")
 	public String signUp(Model model) {
-		model.addAttribute("userDto", new UserInformationDto.Request());
+		model.addAttribute("userDto", new UserDto.Request());
 		return "signUp";
 	}
 	
 	// 회원가입
 	@PostMapping("signUp")
-	public String signUp(@Valid UserInformationDto.Request userDto, Errors errors, Model model) {
+	public String signUp(@Valid UserDto.Request userDto, Errors errors, Model model) {
 
 		if (errors.hasErrors()) {
 			model.addAttribute("userDto", userDto);
@@ -44,7 +43,7 @@ public class UserController {
 
 		userService.userJoin(userDto);
 
-		return "index";
+		return "signUpOk";
 	}
 
 	@GetMapping("/login")
@@ -52,10 +51,4 @@ public class UserController {
 		return "login";
 	}
 	
-	@PostMapping("/index")
-    public ResponseEntity<String> handlePostRequest() {
-		
-        // POST 요청 처리 로직
-        return ResponseEntity.ok("POST 요청이 처리되었습니다.");
-    }
 }

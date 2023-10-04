@@ -1,5 +1,5 @@
 package com.resort.springboot.service;
 
-public interface RoomReservationService {
+public interface ReservationService {
 
 }

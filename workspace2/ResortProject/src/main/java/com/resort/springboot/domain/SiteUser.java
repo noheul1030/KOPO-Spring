@@ -15,24 +15,21 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
-//@NoArgsConstructor
-//@Data
-//@Table(name = "UserInformationItem")
-//@Entity
-
-
 @AllArgsConstructor
 @RequiredArgsConstructor
 @Entity
 @Getter
 @Setter
 @Builder
-public class UserInformationItem {
+public class SiteUser {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)	
+	@Column(name = "userId")
+	private Long userId;
+	
 	// 1.회원 ID
-	@Column(name = "id")
-	private Long id;
+	@Column(nullable = false, unique = true)
+	private String id;
 	
 	// 2.회원 비밀번호
 	@JsonIgnore
@@ -60,7 +57,7 @@ public class UserInformationItem {
 //	private String authority;
 	
 	@Enumerated(EnumType.STRING)
-    private MemberRole role;
+    private Role role;
 
 	
 //	@Builder

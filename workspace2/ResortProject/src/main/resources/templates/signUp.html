@@ -1,42 +1,62 @@
 <!DOCTYPE html>
-<html>
-<div layout:fragment="content" class="container my-3">
-    <div class="my-3 border-bottom">
-        <div>
-            <h4>회원가입</h4>
-        </div>
-    </div>
-    <form th:action="@{/index}" th:object="${userDto}" method="post">
-        <div class="mb-3">
-            <label for="email" class="form-label">이메일</label>
-            <input type="email" th:field="*{email}" class="form-control">
-            <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="join-field-error"></span>
-        </div>
-        <div class="mb-3">
-            <label for="password" class="form-label">비밀번호</label>
-            <input type="password" th:field="*{password}" class="form-control">
-            <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="join-field-error"></span>
-        </div>
-        <div class="mb-3">
-            <label for="name" class="form-label">이름</label>
-            <input type="text" th:field="*{name}" class="form-control">
-            <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="join-field-error"></span>
-        </div>
-        <div class="mb-3">
-		    <label for="sex" class="form-label">성별</label>
-		    <select th:field="*{sex}" class="form-select">
-		        <option value="남성">남성</option>
-		        <option value="여성">여성</option>
-		    </select>
-		    <span th:if="${#fields.hasErrors('sex')}" th:errors="*{sex}" class="join-field-error"></span>
-		</div>
-        <div class="mb-3">
-            <label for="phoneNumber" class="form-label">전화번호</label>
-            <input type="text" th:field="*{phoneNumber}" class="form-control">
-            <span th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}" class="join-field-error"></span>
-        </div>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 
-        <button type="submit" class="btn btn-primary">회원가입</button>
-    </form>
-</div>
+<th:block th:replace="fragments/header :: headerFragment"></th:block>
+
+<body>
+	<th:block layout:fragment="content">
+		<div layout:fragment="content" class="container my-3">
+			<div style="width: 100%; height: 150px;"></div>
+
+			<div>
+				<h4><b>회원가입</b></h4>
+			</div>
+			
+			<br>
+			
+			<form th:action="@{/signUp}" th:object="${userDto}" method="post">
+				<div class="mb-3">
+					<label for="id" class="form-label">아이디</label>
+					<input type="text" th:field="*{id}" class="form-control">
+					<span th:if="${#fields.hasErrors('id')}" th:errors="*{id}" class="join-field-error"></span>
+				</div>
+				<div class="mb-3">
+					<label for="password" class="form-label">비밀번호</label>
+					<input type="password" th:field="*{password}" class="form-control">
+					<span th:if="${#fields.hasErrors('password')}" th:errors="*{password}"
+						class="join-field-error"></span>
+				</div>
+				<div class="mb-3">
+					<label for="email" class="form-label">이메일</label>
+					<input type="text" th:field="*{email}" class="form-control">
+					<span th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="join-field-error"></span>
+				</div>
+				<div class="mb-3">
+					<label for="name" class="form-label">이름</label>
+					<input type="text" th:field="*{name}" class="form-control">
+					<span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="join-field-error"></span>
+				</div>
+				<div class="mb-3">
+					<label for="sex" class="form-label">성별</label>
+					<select th:field="*{sex}" class="form-select">
+						<option value="남성">남성</option>
+						<option value="여성">여성</option>
+					</select>
+					<span th:if="${#fields.hasErrors('sex')}" th:errors="*{sex}" class="join-field-error"></span>
+				</div>
+				<div class="mb-3">
+					<label for="phoneNumber" class="form-label">전화번호</label>
+					<input type="text" th:field="*{phoneNumber}" class="form-control">
+					<span th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}"
+						class="join-field-error"></span>
+				</div>
+
+				<button type="submit" class="btn btn-primary">회원가입</button>
+			</form>
+		</div>
+	</th:block>
+</body>
+
+<th:block th:replace="fragments/footer :: footerFragment"></th:block>
+
 </html>

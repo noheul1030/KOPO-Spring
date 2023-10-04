@@ -9,7 +9,7 @@ import lombok.Data;
 
 @Entity
 @Data
-public class RoomReservationItem {
+public class Reservation {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

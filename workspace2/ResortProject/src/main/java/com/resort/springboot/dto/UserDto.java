@@ -4,8 +4,8 @@ import java.io.Serializable;
 
 import org.hibernate.validator.constraints.Length;
 
-import com.resort.springboot.domain.MemberRole;
-import com.resort.springboot.domain.UserInformationItem;
+import com.resort.springboot.domain.Role;
+import com.resort.springboot.domain.SiteUser;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -17,8 +17,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-
-public class UserInformationDto {
+public class UserDto {
 	
 	@AllArgsConstructor
 	@NoArgsConstructor
@@ -28,11 +27,16 @@ public class UserInformationDto {
 	public static class Request{
 		
 	
-		private Long id;
+		private Long userId;
+		
+		@Pattern(regexp = "^[가-힣a-zA-Z0-9]{3,20}$", message = "아이디는 3~20자로 영어 대소문자와 숫자만 허용됩니다.")
+		@NotBlank(message = "아이디는 필수 입력 값입니다.")
+		@Length(min = 3, max = 20, message = "아이디는 3자 이상, 20자 이하로 입력해주세요.")
+		private String id;
 	
-		@Pattern(regexp = "^(?=.*[a-zA-Z])(?=.*\\d)[A-Za-z\\d@#$%^&+=!]{8,20}$", message = "비밀번호는 8~20자로 영어 대소문자, 숫자, @#$%^&+=!만 허용됩니다.")
+		@Pattern(regexp = "^(?=.*[a-zA-Z])(?=.*\\d)[A-Za-z\\d@#$%^&+=!]{3,20}$", message = "영어 대소문자, 숫자, 특수 기호(@#$%^&+=!)를 포함하는 3자 이상, 20자 이하의 패턴이어야 합니다.")
 		@NotEmpty(message = "비밀번호는 필수 입력 값입니다.")
-		@Length(min = 4, max = 16, message = "비밀번호는 4자 이상, 16자 이하로 입력해주세요.")
+		@Length(min = 3, max = 20, message = "비밀번호는 3자 이상, 20자 이하로 입력해주세요.")
 		private String password;
 	
 		@Pattern(regexp = "^(?:\\w+\\.?)*\\w+@(?:\\w+\\.)+\\w+$", message = "이메일 형식이 올바르지 않습니다.")
@@ -49,42 +53,39 @@ public class UserInformationDto {
 	
 		@Pattern(regexp = "^\\d{11,11}$", message = "전화번호는 숫자 11자리만 허용됩니다.")
 		@NotBlank(message = "연락처를 입력해주세요.")
-		private String phoneNumber;
-	
-	//    @NotEmpty(message = "주소는 필수 입력 값입니다.")
-	//    private String address;
+		private String phoneNumber;	
 	
 		
-		public UserInformationItem createUser() {
-			UserInformationItem member = UserInformationItem.builder()
+		public SiteUser createUser() {
+			SiteUser user = SiteUser.builder()
+					.userId(userId)
+					.id(id)
 		    		.password(password)  //암호화처리
 		    		.email(email)
 		            .name(name)
 		            .sex(sex)
 		            .phoneNumber(phoneNumber)
-		            .role(MemberRole.ADMIN)
+		            .role(Role.ADMIN)
 		            .build();
-		    return member;
+		    return user;
 		}
 	}
 	
 	@Getter
     public static class Response implements Serializable {		
         
-        /**
-		 * 
-		 */
-		private static final long serialVersionUID = 1L;
-		private final Long id;
+		private final Long userId;
+		private final String id;
     	private final String password;
     	private final String email;
     	private final String name;
     	private final String sex;
     	private final String phoneNumber;
-        private final MemberRole role;
+        private final Role role;
         
         // Entity -> Dto
-        public Response(UserInformationItem user) {
+        public Response(SiteUser user) {
+        	this.userId = user.getUserId();
             this.id = user.getId();
             this.password = user.getPassword();
             this.email = user.getEmail();

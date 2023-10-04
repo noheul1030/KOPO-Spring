@@ -2,6 +2,7 @@ package com.resort.springboot.service;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -9,40 +10,43 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.Errors;
 import org.springframework.validation.FieldError;
 
-import com.resort.springboot.domain.MemberRole;
-import com.resort.springboot.domain.UserInformationItem;
-import com.resort.springboot.dto.UserInformationDto;
-import com.resort.springboot.repo.UserInformationRepository;
+import com.resort.springboot.domain.Role;
+import com.resort.springboot.domain.SiteUser;
+import com.resort.springboot.dto.UserDto;
+import com.resort.springboot.repo.UserRepository;
 
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @Transactional
 @Service
-public class UserInformationServiceImpl implements UserInformationService {
-	private final UserInformationRepository userRepository;
+public class UserService{
+	private final UserRepository userRepository;
 	private final PasswordEncoder passwordEncoder;
 
-	@Override
-	public UserInformationItem saveUser(UserInformationItem member) {
-		validateDuplicateUser(member);
+	public SiteUser saveUser(SiteUser user) {
+		validateDuplicateUser(user);
 
-		return userRepository.save(member);
+		return userRepository.save(user);
 	}
 
-	@Override
-	public void validateDuplicateUser(UserInformationItem member) {
-		UserInformationItem findUser = userRepository.findByEmail(member.getEmail());
-		if (findUser != null) {
-			throw new IllegalStateException("이미 가입된 회원입니다.");
+	public void validateDuplicateUser(SiteUser user) {
+		SiteUser findEmail = userRepository.findByEmail(user.getEmail());
+		if (findEmail != null) {
+			throw new IllegalStateException("이미 가입된 이메일입니다.");
+		}
+		Optional<SiteUser> findId = userRepository.findById(user.getId());
+		if (findId != null) {
+			throw new IllegalStateException("이미 가입된 아이디입니다.");
 		}
 	}
 	
-	public UserInformationItem create(Long id, String password, String email, String name, String sex,
-			String phoneNumber, MemberRole role) {
+	public SiteUser create(Long userId, String id, String password, String email, String name, String sex,
+			String phoneNumber, Role role) {
 
-		UserInformationItem user = new UserInformationItem();
+		SiteUser user = new SiteUser();
 		
+		user.setUserId(userId);
 		user.setId(id);
 		user.setPassword(passwordEncoder.encode(password));
 		user.setEmail(email);
@@ -58,7 +62,7 @@ public class UserInformationServiceImpl implements UserInformationService {
 	
 	// 회원가입
 	@Transactional
-	public void userJoin(UserInformationDto.Request userDto) {
+	public void userJoin(UserDto.Request userDto) {
 
 		userDto.setPassword(passwordEncoder.encode(userDto.getPassword()));
 		userRepository.save(userDto.createUser());

@@ -9,7 +9,7 @@ import lombok.Data;
 
 @Entity
 @Data
-public class ResortNoticeItem {
+public class Notice {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
