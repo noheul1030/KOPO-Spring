@@ -52,34 +52,18 @@ public class SiteUser {
 	@Column(nullable = false)
 	private String phoneNumber;
 	
-//	// 7.권한
-//	@Column(nullable = false)
-//	private String authority;
-	
+	// 7. 권한
 	@Enumerated(EnumType.STRING)
-    private Role role;
+	private Role role;
 
+	// 8. 우편번호
+	private String zipcode; 
 	
-//	@Builder
-//	public UserInformationItem(String password, String email, String name, String sex,
-//			String phoneNumber, MemberRole role) {
-//		this.password = password;
-//		this.email = email;
-//		this.name = name;
-//		this.sex = sex;
-//		this.phoneNumber = phoneNumber;
-//		this.role = role;
-//	}
-//	
-//	public static UserInformationItem createMember(UserInformationDto dto, PasswordEncoder passwordEncoder) {
-//		UserInformationItem member = UserInformationItem.builder()
-//        		.password(passwordEncoder.encode(dto.getPassword()))  //암호화처리
-//        		.email(dto.getEmail())
-//                .name(dto.getName())
-//                .sex(dto.getSex())
-//                .phoneNumber(dto.getPhoneNumber())
-//                .role(MemberRole.USER)
-//                .build();
-//        return member;
-//    }
+	// 9. 도로명주소
+	private String streetAdr;
+	
+	// 10. 상세주소
+	private String detailAdr;
+	
+	
 }

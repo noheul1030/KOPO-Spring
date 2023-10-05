@@ -7,6 +7,7 @@ import org.hibernate.validator.constraints.Length;
 import com.resort.springboot.domain.Role;
 import com.resort.springboot.domain.SiteUser;
 
+import jakarta.persistence.Embeddable;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
@@ -29,7 +30,7 @@ public class UserDto {
 	
 		private Long userId;
 		
-		@Pattern(regexp = "^[가-힣a-zA-Z0-9]{3,20}$", message = "아이디는 3~20자로 영어 대소문자와 숫자만 허용됩니다.")
+		@Pattern(regexp = "^[가-힣a-zA-Z0-9]{3,20}$", message = "아이디는 3~20자로 한글, 영어 대소문자와 숫자만 허용됩니다.")
 		@NotBlank(message = "아이디는 필수 입력 값입니다.")
 		@Length(min = 3, max = 20, message = "아이디는 3자 이상, 20자 이하로 입력해주세요.")
 		private String id;
@@ -54,7 +55,11 @@ public class UserDto {
 		@Pattern(regexp = "^\\d{11,11}$", message = "전화번호는 숫자 11자리만 허용됩니다.")
 		@NotBlank(message = "연락처를 입력해주세요.")
 		private String phoneNumber;	
-	
+		
+		
+		private String zipcode; 
+    	private String streetAdr;
+    	private String detailAdr;
 		
 		public SiteUser createUser() {
 			SiteUser user = SiteUser.builder()
@@ -65,7 +70,12 @@ public class UserDto {
 		            .name(name)
 		            .sex(sex)
 		            .phoneNumber(phoneNumber)
-		            .role(Role.ADMIN)
+		            .role(Role.USER)		            
+		         
+		            .zipcode(zipcode)
+		            .streetAdr(streetAdr)
+		            .detailAdr(detailAdr)
+		            
 		            .build();
 		    return user;
 		}
@@ -83,6 +93,10 @@ public class UserDto {
     	private final String phoneNumber;
         private final Role role;
         
+        private String zipcode; 
+    	private String streetAdr;
+    	private String detailAdr;
+        
         // Entity -> Dto
         public Response(SiteUser user) {
         	this.userId = user.getUserId();
@@ -93,18 +107,11 @@ public class UserDto {
             this.sex = user.getSex();
             this.phoneNumber = user.getPhoneNumber();
             this.role = user.getRole();
+            
+            this.zipcode = user.getZipcode();
+            this.streetAdr = user.getStreetAdr();
+            this.detailAdr = user.getDetailAdr();
         }
 	}
 	
-	
-	
-//	@Builder
-//	public UserInformationDto(String password, String email, String name, String sex, String phoneNumber) {
-//		this.password = password;
-//		this.email = email;
-//		this.name = name;
-//		this.sex = sex;
-//		this.phoneNumber = phoneNumber;
-//	}
-
 }

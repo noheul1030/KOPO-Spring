@@ -2,9 +2,12 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 
 <th:block th:replace="fragments/header :: headerFragment"></th:block>
+<th:block th:replace="fragments/exception :: exceptionFragment"></th:block>
+
 
 <body>
 	<th:block layout:fragment="content">
+		
 		<div layout:fragment="content" class="container my-3">
 			<div style="width: 100%; height: 150px;"></div>
 
@@ -14,26 +17,33 @@
 			
 			<br>
 			
-			<form th:action="@{/signUp}" th:object="${userDto}" method="post">
+			<form id="registrationForm" th:action="@{/signUp}" th:object="${userDto}" method="post">
+				
 				<div class="mb-3">
 					<label for="id" class="form-label">아이디</label>
-					<input type="text" th:field="*{id}" class="form-control">
+					<input type="text" th:field="*{id}" class="form-control" placeholder="아이디를 입력하세요." onblur="validateId()">
 					<span th:if="${#fields.hasErrors('id')}" th:errors="*{id}" class="join-field-error"></span>
 				</div>
 				<div class="mb-3">
 					<label for="password" class="form-label">비밀번호</label>
-					<input type="password" th:field="*{password}" class="form-control">
+					<input type="password" th:field="*{password}" class="form-control" placeholder="비밀번호를 입력하세요." onblur="validatePassword()">
 					<span th:if="${#fields.hasErrors('password')}" th:errors="*{password}"
 						class="join-field-error"></span>
 				</div>
 				<div class="mb-3">
 					<label for="email" class="form-label">이메일</label>
-					<input type="text" th:field="*{email}" class="form-control">
+					<input type="text" th:field="*{email}" class="form-control" placeholder="메일주소를 입력하세요." onblur="validateEmail()">
 					<span th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="join-field-error"></span>
 				</div>
+				
+				
+				<!--주소 API 추가 구현 부분-->
+				<th:block th:replace="fragments/address:: addressFragment"></th:block>
+				
+				
 				<div class="mb-3">
 					<label for="name" class="form-label">이름</label>
-					<input type="text" th:field="*{name}" class="form-control">
+					<input type="text" th:field="*{name}" class="form-control" placeholder="이름을 입력하세요." onblur="validateName()">
 					<span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="join-field-error"></span>
 				</div>
 				<div class="mb-3">
@@ -46,7 +56,7 @@
 				</div>
 				<div class="mb-3">
 					<label for="phoneNumber" class="form-label">전화번호</label>
-					<input type="text" th:field="*{phoneNumber}" class="form-control">
+					<input type="text" th:field="*{phoneNumber}" class="form-control" placeholder="전화번호를 입력하세요." onblur="validatePhoneNumber()">
 					<span th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}"
 						class="join-field-error"></span>
 				</div>
@@ -58,5 +68,6 @@
 </body>
 
 <th:block th:replace="fragments/footer :: footerFragment"></th:block>
+
 
 </html>
