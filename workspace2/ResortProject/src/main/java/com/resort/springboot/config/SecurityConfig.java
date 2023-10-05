@@ -20,6 +20,9 @@ public class SecurityConfig {
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
             .authorizeHttpRequests((authorizeHttpRequests) -> authorizeHttpRequests
+            	// 페이지 권한에 대한 구현
+            	// 현재 services url에 대한 접근 권한은 ADMIN만 가능
+            	.requestMatchers(new AntPathRequestMatcher("/services/**")).hasAuthority("ROLE_ADMIN")
                 .requestMatchers(new AntPathRequestMatcher("/**")).permitAll())
             .csrf((csrf) -> csrf
                 .ignoringRequestMatchers(new AntPathRequestMatcher("/h2-console/**")))
