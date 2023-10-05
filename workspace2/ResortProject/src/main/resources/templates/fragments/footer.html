@@ -36,9 +36,9 @@
 							<li><a href="/location">찾아오는길</a></li>
 							<li><a href="#">주변관광지</a></li>
 							<li><a href="/noticeBoard">게시판</a></li>
-							<li><a href="#">예약조회</a></li>
-							<li><a href="/login">로그인</a></li>
-							<li><a href="/signUp">회원가입</a></li>
+							<a href="/reservationView" sec:authorize="isAuthenticated()"><li>예약조회</li></a>
+							<a href="/login" sec:authorize="isAnonymous()"><li>로그인</li></a><br>
+							<a href="/signUp" sec:authorize="isAnonymous()"><li>회원가입</li></a>
 						</ul>
 					</div>
 					<!-- /.widget -->
