@@ -40,7 +40,7 @@ public class UserController {
 
 			return "signUp";
 		}
-
+		
 		userService.userJoin(userDto);
 
 		return "signUpOk";
@@ -50,5 +50,9 @@ public class UserController {
 	public String login() {
 		return "login";
 	}
+	
+	
+	
+	
 	
 }
