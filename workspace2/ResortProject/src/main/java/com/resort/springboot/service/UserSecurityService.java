@@ -32,6 +32,7 @@ public class UserSecurityService implements UserDetailsService {
         }
         SiteUser user = findById.get();
         List<GrantedAuthority> authorities = new ArrayList<>();
+        // id에 admin이 들어가는 경우 ADMIN 권한부여
         if ("admin".equals(id)) {
             authorities.add(new SimpleGrantedAuthority(Role.ADMIN.getValue()));
         } else {
