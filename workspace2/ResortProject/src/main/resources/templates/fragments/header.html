@@ -101,13 +101,7 @@
 								</ul>
 							</li>
 
-							<li class="has-children">
-								<a href="#">예약조회</a>
-								<ul class="dropdown">
-									<li><a href="#">회원조회</a></li>
-									<li><a href="#">비회원조회</a></li>
-								</ul>
-							</li>
+							<li><a href="/reservationView" sec:authorize="isAuthenticated()">예약조회</a></li>
 
 							<li>
 								<a class="nav-link" sec:authorize="isAnonymous()" th:href="@{/login}">로그인</a>
