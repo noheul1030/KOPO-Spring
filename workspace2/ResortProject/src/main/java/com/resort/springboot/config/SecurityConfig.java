@@ -15,39 +15,33 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
-	
+
 	@Bean
-    SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http
-            .authorizeHttpRequests((authorizeHttpRequests) -> authorizeHttpRequests
-            	// 페이지 권한에 대한 구현
-            	// 현재 services url에 대한 접근 권한은 ADMIN만 가능
-            	.requestMatchers(new AntPathRequestMatcher("/services/**")).hasAuthority("ROLE_ADMIN")
-                .requestMatchers(new AntPathRequestMatcher("/**")).permitAll())
-            .csrf((csrf) -> csrf
-                .ignoringRequestMatchers(new AntPathRequestMatcher("/h2-console/**")))
-            .headers((headers) -> headers
-                .addHeaderWriter(new XFrameOptionsHeaderWriter(
-                    XFrameOptionsHeaderWriter.XFrameOptionsMode.SAMEORIGIN)))
-            .formLogin((formLogin) -> formLogin
-                .loginPage("/login")
-                .defaultSuccessUrl("/"))
-            .logout((logout) -> logout
-                    .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                    .logoutSuccessUrl("/")
-                    .invalidateHttpSession(true))
-        ;
-        return http.build();
-    }
+	SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+		http.authorizeHttpRequests((authorizeHttpRequests) -> authorizeHttpRequests
+		// 페이지 권한에 대한 구현
+		// 현재 services url에 대한 접근 권한은 ADMIN만 가능
+//            	.requestMatchers(new AntPathRequestMatcher("/services/**")).hasAuthority("ROLE_ADMIN")
+				.requestMatchers(new AntPathRequestMatcher("/services/**")).hasAnyAuthority("ROLE_ADMIN", "ROLE_USER")
+				.requestMatchers(new AntPathRequestMatcher("/reservationView/**")).hasAnyAuthority("ROLE_ADMIN", "ROLE_USER")
+				.requestMatchers(new AntPathRequestMatcher("/**")).permitAll())
+				.csrf((csrf) -> csrf.ignoringRequestMatchers(new AntPathRequestMatcher("/h2-console/**")))
+				.headers((headers) -> headers.addHeaderWriter(
+						new XFrameOptionsHeaderWriter(XFrameOptionsHeaderWriter.XFrameOptionsMode.SAMEORIGIN)))
+				.formLogin((formLogin) -> formLogin.loginPage("/login").defaultSuccessUrl("/"))
+				.logout((logout) -> logout.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+						.logoutSuccessUrl("/").invalidateHttpSession(true));
+		return http.build();
+	}
 
 	@Bean
 	PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
 	}
-	
-	
+
 	@Bean
-    AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
-        return authenticationConfiguration.getAuthenticationManager();
-    }
+	AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration)
+			throws Exception {
+		return authenticationConfiguration.getAuthenticationManager();
+	}
 }
