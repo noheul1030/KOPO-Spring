@@ -17,9 +17,9 @@ public interface NoticeRepository extends JpaRepository<Notice,Long>{
 	void deleteByNoticeId(Long noticeId);
 	
 	// 회원 목록 + 검색
-		Page<Notice> findAll(Pageable pageable);
+	Page<Notice> findAll(Pageable pageable);
 
-		Page<Notice> findByTitleContainingIgnoreCase(String title, Pageable pageable);
+	Page<Notice> findByTitleContainingIgnoreCase(String title, Pageable pageable);
 		
 
 }

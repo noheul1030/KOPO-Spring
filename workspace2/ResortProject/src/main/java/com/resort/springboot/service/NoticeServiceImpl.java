@@ -1,12 +1,13 @@
 package com.resort.springboot.service;
 
-import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.resort.springboot.domain.Notice;
+import com.resort.springboot.exception.DataNotFoundException;
 import com.resort.springboot.repo.NoticeRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -14,13 +15,13 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @Transactional
 @Service
-public class NoticeServiceImpl implements NoticeService{
+public class NoticeServiceImpl{
 
-//	private NoticeRepository noticeRepository;
-//
-//	public NoticeServiceImpl(NoticeRepository noticeRepository) {
-//		this.noticeRepository = noticeRepository;
-//	}
+	private NoticeRepository noticeRepository;
+
+	public NoticeServiceImpl(NoticeRepository noticeRepository) {
+		this.noticeRepository = noticeRepository;
+	}
 //
 //	// 날짜
 //	@Override
@@ -63,14 +64,13 @@ public class NoticeServiceImpl implements NoticeService{
 //		noticeRepository.save(notice2);
 //	}
 //
-//	// 전체 게시물 조회
-//	@Override
-//	public List<Notice> findAll() {
-////		PageRequest pageable = PageRequest.of(0, 10); // 페이지 번호 0부터 시작
-////		Page<BoardItem> page = boardRepository.findAll(pageable);
-////		return page.getContent();
-//		return (List<Notice>) noticeRepository.findAll();
-//	}
+	// 전체 게시물 조회
+	public List<Notice> getList() {
+//		PageRequest pageable = PageRequest.of(0, 10); // 페이지 번호 0부터 시작
+//		Page<BoardItem> page = boardRepository.findAll(pageable);
+//		return page.getContent();
+		return this.noticeRepository.findAll();
+	}
 //
 //	// id값으로 삭제
 //	@Override
@@ -78,10 +78,15 @@ public class NoticeServiceImpl implements NoticeService{
 //		noticeRepository.deleteByNoticeId(id);
 //	}
 //
-//	@Override // id값으로 한건 조회
-//	public Notice oneSelectView(Long noticeId) {
-//		return noticeRepository.findByNoticeId(noticeId).orElse(null);
-//	}
+	// id값으로 한건 조회
+	public Notice oneSelectView(Long noticeId) {
+		 Optional<Notice> notice = this.noticeRepository.findByNoticeId(noticeId);
+	        if (notice.isPresent()) {
+	            return notice.get();
+	        } else {
+	            throw new DataNotFoundException("notice not found");
+	        }
+	}
 //
 //	@Override // id값으로 한건 조회 시 조회수 카운트
 //	public void visit(Long noticeId) {

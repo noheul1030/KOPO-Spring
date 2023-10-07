@@ -23,7 +23,7 @@ public class ControllerTest {
 	public String main() {
 		return "main";
 	}
-	
+
 	@GetMapping("/location")
 	public String location() {
 		return "location";
@@ -58,14 +58,5 @@ public class ControllerTest {
 	public String services() {
 		return "services";
 	}
-	
-//	@GetMapping("/signUp")
-//	public String signUp() {
-//		return "signUp";
-//	}
-//
-//	@GetMapping("/login")
-//	public String login() {
-//		return "login";
-//	}
+
 }
