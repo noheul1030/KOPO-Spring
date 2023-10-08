@@ -10,10 +10,18 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
-import lombok.Data;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 
+@AllArgsConstructor
+@RequiredArgsConstructor
 @Entity
-@Data
+@Getter
+@Setter
+@Builder
 public class Notice {
 
 	@Id
