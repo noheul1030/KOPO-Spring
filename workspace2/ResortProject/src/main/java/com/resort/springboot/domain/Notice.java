@@ -44,6 +44,6 @@ public class Notice {
 	@Column 
 	private Integer viewcnt;
 	
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "notice", fetch = FetchType.LAZY)
-	private Collection<NoticeComment> noticeComment;
+//	@OneToMany(cascade = CascadeType.ALL, mappedBy = "notice", fetch = FetchType.LAZY)
+//	private Collection<NoticeComment> noticeComment;
 }
