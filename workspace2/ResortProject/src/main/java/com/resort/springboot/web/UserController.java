@@ -4,8 +4,9 @@ import java.util.Map;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.Errors;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.resort.springboot.dto.UserDto;
@@ -28,12 +29,12 @@ public class UserController {
 	
 	// 회원가입
 	@PostMapping("signUp")
-	public String signUp(@Valid UserDto.Request userDto, Errors errors, Model model) {
+	public String signUp(@Valid @ModelAttribute("userDto") UserDto.Request userDto, BindingResult bindingResult, Model model) {
 
-		if (errors.hasErrors()) {
+		if (bindingResult.hasErrors()) {
 			model.addAttribute("userDto", userDto);
 
-			Map<String, String> validatedResult = userService.validateHandling(errors);
+			Map<String, String> validatedResult = userService.validateHandling(bindingResult);
 			for (String key : validatedResult.keySet()) {
 				model.addAttribute(key, validatedResult.get(key));
 			}

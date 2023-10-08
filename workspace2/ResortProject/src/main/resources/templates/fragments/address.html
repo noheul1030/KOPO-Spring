@@ -4,20 +4,20 @@
 
 
 	<div class="mb-3">
-		<label for="zipcode" class="form-label">우편번호</label><br>
+		<label for="zipcode" class="form-label"><b>우편번호</b></label><br>
 		<input type="text" th:field="*{zipcode}" id="zipcode" placeholder="우편번호">
 		<input type="button" onclick="execDaumPostcode()" value="우편번호 찾기"><br>
 		<span th:if="${#fields.hasErrors('zipcode')}" th:errors="*{zipcode}" class="join-field-error"></span>
 	</div>
 
 	<div class="mb-3">
-		<label for="streetAdr" class="form-label">도로명 주소</label><br>
+		<label for="streetAdr" class="form-label"><b>도로명 주소</b></label><br>
 		<input type="text" th:field="*{streetAdr}" id="streetAdr" class="form-control" placeholder="도로명주소">
 		<span th:if="${#fields.hasErrors('streetAdr')}" th:errors="*{streetAdr}" class="join-field-error"></span>
 	</div>
 	<span id="guide" style="color:#999;display:none"></span>
 	<div class="mb-3">
-		<label for="detailAdr" class="form-label">상세주소</label><br>
+		<label for="detailAdr" class="form-label"><b>상세주소</b></label><br>
 		<input type="text" th:field="*{detailAdr}" id="detailAdr" class="form-control" placeholder="상세주소">
 		<span th:if="${#fields.hasErrors('detailAdr')}" th:errors="*{detailAdr}" class="join-field-error"></span>
 	</div>
