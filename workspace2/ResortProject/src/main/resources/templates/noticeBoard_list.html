@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<th:block th:replace="fragments/header :: headerFragment"></th:block>
+
+<body>
+	<th:block layout:fragment="content">
+		<div class="hero page-inner overlay" style="background-image: url('images/hero_bg_1.jpg')">
+			<div class="container">
+				<div class="row justify-content-center align-items-center">
+					<div class="col-lg-9 text-center mt-5">
+						<h1 class="heading" data-aos="fade-up">Notice Board</h1>
+
+						<nav aria-label="breadcrumb" data-aos="fade-up" data-aos-delay="200">
+							<ol class="breadcrumb text-center justify-content-center">
+								<li class="breadcrumb-item"><a href="/">Home</a></li>
+								<li class="breadcrumb-item active text-white-50" aria-current="page">
+									Notice Board
+								</li>
+							</ol>
+						</nav>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="section">
+			<div class="container">
+				<div class="row mb-5 align-items-center">
+					<div class="col-lg-6">
+						<h2 class="font-weight-bold text-primary heading">
+							호텔 게시판
+						</h2>
+					</div>
+					<div class="col-lg-6 text-lg-end">
+						<p>
+							<a sec:authorize="isAuthenticated()" th:href="@{/noticeBoard_create}" class="btn btn-primary">글쓰기</a>
+						</p>
+					</div>
+
+
+					<div class="item"><br/>
+						<div class="table-container deco center inner-bordered">
+							<table border="1" class="table">
+								<colgroup>
+									<col style="width: 10%;">
+								    <col style="width: 50%;">
+								    <col style="width: 15%;">
+								    <col style="width: 15%;">
+								    <col style="width: 10%;">
+								</colgroup>
+								<thead>
+									<tr style="background-color: rgb(221, 221, 221);">
+										<th scope="col" style="text-align: center;">번호</th>
+										<th scope="col" style="text-align: center;">제목</th>
+										<th scope="col" style="text-align: center;">작성일자</th>
+										<th scope="col" style="text-align: center;">작성자</th>
+										<th scope="col" style="text-align: center;">조회수</th>
+									</tr>
+								</thead>
+								<tbody>
+									
+									 <tr th:if="${#lists.isEmpty(noticeList)}">
+										<td/>
+										<td style="text-align: center;"><h4>게시글이 없습니다.</h4></td>
+										<td/>
+										<td/>
+										<td/>
+									</tr>
+									
+							        <tr scope="row" th:each="notice, index : ${noticeList}">
+							            <td th:text="${notice.noticeId}" style="text-align: center;"></td>
+							            <td>
+							                <a th:href="@{|/noticeBoard_detail/${notice.noticeId}|}" th:text="${notice.title}"></a>
+							            </td>
+							            <td th:text="${notice.date}" style="text-align: center;"></td>
+							            <td th:text="${notice.id}" style="text-align: center;"></td>
+							            <td th:text="${notice.viewcnt}" style="text-align: center;"></td>
+							        </tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>		
+			</div>
+		</div>
+	</th:block>
+</body>
+
+<th:block th:replace="fragments/footer :: footerFragment"></th:block>
+		
+		
+</html>
