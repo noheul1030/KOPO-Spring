@@ -29,11 +29,7 @@ public class ControllerTest {
 		return "location";
 	}
 
-	@GetMapping("/noticeBoard")
-	public String noticeBoard() {
-		return "noticeBoard";
-	}
-
+	
 	@GetMapping("/index")
 	public String index() {
 		return "index";
