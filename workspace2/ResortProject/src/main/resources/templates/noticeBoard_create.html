@@ -2,43 +2,6 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <th:block th:replace="fragments/header :: headerFragment"></th:block>
 
-<script>
-	// input받는 값의 앞 공백 제거
-	function trimSpace(input) {
-	  return input.replace(/^\s+/, '');
-	}
-	// input받는 값의 유효성 검사(<,> 입력방지, 글자수 70자)
-	function InputCheck(input) {
-	  var inputValue = input; // 입력 받는 변수 혹은 데이터베이스에서 가져온 값 등
-	  var pattern = /^(?!(&nbsp;|\s)*$).{1,70}$/;
-	  
-	  if(inputValue.trim().length === 0){
-		alert("제목의 내용을 입력하세요");
-	  	return false;
-	  }else{
-	    if (pattern.test(inputValue) && !inputValue.includes("&lt") && !inputValue.includes("&gt") 
-	    	  && !inputValue.includes("&#60") && !inputValue.includes("&#62")
-			  && !inputValue.includes("<") && !inputValue.includes(">")) {
-	      return inputValue;
-	    } else {
-	      alert("제목에는 <,>는 사용할 수 없습니다.");
-	      return false; // 오류 발생 시 false를 반환하여 처리
-	    }
-	  }
-	}
-	// form안에 들어오는 id 값들의 유효성 검사 
-	function validateForm() {
-		var title = document.forms["myForm"]["title"].value;
-		var content = document.forms["myForm"]["content"].value;
-		
-		title = trimSpace(title);
-		
-		if (InputCheck(title) == false) {
-			return false;
-		}			
-	}
-</script>
-
 <body>
 	<th:block layout:fragment="content">
 		<div class="container">
@@ -53,8 +16,7 @@
 					</div>
 					
 				    <form th:action="@{noticeBoard_create}" method="post" th:object="${noticeForm}" >
-						
-						<input type="hidden" name="updating" value="none">						
+											
 						<div class="alert alert-danger" role="alert" th:if="${#fields.hasAnyErrors()}">
 				            <div th:each="err : ${#fields.allErrors()}" th:text="${err}" />
 				        </div>
