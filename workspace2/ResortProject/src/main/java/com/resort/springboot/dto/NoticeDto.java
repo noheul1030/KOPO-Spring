@@ -21,7 +21,7 @@ public class NoticeDto {
 	
 	private String id;
 
-	@Pattern(regexp = "^[가-힣a-zA-Z]$", message = "제목의 입력값이 유효하지 않습니다. 다시 확인해 주세요.")
+	@Pattern(regexp = "^[가-힣a-zA-Z0-9?!,&]+( [가-힣a-zA-Z0-9?!,&]+)*$", message = "제목의 입력값이 유효하지 않습니다. 다시 확인해 주세요.")
 	@NotEmpty(message = "제목은 필수항목입니다.")
 	private String title;
 	
