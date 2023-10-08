@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.resort.springboot.domain.Notice;
+import com.resort.springboot.dto.CommentDto;
 import com.resort.springboot.dto.NoticeDto;
 import com.resort.springboot.service.NoticeService;
 
@@ -45,15 +46,17 @@ public class NoticeController {
 			return "noticeBoard_create";
 		}
 		
-		this.noticeService.newInsert(noticeDto.getTitle(), noticeDto.getContent(), noticeDto.getId());
+		this.noticeService.newInsert(noticeDto.getTitle(), noticeDto.getContent());
 		return "redirect:/noticeBoard_list"; // 질문 저장후 질문목록으로 이동
 	}
 
-	@GetMapping(value = "/detail/{noticeId}")
-	public String detail(Model model, @PathVariable("noticeId") Long id) {
+	@GetMapping(value = "/noticeBoard_detail/{noticeId}")
+	public String detail(Model model, @PathVariable("noticeId") Long id, CommentDto commentDto) {
 		Notice notice = this.noticeService.oneSelectView(id);
 		model.addAttribute("notice", notice);
-		return "/notice/detail";
+		
+		noticeService.visit(notice.getNoticeId());
+		return "/noticeBoard_detail";
 	}
 
 }
