@@ -1,13 +1,12 @@
 package com.resort.springboot.domain;
 
-import com.resort.springboot.dto.CommentDto;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.validation.Valid;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -27,9 +26,9 @@ public class NoticeComment {
 	@Column
 	private Long reid;
 
-//	@ManyToOne(optional = false)
-//	@JoinColumn(name = "notice_id")
-//	private String noticeId;
+	@ManyToOne(optional = false)
+	@JoinColumn(name = "notice_id")
+	private Notice notice;
 
 	@Column
 	private String recontent;
