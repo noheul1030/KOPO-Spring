@@ -1,5 +1,6 @@
 package com.resort.springboot.web;
 
+import java.util.Collection;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
@@ -7,10 +8,10 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.resort.springboot.domain.Notice;
+import com.resort.springboot.domain.NoticeComment;
 import com.resort.springboot.dto.CommentDto;
 import com.resort.springboot.dto.NoticeDto;
 import com.resort.springboot.service.NoticeService;
@@ -50,13 +51,26 @@ public class NoticeController {
 		return "redirect:/noticeBoard_list"; // 질문 저장후 질문목록으로 이동
 	}
 
-	@GetMapping(value = "/noticeBoard_detail/{noticeId}")
-	public String detail(Model model, @PathVariable("noticeId") Long id, CommentDto commentDto) {
-		Notice notice = this.noticeService.oneSelectView(id);
-		model.addAttribute("notice", notice);
+	@GetMapping(value = "/noticeBoard_detail")
+	public String oneSelectView(Model model, Notice notice) {
+		Notice noticeitem = noticeService.oneSelectView(notice.getNoticeId());
+		Collection<NoticeComment> comment = noticeitem.getNoticeComment();
 		
-		noticeService.visit(notice.getNoticeId());
+		model.addAttribute("oneSelectView", noticeitem);
+		model.addAttribute("relist", comment);
+		
+		noticeService.visit(noticeitem.getNoticeId());
 		return "/noticeBoard_detail";
 	}
+	
+	// 하나의 게시글 삭제
+	@PostMapping(value = "/noticeBoard_delete")
+	public String deleteBoard(Model model, Notice notice) {
+		Notice noticeitem = noticeService.oneSelectView(notice.getNoticeId());
+		noticeService.deleteId(noticeitem.getNoticeId());
+		
+		return "noticeBoard_delete";
+	}
+
 
 }

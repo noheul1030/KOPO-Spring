@@ -99,21 +99,15 @@ public class NoticeService {
 		return this.noticeRepository.findAll();
 	}
 
-//
-//	// id값으로 삭제
-//	@Override
-//	public void deleteId(Long id) {
-//		noticeRepository.deleteByNoticeId(id);
-//	}
-//
+
+	// id값으로 삭제
+	public void deleteId(Long noticeId) {
+		noticeRepository.deleteByNoticeId(noticeId);
+	}
+
 	// id값으로 한건 조회
 	public Notice oneSelectView(Long noticeId) {
-		Optional<Notice> notice = this.noticeRepository.findByNoticeId(noticeId);
-		if (notice.isPresent()) {
-			return notice.get();
-		} else {
-			throw new DataNotFoundException("notice not found");
-		}
+		return noticeRepository.findByNoticeId(noticeId).orElse(null);
 	}
 
 	// id값으로 한건 조회 시 조회수 카운트
