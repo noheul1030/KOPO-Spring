@@ -39,17 +39,7 @@
 					// 우편번호와 주소 정보를 해당 필드에 넣는다.
 					document.getElementById('zipcode').value = data.zonecode;
 					document.getElementById("streetAdr").value = roadAddr;
-
-
-					if (data.autoRoadAddress) {
-						var expRoadAddr = data.autoRoadAddress + extraRoadAddr;
-						guideTextBox.innerHTML = '(예상 도로명 주소 : ' + expRoadAddr + ')';
-						guideTextBox.style.display = 'block';
-
-					} else {
-						guideTextBox.innerHTML = '';
-						guideTextBox.style.display = 'none';
-					}
+					document.getElementById("detailAdr").focus();
 				}
 			}).open();
 		}
