@@ -7,7 +7,7 @@ import java.util.Optional;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.validation.Errors;
+import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 
 import com.resort.springboot.domain.Role;
@@ -70,7 +70,7 @@ public class UserService{
 
 	// 회원가입 -> 중복 체크, 유효성 검사
 	@Transactional(readOnly = true)
-	public Map<String, String> validateHandling(Errors errors) {
+	public Map<String, String> validateHandling(BindingResult errors) {
 		Map<String, String> validatedResult = new HashMap<>();
 		for (FieldError error : errors.getFieldErrors()) {
 			String validForm = String.format("valid_%s", error.getField());
