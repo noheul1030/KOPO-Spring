@@ -2,48 +2,60 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <th:block th:replace="fragments/header :: headerFragment"></th:block>
 <style>
-.form-control[readonly] {
-    background-color: white;
-    /* 다른 스타일 속성을 여기에 추가할 수 있습니다. */
-}
+	.form-control[readonly] {
+		background-color: white;
+		/* 다른 스타일 속성을 여기에 추가할 수 있습니다. */
+	}
 </style>
 
 <body>
 	<th:block layout:fragment="content">
 		<div class="container">
 			<div class="row mb-5 align-items-center">
-				<div class="table-container deco center inner-bordered">		
+				<div class="table-container deco center inner-bordered">
 					<div style="width: 100%; height: 150px;"></div>
-			
-					<form method='post'>
+
+					<form method='post' th:object="${detailForm}">
 						<table border='1'>
-							<!-- 테이블 테두리 1 지정 -->							
+							<!-- 테이블 테두리 1 지정 -->
+							<tr>
+								<input type='hidden' name='noticeId' value="${oneSelectView.noticeId}"
+									class="form-control" readonly>
+							</tr>
 							<tr>
 								<!-- 셀 스타일 지정,text 출력 -->
 								<label for="title" class="form-label">제목</label>
-								<input type='text' name='title' th:value="${oneSelectView.title}" class="form-control" readonly>
-							</tr>							
-							<br/>
+								<input type='text' name='title' th:value="${oneSelectView.title}" class="form-control"
+									readonly>
+							</tr>
+							<br />
 							<tr>
 								<!-- 셀 스타일 지정,text 출력 -->
 								<label for="content" class="form-label">내용</label>
 								<textarea name="content" th:text="${oneSelectView.content}" readonly
-										style="overflow-x: auto; overflow-y: scroll; resize: none;"class="form-control" rows="10"></textarea>
+									style="overflow-x: auto; overflow-y: scroll; resize: none;" class="form-control"
+									rows="10"></textarea>
 								</td>
 							</tr>
-			
-						</table>
-						
-						<br>
-						
-						<button type="button" class="btn btn-primary" onclick="window.location.href='/noticeBoard_list'">글 목록</button>
-						<button type="submit" th:href="@{|/noticeBoard_update?noticeId=${notice.noticeId}|}" sec:authorize="hasRole('ADMIN')" class="btn btn-primary">수정</button>
-						<button type="submit" th:href="@{|/noticeBoard_delete?noticeId=${notice.noticeId}|}" sec:authorize="hasRole('ADMIN')" class="btn btn-primary">삭제</button>
 
+						</table>
+
+						<br>
+
+						<button type="button" class="btn btn-primary"
+							onclick="window.location.href='/noticeBoard_list'">글 목록</button>
+
+						<a th:href="@{|/noticeBoard_update?noticeId=${notice.noticeId}|}" class="btn btn-primary"
+							sec:authorize="hasRole('ADMIN')">수정</a>
+							
+						<a th:href="@{|/noticeBoard_delete?noticeId=${notice.noticeId}|}" class="btn btn-primary"
+							sec:authorize="hasRole('ADMIN')">삭제</a>
+
+						</table>
 					</form>
-				    
-				    
-				    
+
+
+
 				</div>
 			</div>
 		</div>
@@ -51,4 +63,5 @@
 </body>
 
 <th:block th:replace="fragments/footer :: footerFragment"></th:block>
+
 </html>
