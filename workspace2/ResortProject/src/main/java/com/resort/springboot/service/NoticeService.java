@@ -3,7 +3,6 @@ package com.resort.springboot.service;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -12,7 +11,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.resort.springboot.domain.Notice;
-import com.resort.springboot.exception.DataNotFoundException;
 import com.resort.springboot.repo.NoticeRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -29,33 +27,10 @@ public class NoticeService {
 		this.noticeRepository = noticeRepository;
 	}
 
-//
-//	// 날짜
-//	@Override
-//	public LocalDate date() {
-//		LocalDate now = LocalDate.now();
-//		return now;
-//	}
-//
-//	// 게시글 임의등록 Test
-//	@Override
-//	public void insertTest() {
-//		for (int i = 1; i <= 20; i++) {
-//			Notice notice = new Notice();
-//
-//			notice.setDate(String.valueOf(date()));
-//			notice.setContent("Test 게시글 입니다.");
-//			notice.setTitle("Test Title 입니다.");
-//			notice.setViewcnt(0);
-//
-//			noticeRepository.save(notice);
-//		}
-//	}
-//
 	// New 게시글 등록
-	public void newInsert(String title, String content) {
+	public void newInsert(Notice notice) {
 		
-		Notice notice = new Notice();
+		Notice notices = new Notice();
 
 		// 현재 날짜를 LocalDateTime 객체로 가져오기
 		LocalDateTime currentDate = LocalDateTime.now();
@@ -69,28 +44,28 @@ public class NoticeService {
 		String id = authentication.getName();
 
 
-		notice.setId(id);
-		notice.setTitle(title);
-		notice.setContent(content);
-		notice.setDate(date);
-		notice.setViewcnt(0);
-		this.noticeRepository.save(notice);
+		notices.setId(id);
+		notices.setTitle(notice.getTitle());
+		notices.setContent(notice.getContent());
+		notices.setDate(date);
+		notices.setViewcnt(0);
+		this.noticeRepository.save(notices);
 
-		noticeRepository.save(notice);
+		noticeRepository.save(notices);
 	}
 
-//	
-//	@Override // 컬럼 값 수정 update
-//	public void update(Notice notice) {
-//		Notice notice2 = noticeRepository.findByNoticeId(notice.getNoticeId()).get();
-//		// 가져온 글에 수정한 내용을 세팅한다.
-//		notice2.setTitle(notice.getTitle());
-//		notice2.setContent(notice.getContent());
-//
-//        // DB에 저장
-//		noticeRepository.save(notice2);
-//	}
-//
+	
+	// 컬럼 값 수정 update
+	public void update(Notice notice) {
+		Notice notice2 = noticeRepository.findByNoticeId(notice.getNoticeId()).get();
+		// 가져온 글에 수정한 내용을 세팅한다.
+		notice2.setTitle(notice.getTitle());
+		notice2.setContent(notice.getContent());
+
+        // DB에 저장
+		noticeRepository.save(notice2);
+	}
+
 	// 전체 게시물 조회
 	public List<Notice> getList() {
 //		PageRequest pageable = PageRequest.of(0, 10); // 페이지 번호 0부터 시작
