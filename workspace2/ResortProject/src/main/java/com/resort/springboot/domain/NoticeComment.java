@@ -1,5 +1,7 @@
 package com.resort.springboot.domain;
 
+import java.time.LocalDateTime;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -24,16 +26,25 @@ public class NoticeComment {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column
-	private Long reid;
+	private Long commentId;
 
+	@Column(columnDefinition = "TEXT", nullable = false)
+	private String comment;
+	
+	@Column
+	private LocalDateTime date;
+	
+	@Column
+	private LocalDateTime commentModifiedDate;
+	
+	 // 원글
 	@ManyToOne(optional = false)
 	@JoinColumn(name = "notice_id")
-	private Notice notice;
-
-	@Column
-	private String recontent;
-
-	@Column
-	private String redate;
+	private Notice rootId;
+	
+	// 작성자
+	@ManyToOne
+	@JoinColumn(name = "user_id")
+	private SiteUser commentUser;
 
 }
