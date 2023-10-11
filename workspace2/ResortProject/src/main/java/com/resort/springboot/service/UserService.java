@@ -13,6 +13,7 @@ import org.springframework.validation.FieldError;
 import com.resort.springboot.domain.Role;
 import com.resort.springboot.domain.SiteUser;
 import com.resort.springboot.dto.UserDto;
+import com.resort.springboot.exception.DataNotFoundException;
 import com.resort.springboot.repo.UserRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -20,7 +21,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @Transactional
 @Service
-public class UserService{
+public class UserService {
 	private final UserRepository userRepository;
 	private final PasswordEncoder passwordEncoder;
 
@@ -40,12 +41,12 @@ public class UserService{
 			throw new IllegalStateException("이미 가입된 아이디입니다.");
 		}
 	}
-	
+
 	public SiteUser create(Long userId, String id, String password, String email, String name, String sex,
 			String phoneNumber, Role role) {
 
 		SiteUser user = new SiteUser();
-		
+
 		user.setUserId(userId);
 		user.setId(id);
 		user.setPassword(passwordEncoder.encode(password));
@@ -58,14 +59,23 @@ public class UserService{
 
 		return user;
 	}
-	
-	
+
 	// 회원가입
 	@Transactional
 	public void userJoin(UserDto.Request userDto) {
 
 		userDto.setPassword(passwordEncoder.encode(userDto.getPassword()));
 		userRepository.save(userDto.createUser());
+	}
+
+	
+	public SiteUser getUser(String id) {
+        Optional<SiteUser> user = this.userRepository.findById(id);
+        if (user.isPresent()) {
+            return user.get();
+        } else {
+            throw new DataNotFoundException("user not found");
+        }
 	}
 
 	// 회원가입 -> 중복 체크, 유효성 검사
