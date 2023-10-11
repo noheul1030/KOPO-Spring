@@ -22,33 +22,61 @@ repositories {
 }
 
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
-	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-	implementation 'org.springframework.boot:spring-boot-starter-groovy-templates'
-	implementation 'org.springframework.boot:spring-boot-starter-security'
-	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
-	implementation 'org.springframework.boot:spring-boot-starter-web'
-	implementation 'org.springframework.boot:spring-boot-starter-web-services'
-	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.2'
-	implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity6'
-	compileOnly 'org.projectlombok:lombok'
-	developmentOnly 'org.springframework.boot:spring-boot-devtools'
-	runtimeOnly 'com.mysql:mysql-connector-j'
-	runtimeOnly 'com.oracle.database.jdbc:ojdbc8'
-	annotationProcessor 'org.projectlombok:lombok'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	testImplementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter-test:3.0.2'
-	testImplementation 'org.springframework.security:spring-security-test'
-	
-	
+    // Spring Boot
+    implementation 'org.springframework.boot:spring-boot-starter'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.2.0'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter-test:2.2.0'
+
+    // JUnit5
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.2'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.2'
+
+    // DB
+    implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
+    implementation 'mysql:mysql-connector-java:8.0.27' // MySQL Connector/J 8.0.27 버전을 추가
+    runtimeOnly 'com.oracle.database.jdbc:ojdbc8'
+
+    // Thymeleaf
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+
+    // Web
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-web-services'
+
+    // Devtool
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+
+    // Lombok
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+
+    // Spring Security
+    implementation 'org.springframework.security:spring-security-core:5.6.0'
+    implementation 'org.springframework.security:spring-security-config:5.6.0'
+    implementation 'org.springframework.security:spring-security-web:5.6.0'
+    
+     implementation 'org.springframework.security.oauth:spring-security-oauth2:2.0.14.RELEASE' // Spring Security 5.6 버전에 맞는 버전을 사용
+
+    // 다른 Spring Security 의존성도 버전 변경 필요
+
+    // 스프링 시큐리티 추가 의존성
+    implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity6'
+    testImplementation 'org.springframework.security:spring-security-test'
+
+    // Servlet API 의존성
+    implementation 'javax.servlet:javax.servlet-api:4.0.1' 
+
     runtimeOnly 'com.h2database:h2'
-	
+
     implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
-	implementation 'nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect'
-		
-	implementation 'org.springframework.boot:spring-boot-starter-validation'
-	
+    implementation 'nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect'
+
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
 }
+
+
 
 tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'

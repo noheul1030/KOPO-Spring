@@ -16,19 +16,20 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
+@RequestMapping("/members")
 @Controller
 public class MemberController {
 
     private final MemberService memberService;
     private final PasswordEncoder passwordEncoder;
 
-    @GetMapping(value = "/memberForm")
+    @GetMapping(value = "/new")
     public String memberForm(Model model) {
         model.addAttribute("memberFormDto", new MemberFormDto());
         return "memberForm";
     }
 
-    @PostMapping(value = "/memberForm")
+    @PostMapping(value = "new")
     public String memberForm(@Valid MemberFormDto memberFormDto, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
             return "memberForm";
@@ -39,7 +40,7 @@ public class MemberController {
             memberService.saveMember(member);
         } catch (IllegalStateException e) {
             model.addAttribute("errorMessage", e.getMessage());
-            return "memberForm";
+            return "member/memberFOrm";
         }
 
         return "redirect:/";

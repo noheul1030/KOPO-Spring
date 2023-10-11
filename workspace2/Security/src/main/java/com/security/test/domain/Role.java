@@ -1,5 +1,5 @@
 package com.security.test.domain;
 
-public enum MemberRole {
+public enum Role {
 	USER, ADMIN
 }
