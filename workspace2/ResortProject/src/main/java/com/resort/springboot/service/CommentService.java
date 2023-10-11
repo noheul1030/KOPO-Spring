@@ -1,47 +1,71 @@
 package com.resort.springboot.service;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+import java.util.List;
+import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.resort.springboot.domain.Notice;
 import com.resort.springboot.domain.NoticeComment;
+import com.resort.springboot.domain.SiteUser;
+import com.resort.springboot.dto.CommentDto;
+import com.resort.springboot.exception.DataNotFoundException;
 import com.resort.springboot.repo.NoticeCommentRepository;
+import com.resort.springboot.repo.NoticeRepository;
 
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-@Transactional
 @Service
 public class CommentService {
 
-	private NoticeCommentRepository noticeCommentRepository;
+	private final NoticeCommentRepository commentRepository;
+	private final NoticeRepository postRepository;
 
-	@Autowired
-	public CommentService(NoticeCommentRepository noticeCommentRepository) {
-		this.noticeCommentRepository = noticeCommentRepository;
+	public void create(Long postId, CommentDto.Request dto) {
+
+		Notice notice = postRepository.findById(postId)
+				.orElseThrow(() -> new IllegalArgumentException("댓글 쓰기 실패: 해당 게시글이 존재하지 않습니다. " + postId));
+
+		dto.setRootId(notice);
+		dto.setDate(LocalDateTime.now());
+
+		NoticeComment comment = dto.toEntity();
+		commentRepository.save(comment);
 	}
 
-	public void create(Notice notice, String recontent) {
+	public void create(Notice notice, String content, SiteUser user) {
+		NoticeComment comment = new NoticeComment();
+		comment.setComment(content);
+		comment.setDate(LocalDateTime.now());
+		comment.setRootId(notice);
+		comment.setCommentUser(user);
+		commentRepository.save(comment);
+	}
 
-		NoticeComment noticeComment = new NoticeComment();
+	public NoticeComment getcomment(long commentId) {
+		Optional<NoticeComment> comment = this.commentRepository.findById(commentId);
+		if (comment.isPresent()) {
+			return comment.get();
+		} else {
+			throw new DataNotFoundException("comment not found");
+		}
+	}
 
-		// 현재 날짜를 LocalDateTime 객체로 가져오기
-		LocalDateTime currentDate = LocalDateTime.now();
+	public void modify(NoticeComment comments, String comment) {
+		comments.setComment(comment);
+		comments.setCommentModifiedDate(LocalDateTime.now());
+		this.commentRepository.save(comments);
+	}
 
-		// LocalDateTime 객체를 원하는 형식의 문자열로 변환하기
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd"); // 원하는 형식으로 포맷 지정
-		String date = currentDate.format(formatter);
-		
-		noticeComment.setRecontent(recontent);
-		noticeComment.setRedate(date);
-		this.noticeCommentRepository.save(noticeComment);
+	public void delete(NoticeComment comments) {
+		this.commentRepository.delete(comments);
+	}
 
-		noticeCommentRepository.save(noticeComment);
-
+	// 전체 게시물 조회
+	public List<NoticeComment> getList(Notice rootId) {
+		return this.commentRepository.getCommentByRootIdOrderByCommentId(rootId);
 	}
 
 }
