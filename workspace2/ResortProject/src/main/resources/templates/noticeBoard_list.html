@@ -2,6 +2,11 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <th:block th:replace="fragments/header :: headerFragment"></th:block>
 
+<style>
+	tr:hover {
+    background-color: #f5f5f5; /* 원하는 배경색으로 변경 */
+}
+</style>
 <body>
 	<th:block layout:fragment="content">
 		<div class="hero page-inner overlay" style="background-image: url('images/hero_bg_1.jpg')">
@@ -22,7 +27,7 @@
 				</div>
 			</div>
 		</div>
-		
+
 		<div class="section">
 			<div class="container">
 				<div class="row mb-5 align-items-center">
@@ -33,20 +38,21 @@
 					</div>
 					<div class="col-lg-6 text-lg-end">
 						<p>
-							<a sec:authorize="isAuthenticated()" th:href="@{/noticeBoard_create}" class="btn btn-primary">글쓰기</a>
+							<a sec:authorize="isAuthenticated()" th:href="@{/noticeBoard_create}"
+								class="btn btn-primary">글쓰기</a>
 						</p>
 					</div>
 
 
-					<div class="item"><br/>
+					<div class="item"><br />
 						<div class="table-container deco center inner-bordered">
 							<table border="1" class="table">
 								<colgroup>
 									<col style="width: 10%;">
-								    <col style="width: 50%;">
-								    <col style="width: 15%;">
-								    <col style="width: 15%;">
-								    <col style="width: 10%;">
+									<col style="width: 50%;">
+									<col style="width: 15%;">
+									<col style="width: 15%;">
+									<col style="width: 10%;">
 								</colgroup>
 								<thead>
 									<tr style="background-color: rgb(221, 221, 221);">
@@ -58,35 +64,64 @@
 									</tr>
 								</thead>
 								<tbody>
-									
-									 <tr th:if="${#lists.isEmpty(noticeList)}">
-										<td/>
-										<td style="text-align: center;"><h4>게시글이 없습니다.</h4></td>
-										<td/>
-										<td/>
-										<td/>
+							
+									<tr th:each="notice, loop : ${paging}">
+										<td th:text="${notice.noticeId}" style="text-align: center;"></td>
+										<td>
+											<a th:href="@{|/noticeBoard_detail?noticeId=${notice.noticeId}|}"
+												th:text="${notice.title}"></a>
+										</td>
+										<td th:text="${#temporals.format(notice.date, 'yyyy-MM-dd')}" style="text-align: center;"></td>
+										<td th:text="${notice.id.id}" style="text-align: center;"></td>
+										<td th:text="${notice.viewcnt}" style="text-align: center;"></td>
 									</tr>
-									
-							        <tr scope="row" th:each="notice, index : ${noticeList}">
-							            <td th:text="${notice.noticeId}" style="text-align: center;"></td>
-							            <td>
-							                <a th:href="@{|/noticeBoard_detail?noticeId=${notice.noticeId}|}" th:text="${notice.title}"></a>
-							            </td>
-							            <td th:text="${notice.date}" style="text-align: center;"></td>
-							            <td th:text="${notice.id}" style="text-align: center;"></td>
-							            <td th:text="${notice.viewcnt}" style="text-align: center;"></td>
-							        </tr>
 								</tbody>
 							</table>
+
+							<!-- 페이징처리 시작 -->
+							<div th:if="${!paging.isEmpty()}">
+								<ul class="pagination justify-content-center">
+									<li class="page-item" th:classappend="${!paging.hasPrevious} ? 'disabled'">
+										<a class="page-link" th:href="@{|?page=${0}|}">
+											<span>처음</span>
+										</a>
+									</li>
+									<li class="page-item" th:classappend="${!paging.hasPrevious} ? 'disabled'">
+										<a class="page-link" th:href="@{|?page=${paging.number-1}|}">
+											<span>이전</span>
+										</a>
+									</li>
+									<li th:each="page: ${#numbers.sequence(0, paging.totalPages-1)}"
+										th:if="${page >= paging.number-5 and page <= paging.number+5}"
+										th:classappend="${page == paging.number} ? 'active'" class="page-item">
+										<a th:text="${page}" class="page-link" th:href="@{|?page=${page}|}"></a>
+									</li>
+									<li class="page-item" th:classappend="${!paging.hasNext} ? 'disabled'">
+										<a class="page-link" th:href="@{|?page=${paging.number+1}|}">
+											<span>다음</span>
+										</a>
+									</li>
+									<li class="page-item" th:classappend="${!paging.hasNext} ? 'disabled'">
+										<a class="page-link" th:href="@{|?page=${paging.totalPages-1}|}">
+											<span>끝</span>
+										</a>
+									</li>
+								</ul>
+							</div>
+							<!-- 페이징처리 끝 -->
+
+
+
+
 						</div>
 					</div>
-				</div>		
+				</div>
 			</div>
 		</div>
 	</th:block>
 </body>
 
 <th:block th:replace="fragments/footer :: footerFragment"></th:block>
-		
-		
+
+
 </html>

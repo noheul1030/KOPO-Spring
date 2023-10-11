@@ -42,17 +42,82 @@
 
 						<br>
 
+						<label for="content" class="form-label">댓글</label>
+
+						<textarea name="content" id="content" rows="15" class="form-control"
+							style="max-height: 100px; overflow-x: auto; overflow-y: scroll; resize: none;"
+							maxlength="100"></textarea>
+
+						<br><br>
+						
+						
+						
+						
+						
+						
+						
+						
+
 						<button type="button" class="btn btn-primary"
 							onclick="window.location.href='/noticeBoard_list'">글 목록</button>
 
 						<a th:href="@{|/noticeBoard_update?noticeId=${notice.noticeId}|}" class="btn btn-primary"
-							sec:authorize="hasRole('ADMIN')">수정</a>
-							
+							th:if="${oneSelectView.id != null and #authentication.getPrincipal().getUsername() == oneSelectView.id.id}"
+							sec:authorize="isAuthenticated()">수정</a>
+
 						<a th:href="@{|/noticeBoard_delete?noticeId=${notice.noticeId}|}" class="btn btn-primary"
-							sec:authorize="hasRole('ADMIN')">삭제</a>
+							th:if="${oneSelectView.id != null and #authentication.getPrincipal().getUsername() == oneSelectView.id.id}"
+							sec:authorize="isAuthenticated()">삭제</a>
+
+						<input type="submit" value="댓글등록" sec:authorize="isAuthenticated()" class="btn btn-primary"
+							th:action="@{|/noticeComment_create/${notice.noticeId}|}" style="float: right;">
 
 						</table>
 					</form>
+					
+					
+
+
+					<!--	 댓글 보기 
+						<h6 th:text="|${#lists.size(postDetail.comments)}개의 답변이 있습니다.|" class="my-3"></h6>
+						<div class="my-2" th:each="comments : ${postDetail.comments}">
+							<div class="badge text-dark p-2 text-start d-flex justify-content-between">
+								<div class="mb-2">
+									<span th:if="${comments.commentUser != null}"
+										th:text="${comments.commentUser.id}"></span>
+								</div>
+								<div class="text-end">
+									작성일: <span class="me-2"
+										th:text="${#temporals.format(comments.date, 'yyyy-MM-dd HH:mm')}"></span>
+									<span th:if="${comments.commentModifiedDate != null}">수정일: </span>
+									<span
+										th:text="${#temporals.format(comments.commentModifiedDate, 'yyyy-MM-dd HH:mm')}"></span>
+								</div>
+							</div>
+							<div class="card">
+								<div class="card-body">
+									<div class="card-text mt-2" style="white-space: pre-line;"
+										th:text="${comments.comment}"></div>
+									<div class="d-flex justify-content-end mt-3">
+										<a th:href="@{|/comment/modify/${comments.commentId}|}"
+											class="btn btn-sm btn-outline-secondary me-2"
+											sec:authorize="isAuthenticated()"
+											th:if="${comments.commentUser != null and #authentication.getPrincipal().getUsername() == comments.commentUser.id}"
+											th:text="수정"></a>
+										<a href="javascript:void(0);"
+											th:data-uri="@{|/comment/delete/${comments.commentId}|}"
+											class="delete btn btn-sm btn-outline-secondary"
+											sec:authorize="isAuthenticated()"
+											th:if="${comments.commentUser != null and #authentication.getPrincipal().getUsername() == comments.commentUser.id}"
+											th:text="삭제"></a>
+									</div>
+								</div>
+							</div>
+						</div>
+						
+						
+						
+					</form>-->
 
 
 
