@@ -2,6 +2,8 @@ package com.resort.springboot.repo;
 
 import java.util.Optional;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -15,7 +17,7 @@ public interface NoticeRepository extends JpaRepository<Notice,Long>{
 	void deleteByNoticeId(Long noticeId);
 	
 	// 회원 목록 + 검색
-//	Page<Notice> findAll(Pageable pageable);
+	Page<Notice> findAll(Pageable pageable);
 //
 //	Page<Notice> findByTitleContainingIgnoreCase(String title, Pageable pageable);
 		
