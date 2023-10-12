@@ -14,25 +14,26 @@ import com.resort.springboot.repo.NoticeRepository;
 class SbbApplicationTests {
 
 	@Autowired
-	private  NoticeRepository noticeRepository;
-	
-    @Test
-    void newInsert(String title, String content, SiteUser user) {
-        for (int i = 1; i <= 300; i++) {
-        	user.setId("admin");
-            title = String.format("테스트 데이터입니다:[%03d]", i);
-            content = "내용무";
-            Notice notices = new Notice();
+	private NoticeRepository noticeRepository;
 
-    		// 현재 날짜를 LocalDateTime 객체로 가져오기
+	@Test
+	void newInsertTest() {
+		for (int i = 1; i <= 300; i++) {
+			SiteUser user = new SiteUser();
+			user.setId("admin");
+			String title = String.format("테스트 데이터입니다:[%03d]", i);
+			String content = "내용무";
 
-    		notices.setId(user);
-    		notices.setTitle(title);
-    		notices.setContent(content);
-    		notices.setDate(LocalDateTime.now());
-    		notices.setViewcnt(0);
-    		
-    		this.noticeRepository.save(notices);
-        }
-    }
+			Notice notices = new Notice();
+
+			notices.setContent(content);
+			notices.setDate(LocalDateTime.now());
+			notices.setId(user);
+			notices.setPostModifiedDate(null);
+			notices.setTitle(title);
+			notices.setViewcnt(0);
+
+			Notice notice = noticeRepository.save(notices);
+		}
+	}
 }
