@@ -24,7 +24,7 @@ import lombok.RequiredArgsConstructor;
 public class NoticeService {
 
 	private final NoticeRepository noticeRepository;
-	
+
 	public Notice getNotice(long noticeId) {
 		Optional<Notice> notice = this.noticeRepository.findById(noticeId);
 		if (notice.isPresent()) {
@@ -63,7 +63,7 @@ public class NoticeService {
 		notice2.setContent(notice.getContent());
 		notice2.setPostModifiedDate(LocalDateTime.now());
 
-        // DB에 저장
+		// DB에 저장
 		noticeRepository.save(notice2);
 	}
 

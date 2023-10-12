@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.resort.springboot.domain.Notice;
 import com.resort.springboot.domain.NoticeComment;
 import com.resort.springboot.domain.SiteUser;
-import com.resort.springboot.dto.CommentDto;
 import com.resort.springboot.dto.NoticeDto;
 import com.resort.springboot.service.NoticeService;
 import com.resort.springboot.service.UserService;
@@ -53,8 +52,9 @@ public class NoticeController {
 	}
 
 	@PostMapping("/noticeBoard_create")
-	public String noticeCreate(@Valid @ModelAttribute("create")NoticeDto.Request noticeDto, BindingResult bindingResult, Principal principal) {
-		
+	public String noticeCreate(@Valid @ModelAttribute("create") NoticeDto.Request noticeDto,
+			BindingResult bindingResult, Principal principal) {
+
 		if (bindingResult.hasErrors()) {
 			return "noticeBoard_create";
 		}
@@ -68,18 +68,18 @@ public class NoticeController {
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////		
 
 	// 3. 하나의 게시글 조회
-	
-		@GetMapping(value = "/noticeBoard_detail")
-		public String oneSelectView(Model model, Notice notice, CommentDto.Request comments) {
-			Notice noticeitem = noticeService.oneSelectView(notice.getNoticeId());
-			List<NoticeComment> comment = noticeitem.getComments();
 
-			model.addAttribute("oneSelectView", noticeitem);
-			model.addAttribute("relist", comment);
+	@GetMapping(value = "/noticeBoard_detail")
+	public String oneSelectView(Model model, Notice notice) {
+		Notice noticeitem = noticeService.oneSelectView(notice.getNoticeId());
+		List<NoticeComment> comment = noticeitem.getComments();
 
-			noticeService.visit(noticeitem.getNoticeId());
-			return "/noticeBoard_detail";
-		}
+		model.addAttribute("oneSelectView", noticeitem);
+		model.addAttribute("relist", comment);
+
+		noticeService.visit(noticeitem.getNoticeId());
+		return "/noticeBoard_detail";
+	}
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////		
 
@@ -106,8 +106,8 @@ public class NoticeController {
 
 	@PreAuthorize("hasRole('ADMIN')")
 	@PostMapping(value = "/noticeBoard_update")
-	public String noticeUpdate(@Valid @ModelAttribute("update") NoticeDto.Request noticeDto, BindingResult bindingResult,
-			Model model, Notice notice) {
+	public String noticeUpdate(@Valid @ModelAttribute("update") NoticeDto.Request noticeDto,
+			BindingResult bindingResult, Model model, Notice notice) {
 
 		if (bindingResult.hasErrors()) {
 			return "noticeBoard_update";

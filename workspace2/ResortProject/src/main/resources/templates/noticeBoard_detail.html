@@ -15,7 +15,7 @@
 				<div class="table-container deco center inner-bordered">
 					<div style="width: 100%; height: 150px;"></div>
 
-					<form method='post' th:object="${detailForm}">
+					<form method='post' th:object="${noticeDto}">
 						<table border='1'>
 							<!-- 테이블 테두리 1 지정 -->
 							<tr>
@@ -24,14 +24,14 @@
 							</tr>
 							<tr>
 								<!-- 셀 스타일 지정,text 출력 -->
-								<label for="title" class="form-label">제목</label>
+								<label for="title" class="form-label"><b>제목</b></label>
 								<input type='text' name='title' th:value="${oneSelectView.title}" class="form-control"
 									readonly>
 							</tr>
 							<br />
 							<tr>
 								<!-- 셀 스타일 지정,text 출력 -->
-								<label for="content" class="form-label">내용</label>
+								<label for="content" class="form-label"><b>내용</b></label>
 								<textarea name="content" th:text="${oneSelectView.content}" readonly
 									style="overflow-x: auto; overflow-y: scroll; resize: none;" class="form-control"
 									rows="10"></textarea>
@@ -40,47 +40,39 @@
 
 						</table>
 
-						<br>
+						<br><br>
+						
+						<button type="button" class="btn btn-primary"
+							onclick="window.location.href='/noticeBoard_list'">글 목록</button>
 
-						<label for="content" class="form-label">댓글</label>
+						<a th:href="@{|/noticeBoard_update?noticeId=${oneSelectView.noticeId}|}" class="btn btn-primary"
+							th:if="${oneSelectView.id != null and #authentication.getPrincipal().getUsername() == oneSelectView.id.id}"
+							sec:authorize="isAuthenticated()">수정</a>
+
+						<a th:href="@{|/noticeBoard_delete?noticeId=${oneSelectView.noticeId}|}" class="btn btn-primary"
+							th:if="${oneSelectView.id != null and #authentication.getPrincipal().getUsername() == oneSelectView.id.id}"
+							sec:authorize="isAuthenticated()">삭제</a>
+					</form>
+
+						</table>
+					
+					<br><br>
+					
+					
+						
+					<!--
+						<label for="content" class="form-label"><b>댓글</b></label>
 
 						<textarea name="content" id="content" rows="15" class="form-control"
 							style="max-height: 100px; overflow-x: auto; overflow-y: scroll; resize: none;"
 							maxlength="100"></textarea>
 
-						<br><br>
+						<br>
+						
+						<p th:text="|${#lists.size(oneSelectView.comments)}개의 답변이 있습니다.|"></p>-->
 						
 						
-						
-						
-						
-						
-						
-						
-
-						<button type="button" class="btn btn-primary"
-							onclick="window.location.href='/noticeBoard_list'">글 목록</button>
-
-						<a th:href="@{|/noticeBoard_update?noticeId=${notice.noticeId}|}" class="btn btn-primary"
-							th:if="${oneSelectView.id != null and #authentication.getPrincipal().getUsername() == oneSelectView.id.id}"
-							sec:authorize="isAuthenticated()">수정</a>
-
-						<a th:href="@{|/noticeBoard_delete?noticeId=${notice.noticeId}|}" class="btn btn-primary"
-							th:if="${oneSelectView.id != null and #authentication.getPrincipal().getUsername() == oneSelectView.id.id}"
-							sec:authorize="isAuthenticated()">삭제</a>
-
-						<input type="submit" value="댓글등록" sec:authorize="isAuthenticated()" class="btn btn-primary"
-							th:action="@{|/noticeComment_create/${notice.noticeId}|}" style="float: right;">
-
-						</table>
-					</form>
-					
-					
-
-
-					<!--	 댓글 보기 
-						<h6 th:text="|${#lists.size(postDetail.comments)}개의 답변이 있습니다.|" class="my-3"></h6>
-						<div class="my-2" th:each="comments : ${postDetail.comments}">
+						<!--<div class="my-2" th:each="comments : ${oneSelectView.comments}">
 							<div class="badge text-dark p-2 text-start d-flex justify-content-between">
 								<div class="mb-2">
 									<span th:if="${comments.commentUser != null}"
@@ -94,33 +86,117 @@
 										th:text="${#temporals.format(comments.commentModifiedDate, 'yyyy-MM-dd HH:mm')}"></span>
 								</div>
 							</div>
+							
+							
 							<div class="card">
 								<div class="card-body">
 									<div class="card-text mt-2" style="white-space: pre-line;"
 										th:text="${comments.comment}"></div>
 									<div class="d-flex justify-content-end mt-3">
-										<a th:href="@{|/comment/modify/${comments.commentId}|}"
+										<a th:href="@{|/update/${comments.commentId}|}"
 											class="btn btn-sm btn-outline-secondary me-2"
 											sec:authorize="isAuthenticated()"
 											th:if="${comments.commentUser != null and #authentication.getPrincipal().getUsername() == comments.commentUser.id}"
 											th:text="수정"></a>
 										<a href="javascript:void(0);"
-											th:data-uri="@{|/comment/delete/${comments.commentId}|}"
+											th:data-uri="@{|/delete/${comments.commentId}|}"
 											class="delete btn btn-sm btn-outline-secondary"
 											sec:authorize="isAuthenticated()"
 											th:if="${comments.commentUser != null and #authentication.getPrincipal().getUsername() == comments.commentUser.id}"
 											th:text="삭제"></a>
 									</div>
 								</div>
-							</div>
+							</div>		
 						</div>
 						
 						
+					<form th:action="@{|/noticeBoard_detail/${oneSelectView.noticeId}|}" method='post' th:object="${comment}">
 						
-					</form>-->
-
-
-
+						<div>
+							<textarea sec:authorize="isAnonymous()" disabled th:field="*{comment}" class="form-control"
+								rows="3"></textarea>
+							<textarea sec:authorize="isAuthenticated()" th:field="*{comment}" class="form-control"
+								rows="3"></textarea>
+							<div th:if="${#fields.hasErrors('comment')}" th:errors="*{comment}" class="alert alert-danger"
+								role="alert"></div>
+						</div>
+						
+						
+						<input type="submit" value="댓글등록" sec:authorize="isAuthenticated()" class="btn btn-primary"
+							style="float: right;">
+						<div class="d-flex justify-content-end">
+							<input type="submit" value="댓글 등록" class="btn btn-primary my-2 me-2">
+							<a href="/noticeBoard_list" class="btn btn-secondary my-2">목록</a>
+						</div>
+						
+						
+					</form>
+						-->
+						
+	<form method='post'>
+			<table border='1'>
+				<tr>
+					<!-- 셀 스타일 지정,text 출력 -->
+					<label for="comment" class="form-label"><b>댓글</b></label>
+					<textarea name="comment" id="comment" rows="15" class="form-control"
+							style="max-height: 100px; overflow-x: auto; overflow-y: scroll; resize: none;"
+							maxlength="100"></textarea>
+						<input type="hidden" name="noticeId" value="${oneSelectView.noticeId}">
+					</td>
+					<br>
+					<input type="submit" value="댓글등록" sec:authorize="isAuthenticated()" class="btn btn-primary"
+							style="float: right;" formaction='writereply'>
+					<br>						
+						<p th:text="|${#lists.size(oneSelectView.comments)}개의 답변이 있습니다.|"></p>		
+							
+					</td>
+				</tr>
+			</table>
+		</form>
+		
+		<br>
+	<form method='post'>
+		<table border='1' class="table">
+			<colgroup>
+				<col style="width: 10%;">
+				<col style="width: 50%;">
+				<col style="width: 15%;">
+				<col style="width: 15%;">
+				<col style="width: 10%;">
+			</colgroup>
+			<thead>
+				<tr style="background-color: rgb(221, 221, 221);">
+					<th scope="col" style="text-align: center;">번호</th>
+					<th scope="col" style="text-align: center;">댓글내용</th>
+					<th scope="col" style="text-align: center;">작성일자</th>
+					<th scope="col" style="text-align: center;">수정일자</th>
+					<th scope="col" style="text-align: center;">작성자</th>
+				</tr>
+			</thead>
+			
+			<tbody>
+							
+				<tr th:each="comments : ${relist}">
+					<td th:text="${comments.commentId}" style="text-align: center;vertical-align: middle;"></td>
+					<td><textarea name="content" th:text="${comments.comment}" readonly style="overflow-x: auto; overflow-y: auto; resize: none;"
+							maxlength="100" class="form-control"></textarea>
+					</td>
+					<td th:text="${#temporals.format(comments.date, 'yyyy-MM-dd')}" style="vertical-align: middle;text-align: center;"></td>
+					<td th:text="${#temporals.format(comments.commentModifiedDate, 'yyyy-MM-dd')}" style="vertical-align: middle;text-align: center;"></td>
+					<td th:text="${comments.commentUser.id}" style="vertical-align: middle;text-align: center;"></td>
+				</tr>
+			</tbody>
+			
+							
+			<!--<td align=center><input type='submit' value='삭제' formaction='/reDelete?noticeId=${oneSelectView.noticeId}&reid=${comments.commentId}'
+			style="width: 40px; height: 30px; padding: 0px; font-weight: bold;"></td>-->
+				
+		</table>
+	</form>					
+	
+	
+		
+						
 				</div>
 			</div>
 		</div>

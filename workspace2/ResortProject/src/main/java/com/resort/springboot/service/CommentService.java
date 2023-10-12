@@ -21,12 +21,12 @@ import lombok.RequiredArgsConstructor;
 public class CommentService {
 
 	private final NoticeCommentRepository commentRepository;
-	private final NoticeRepository postRepository;
+	private final NoticeRepository noticeRepository;
 
-	public void create(Long postId, CommentDto.Request dto) {
+	public void create(Long noticeId, CommentDto.Request dto) {
 
-		Notice notice = postRepository.findById(postId)
-				.orElseThrow(() -> new IllegalArgumentException("댓글 쓰기 실패: 해당 게시글이 존재하지 않습니다. " + postId));
+		Notice notice = noticeRepository.findById(noticeId)
+				.orElseThrow(() -> new IllegalArgumentException("댓글 쓰기 실패: 해당 게시글이 존재하지 않습니다. " + noticeId));
 
 		dto.setRootId(notice);
 		dto.setDate(LocalDateTime.now());
@@ -68,4 +68,20 @@ public class CommentService {
 		return this.commentRepository.getCommentByRootIdOrderByCommentId(rootId);
 	}
 
+	///////////////////////////////////////////////////////////////////////////////////
+	public void saveComment(Long id, NoticeComment reBoard, SiteUser user) {
+		Notice board = noticeRepository.findByNoticeId(id).get();
+
+		NoticeComment comment = new NoticeComment();
+
+		comment.setComment(reBoard.getComment());
+		comment.setDate(LocalDateTime.now());
+		comment.setRootId(board);
+		comment.setCommentUser(user);
+		commentRepository.save(comment);
+	}
+
+	public List<NoticeComment> reFindAll() {
+		return (List<NoticeComment>) commentRepository.findAll();
+	}
 }

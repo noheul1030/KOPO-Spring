@@ -13,7 +13,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
-import jakarta.persistence.OrderBy;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -32,27 +31,27 @@ public class Notice {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column
 	private Long noticeId;
-	
+
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "user_id")
 	private SiteUser id;
-	
+
 	@Column
 	private String title;
-	
+
 	@Column
 	private LocalDateTime date;
-	
+
 	@Column
 	private LocalDateTime postModifiedDate;
-	
+
 	@Column
 	private String content;
-	
-	@Column 
+
+	@Column
 	private Integer viewcnt;
-	
+
 	@OneToMany(cascade = CascadeType.REMOVE, mappedBy = "rootId", fetch = FetchType.LAZY)
-	@OrderBy("comment_date asc")
+//	@OrderBy("comment_date asc")
 	private List<NoticeComment> comments;
 }
