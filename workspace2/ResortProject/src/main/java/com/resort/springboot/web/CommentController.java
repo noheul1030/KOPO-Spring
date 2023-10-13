@@ -1,13 +1,10 @@
 package com.resort.springboot.web;
 
-import java.io.IOException;
 import java.security.Principal;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -22,11 +19,11 @@ import com.resort.springboot.domain.Notice;
 import com.resort.springboot.domain.NoticeComment;
 import com.resort.springboot.domain.SiteUser;
 import com.resort.springboot.dto.CommentDto;
+import com.resort.springboot.dto.NoticeDto;
 import com.resort.springboot.service.CommentService;
 import com.resort.springboot.service.NoticeService;
 import com.resort.springboot.service.UserService;
 
-import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
@@ -39,20 +36,30 @@ public class CommentController {
 	private final CommentService commentService;
 
 	/* CREATE */
+	
+	@GetMapping("/noticeBoard_detail/{noticeId}")
+	public String createComment(Model model, CommentDto.Request commentDto, NoticeDto.Response noticeDto) {
+		model.addAttribute("commentForm", commentDto);
+		model.addAttribute("oneSelectView",noticeDto);
+		
+		return "/noticeBoard_detail/{noticeId}";
+
+	}
 	@PreAuthorize("isAuthenticated()")
 	@PostMapping("/noticeBoard_detail/{noticeId}")
-	public String createComment(Model model, @PathVariable("noticeId") Long noticeId,
-			@Valid @ModelAttribute("comment") CommentDto.Request commentDto, BindingResult bindingResult,
+	public String createComment(Model model, @PathVariable Long noticeId,
+			@Valid @ModelAttribute("commentForm") CommentDto.Request commentDto, BindingResult bindingResult,
 			Principal principal) {
 		Notice notice = this.noticeService.getNotice(noticeId);
 		SiteUser user = this.userService.getUser(principal.getName());
 		if (bindingResult.hasErrors()) {
 			model.addAttribute("oneSelectView", notice); // 댓글 작성 오류 시 해당 공지 내용 저장해서 유지
-			return "noticeBoard_detail";
+			return "noticeBoard_detail?noticeId=" + noticeId;
 		}
 		commentService.create(notice, commentDto.getComment(), user);
 
-		return String.format("redirect:/noticeBoard_detail/%s", noticeId);
+//		return String.format("redirect:/noticeBoard_detail/%s", noticeId);
+		return "redirect:/noticeBoard_detail?noticeId=" + noticeId; 
 	}
 
 	/* UPDATE */
@@ -97,24 +104,7 @@ public class CommentController {
 	}
 
 	////////////////////////////////////////////////////////////////////
-
-	@RequestMapping("/writereply")
-	public void rewrite(Long id, NoticeComment reboard, HttpServletResponse resp) throws IOException {
-
-		// 현재 인증된 사용자 정보 가져오기
-		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-
-		SiteUser user = this.userService.getUser(authentication.getName());
-		commentService.saveComment(id, reboard, user);
-
-		resp.sendRedirect("/noticeBoard_detail?noticeId=" + id);
-	}
-
-	@RequestMapping(value = "/noticeBoard_detail")
-	public String newInsert(Notice notice, Model model) {
-		return "noticeBoard_detail";
-	}
-
+	
 	@RequestMapping(value = "/relist")
 	public String findAll(Notice notice, Model model) {
 		List<NoticeComment> findAll = commentService.reFindAll();
