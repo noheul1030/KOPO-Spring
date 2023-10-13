@@ -69,12 +69,12 @@ public class CommentService {
 	}
 
 	///////////////////////////////////////////////////////////////////////////////////
-	public void saveComment(Long id, NoticeComment reBoard, SiteUser user) {
+	public void saveComment(Long id, CommentDto.Request commentDto, SiteUser user) {
 		Notice board = noticeRepository.findByNoticeId(id).get();
 
 		NoticeComment comment = new NoticeComment();
 
-		comment.setComment(reBoard.getComment());
+		comment.setComment(commentDto.getComment());
 		comment.setDate(LocalDateTime.now());
 		comment.setRootId(board);
 		comment.setCommentUser(user);
