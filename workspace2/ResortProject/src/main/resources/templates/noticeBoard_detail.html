@@ -7,6 +7,18 @@
 		/* 다른 스타일 속성을 여기에 추가할 수 있습니다. */
 	}
 </style>
+<script>
+    function validateForm() {
+        var commentTextarea = document.getElementById("comment");
+        if (commentTextarea.value.trim() === "") {
+            // Display an error message or perform any other desired action
+            alert("댓글을 입력하세요.");
+            return false; // Prevent form submission
+        }
+        return true; // Allow form submission
+    }
+</script>
+
 
 <body>
 	<th:block layout:fragment="content">
@@ -133,20 +145,24 @@
 					</form>
 						-->
 						
-	<form method='post'>
+	  <form th:action="@{|noticeBoard_detail/${oneSelectView.noticeId}|}" method='post'  th:object="${commentForm}" onsubmit="return validateForm()">
+						
 			<table border='1'>
+				
 				<tr>
 					<!-- 셀 스타일 지정,text 출력 -->
 					<label for="comment" class="form-label"><b>댓글</b></label>
 					<textarea name="comment" id="comment" rows="15" class="form-control"
-							style="max-height: 100px; overflow-x: auto; overflow-y: scroll; resize: none;"
-							maxlength="100"></textarea>
-						<input type="hidden" name="noticeId" value="${oneSelectView.noticeId}">
+		                  style="max-height: 100px; overflow-x: auto; overflow-y: scroll; resize: none;"
+		                  maxlength="100"></textarea>
+					<input type="hidden" name="noticeId" value="${oneSelectView.noticeId}">
 					</td>
-					<br>
-					<input type="submit" value="댓글등록" sec:authorize="isAuthenticated()" class="btn btn-primary"
-							style="float: right;" formaction='writereply'>
-					<br>						
+					<br>															
+			
+					 <input type="submit" value="댓글등록" sec:authorize="isAuthenticated()" class="btn btn-primary"
+               			style="float: right;">
+               			
+					<br><br>						
 						<p th:text="|${#lists.size(oneSelectView.comments)}개의 답변이 있습니다.|"></p>		
 							
 					</td>
@@ -178,9 +194,7 @@
 							
 				<tr th:each="comments : ${relist}">
 					<td th:text="${comments.commentId}" style="text-align: center;vertical-align: middle;"></td>
-					<td><textarea name="content" th:text="${comments.comment}" readonly style="overflow-x: auto; overflow-y: auto; resize: none;"
-							maxlength="100" class="form-control"></textarea>
-					</td>
+					<td><pre name="content" th:text="${comments.comment}"style="vertical-align: middle;"></pre></td>
 					<td th:text="${#temporals.format(comments.date, 'yyyy-MM-dd')}" style="vertical-align: middle;text-align: center;"></td>
 					<td th:text="${#temporals.format(comments.commentModifiedDate, 'yyyy-MM-dd')}" style="vertical-align: middle;text-align: center;"></td>
 					<td th:text="${comments.commentUser.id}" style="vertical-align: middle;text-align: center;"></td>
