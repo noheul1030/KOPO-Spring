@@ -52,6 +52,5 @@ public class Notice {
 	private Integer viewcnt;
 
 	@OneToMany(cascade = CascadeType.REMOVE, mappedBy = "rootId", fetch = FetchType.LAZY)
-//	@OrderBy("comment_date asc")
 	private List<NoticeComment> comments;
 }
