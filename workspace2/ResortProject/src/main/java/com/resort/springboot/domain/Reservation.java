@@ -1,39 +1,57 @@
 package com.resort.springboot.domain;
 
+import java.time.LocalDateTime;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import lombok.Data;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 
+@AllArgsConstructor
+@RequiredArgsConstructor
 @Entity
-@Data
+@Getter
+@Setter
+@Builder
 public class Reservation {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column
-	private Long reservationNumber;
-	
-	// 회원 ID
-	@Column(nullable = false)
-	private String email;
-	
+	private Long reservationId;
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "user_id")
+	private SiteUser reservationUser;
+
 	// TOP SUITE ROOM
 	@Column
 	private String topSuiteRoom;
-	
+
 	// FAMILY ROOM
 	@Column
 	private String familyRoom;
-	
+
 	// BUSINESS ROOM
 	@Column
 	private String businessRoom;
-	
+
 	// STANDARD ROOM
 	@Column
 	private String standardRoom;
 
+	@Column
+	private LocalDateTime date;
+
+	@Column
+	private Integer reservationFee;
 }
