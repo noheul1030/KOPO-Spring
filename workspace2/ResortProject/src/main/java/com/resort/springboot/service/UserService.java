@@ -28,7 +28,7 @@ public class UserService {
 	public SiteUser saveUser(SiteUser user) {
 		validateDuplicateUser(user);
 
-		return userRepository.save(user);
+		return this.userRepository.save(user);
 	}
 
 	public void validateDuplicateUser(SiteUser user) {
@@ -55,7 +55,8 @@ public class UserService {
 		user.setSex(sex);
 		user.setPhoneNumber(phoneNumber);
 		user.setRole(role);
-		this.userRepository.save(user);
+//		this.userRepository.save(user);
+		saveUser(user);
 
 		return user;
 	}
@@ -68,14 +69,13 @@ public class UserService {
 		userRepository.save(userDto.createUser());
 	}
 
-	
 	public SiteUser getUser(String id) {
-        Optional<SiteUser> user = this.userRepository.findById(id);
-        if (user.isPresent()) {
-            return user.get();
-        } else {
-            throw new DataNotFoundException("user not found");
-        }
+		Optional<SiteUser> user = this.userRepository.findById(id);
+		if (user.isPresent()) {
+			return user.get();
+		} else {
+			throw new DataNotFoundException("user not found");
+		}
 	}
 
 	// 회원가입 -> 중복 체크, 유효성 검사
