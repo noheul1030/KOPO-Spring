@@ -55,8 +55,8 @@ public class UserService {
 		user.setSex(sex);
 		user.setPhoneNumber(phoneNumber);
 		user.setRole(role);
-//		this.userRepository.save(user);
-		saveUser(user);
+		this.userRepository.save(user);
+//		saveUser(user);
 
 		return user;
 	}
