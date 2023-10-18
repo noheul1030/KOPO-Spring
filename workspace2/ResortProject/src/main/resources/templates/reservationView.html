@@ -13,6 +13,116 @@
 				<h4><b>예약 조회</b></h4>
 			</div>
 			
+			
+			
+			
+			<form name="calendarFrm" id = "calendarFrm" action = "register_list" method = "GET">
+				<span id = calendar1 style = "position:relative;"></span>
+				<input type="button" class = "today_button" onclick="admin" value = "관리자"/>
+				<script type="text/javascript">showCalendar(nowd,nowm,nowy);</script>
+				<center><br/> 예약을 원하는 것을 선택해 주세요.<br/>
+				(클릭시 해당 날짜의 예약 현황 페이지로 이동합니다.)<br/>
+				<a href="#">아직 구현 중</a>
+				
+				
+				
+				<div class="calendar">
+					
+					<!--날짜 네비게이션-->
+					<div class="navigation">
+					<a class= "befor_after_year" href="./reservationView.do?year=${today_info.search_year-1}&month=${today_info.search_month-1}">
+						&lt;&lt;
+						<!--이전해-->
+					</a>
+					<a class= "befor_after_month" href="./reservationView.do?year=${today_info.before_year}&month=${today_info.before_month}">
+						&lt;
+						<!--이전달-->
+					</a>
+					
+					<span class="this_month">
+						&nbsp;${today_info.search_year}.
+						<c:if test="${today_info.search_month<10}">0</c:if>${today_info.search_month}
+					</span>
+					
+					<a class="before_after_month" href="./reservationView.do?year=${today_info.after_year}&month=${today_infor.after_month}">
+						<!--다음달-->
+						&gt;
+					</a>
+					
+					<a class="before_after_year" href="./reservationView.do?year=${today_info.search_year+1}&month=${today_infor.search_month-1}">
+						<!--다음해-->
+						&gt;&gt;
+					</a>
+				</div>
+					
+				
+				<div class="today_botton_div">
+					<input type="button" class="today_button" onclick="javascript:location.href='/reservationView.do" th:value="오늘"/>
+				</div>
+				
+				<table class="calendar_body">
+					
+					
+				<thead>
+					<tr bgcolor="#CECECE">
+						<td class="day sun">일</td>
+						<td class="day">월</td>
+						<td class="day">화</td>
+						<td class="day">수</td>
+						<td class="day">목</td>
+						<td class="day">금</td>
+						<td class="day sat">토</td>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<c:forEach var="dateList" items="${dateList}" varStatus="date_status">
+							<c:choose>
+							<c:when test="${dateList.value=='today'}">
+								<td class="today">
+									<div class="date">
+										<a href="/services">${dateList.date}</a>
+										<c:out value="예약종료">예약가능</c:out>
+									</div>
+									<div></div>
+								</td>
+							</c:when>
+							
+							<c:when test="${date_status.index%7==6}">
+								<td class="sat_day">
+									<div class="sat">
+										<a href="/services">${dateList.date}</a>
+										<c:out value="예약종료">예약가능</c:out>
+									</div>
+									<div></div>
+								</td>
+							</c:when>
+							<c:when test="${date_status.index%7==0}">
+					</tr>
+					<tr>
+						<td class="sun_day">
+							<div class="sun">
+								<a href="/services">${dateList.date}</a>
+								<c:out value="예약종료">예약가능</c:out>
+							</div>
+							<div></div>
+						</td>
+						</c:when>
+						<!--<c:otherwise>
+						<td class="normal_day">
+							<div class="date">
+								<a href="/services">${dateList.date}</a>
+								<c:out value="예약종료">예약가능</c:out>
+							</div>
+							<div></div>-->
+					</tr>
+				</tbody>
+				</table>
+				
+				</div>
+					
+					
+					
 	</div>
 	</th:block>
 </body>
