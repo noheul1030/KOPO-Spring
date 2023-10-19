@@ -27,18 +27,16 @@ public class ReservationDto {
 		private String familyRoom;
 		private String businessRoom;
 		private String standardRoom;
+		private LocalDateTime localDate;
 
 		@NotEmpty(message = "예약날짜는 필수항목입니다.")
-		private LocalDateTime date;
-		@NotEmpty(message = "예약금액은 필수항목입니다.")
-		private Integer reservationFee;
+		private String date;
 
 		// Dto -> Entity
 		public Reservation toEntity() {
 			Reservation reservation = Reservation.builder().reservationId(reservationId)
 					.reservationUser(reservationUser).topSuiteRoom(topSuiteRoom).familyRoom(familyRoom)
-					.businessRoom(businessRoom).standardRoom(standardRoom).date(date).reservationFee(reservationFee)
-					.build();
+					.businessRoom(businessRoom).standardRoom(standardRoom).localDate(localDate).date(date).build();
 
 			return reservation;
 		}
@@ -52,8 +50,8 @@ public class ReservationDto {
 		private String familyRoom;
 		private String businessRoom;
 		private String standardRoom;
-		private LocalDateTime date;
-		private Integer reservationFee;
+		private LocalDateTime localDate;
+		private String date;
 
 		// Entity -> Dto
 		public Response(Reservation reservation) {
@@ -63,8 +61,8 @@ public class ReservationDto {
 			this.familyRoom = reservation.getFamilyRoom();
 			this.businessRoom = reservation.getBusinessRoom();
 			this.standardRoom = reservation.getStandardRoom();
+			this.localDate = reservation.getLocalDate();
 			this.date = reservation.getDate();
-			this.reservationFee = reservation.getReservationFee();
 		}
 	}
 }
