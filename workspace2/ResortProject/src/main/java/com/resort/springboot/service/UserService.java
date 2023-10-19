@@ -56,7 +56,6 @@ public class UserService {
 		user.setPhoneNumber(phoneNumber);
 		user.setRole(role);
 		this.userRepository.save(user);
-//		saveUser(user);
 
 		return user;
 	}

@@ -50,7 +50,7 @@ public class UserController {
 		} catch (DataIntegrityViolationException e) {
 			e.printStackTrace();
 			bindingResult.rejectValue("id", "error.userDto.id", "이미 등록된 사용자입니다.");
-			bindingResult.rejectValue("email", "error.userDto.email", "이미 등록된 이메일입니다.");
+
 			return "signUp";
 
 		} catch (Exception e) {

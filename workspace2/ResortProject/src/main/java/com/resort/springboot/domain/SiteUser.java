@@ -23,47 +23,46 @@ import lombok.Setter;
 @Builder
 public class SiteUser {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)	
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "userId")
 	private Long userId;
-	
+
 	// 1.회원 ID
 	@Column(nullable = false, unique = true)
 	private String id;
-	
+
 	// 2.회원 비밀번호
 	@JsonIgnore
 	@Column(nullable = false)
 	private String password;
-	
+
 	// 3.이메일
-	@Column(nullable = false, unique = true)
+	@Column(nullable = false)
 	private String email;
-	
+
 	// 4.회원 이름
 	@Column(nullable = false)
 	private String name;
-	
+
 	// 5.성별
 	@Column(nullable = false)
 	private String sex;
-	
+
 	// 6.전화번호
 	@Column(nullable = false)
 	private String phoneNumber;
-	
+
 	// 7. 권한
 	@Enumerated(EnumType.STRING)
 	private Role role;
 
 	// 8. 우편번호
-	private String zipcode; 
-	
+	private String zipcode;
+
 	// 9. 도로명주소
 	private String streetAdr;
-	
+
 	// 10. 상세주소
 	private String detailAdr;
-	
-	
+
 }
