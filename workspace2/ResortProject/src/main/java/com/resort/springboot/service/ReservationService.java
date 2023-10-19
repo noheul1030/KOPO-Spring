@@ -1,12 +1,43 @@
 package com.resort.springboot.service;
 
+import java.time.LocalDateTime;
+
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.resort.springboot.domain.Reservation;
+import com.resort.springboot.domain.SiteUser;
+import com.resort.springboot.repo.ReservationRepository;
 
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
+@Transactional
 @Service
 public class ReservationService {
+	private final ReservationRepository reservationRepository;
+
+	/* CREATE */
+	public void newReserve(String year, String month, String day, String room, SiteUser user) {
+
+		Reservation reserve = new Reservation();
+
+		reserve.setReservationUser(user);
+		reserve.setDate(year + month + day);
+		reserve.setLocalDate(LocalDateTime.now());
+
+		if (room.equals("topSuiteRoom")) {
+			reserve.setTopSuiteRoom("O");
+		} else if (room.equals("familyRoom")) {
+			reserve.setFamilyRoom("O");
+		} else if (room.equals("businessRoom")) {
+			reserve.setBusinessRoom("O");
+		} else if (room.equals("standardRoom")) {
+			reserve.setStandardRoom("O");
+		}
+
+		this.reservationRepository.save(reserve);
+	}
 
 //	public Map<String, Integer> today_info(DateData dateData) {
 //		Map<String, Integer> today_Data = new HashMap<String, Integer>();
