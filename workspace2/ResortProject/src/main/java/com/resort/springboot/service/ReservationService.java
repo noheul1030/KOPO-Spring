@@ -1,12 +1,19 @@
 package com.resort.springboot.service;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.resort.springboot.domain.Reservation;
 import com.resort.springboot.domain.SiteUser;
+import com.resort.springboot.exception.DataNotFoundException;
 import com.resort.springboot.repo.ReservationRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -37,6 +44,48 @@ public class ReservationService {
 		}
 
 		this.reservationRepository.save(reserve);
+	}
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+	/* READ */
+
+	// 1. list
+	public Page<Reservation> getList(int page) {
+		List<Sort.Order> sorts = new ArrayList<>();
+		sorts.add(Sort.Order.desc("reservationId"));
+		PageRequest pageable = PageRequest.of(page, 10, Sort.by(sorts)); // 페이지 번호 0부터 시작
+
+		return this.reservationRepository.findAll(pageable);
+	}
+
+	// 2. 한건 조회
+	public Reservation getReservation(Long id) {
+		Optional<Reservation> reserve = this.reservationRepository.findByReservationId(id);
+
+		if (reserve.isPresent()) {
+			return reserve.get();
+		} else {
+			throw new DataNotFoundException("해당 예약이 없습니다.");
+		}
+	}
+
+	// 3. 아이디로 검색
+	public Page<Reservation> getUser(SiteUser user, int page) {
+		List<Sort.Order> sorts = new ArrayList<>();
+		sorts.add(Sort.Order.desc("reservationId"));
+		PageRequest pageable = PageRequest.of(page, 10, Sort.by(sorts)); // 페이지 번호 0부터 시작
+
+		return this.reservationRepository.findBySiteUser(user, pageable);
+	}
+
+	// 4. 날짜로 검색
+	public Page<Reservation> getDate(String date, int page) {
+		List<Sort.Order> sorts = new ArrayList<>();
+		sorts.add(Sort.Order.desc("reservationId"));
+		PageRequest pageable = PageRequest.of(page, 10, Sort.by(sorts)); // 페이지 번호 0부터 시작
+
+		return this.reservationRepository.findByDate(date, pageable);
 	}
 
 //	public Map<String, Integer> today_info(DateData dateData) {
