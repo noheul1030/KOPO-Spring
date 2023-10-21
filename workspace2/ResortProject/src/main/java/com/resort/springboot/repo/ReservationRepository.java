@@ -24,4 +24,8 @@ public interface ReservationRepository extends JpaRepository<Reservation, Long> 
 
 	// 4. 날짜 조회
 	Page<Reservation> findByDate(String date, Pageable pageable);
+
+	// DELETE
+
+	void deleteByReservationId(Long id);
 }
