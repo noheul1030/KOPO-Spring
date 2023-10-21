@@ -3,7 +3,6 @@ package com.resort.springboot.service;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -13,7 +12,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.resort.springboot.domain.Reservation;
 import com.resort.springboot.domain.SiteUser;
-import com.resort.springboot.exception.DataNotFoundException;
 import com.resort.springboot.repo.ReservationRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -61,13 +59,16 @@ public class ReservationService {
 
 	// 2. 한건 조회
 	public Reservation getReservation(Long id) {
-		Optional<Reservation> reserve = this.reservationRepository.findByReservationId(id);
 
-		if (reserve.isPresent()) {
-			return reserve.get();
-		} else {
-			throw new DataNotFoundException("해당 예약이 없습니다.");
-		}
+		return this.reservationRepository.findByReservationId(id).orElse(null);
+
+//		Optional<Reservation> reserve = this.reservationRepository.findByReservationId(id);
+//
+//		if (reserve.isPresent()) {
+//			return reserve.get();
+//		} else {
+//			throw new DataNotFoundException("해당 예약이 없습니다.");
+//		}
 	}
 
 	// 3. 아이디로 검색
@@ -86,6 +87,14 @@ public class ReservationService {
 		PageRequest pageable = PageRequest.of(page, 10, Sort.by(sorts)); // 페이지 번호 0부터 시작
 
 		return this.reservationRepository.findByDate(date, pageable);
+	}
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+	/* DELETE */
+
+	public void deleteId(Long id) {
+		this.reservationRepository.deleteByReservationId(id);
 	}
 
 //	public Map<String, Integer> today_info(DateData dateData) {
