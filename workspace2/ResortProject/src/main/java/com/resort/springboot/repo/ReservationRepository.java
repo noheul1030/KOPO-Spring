@@ -20,7 +20,7 @@ public interface ReservationRepository extends JpaRepository<Reservation, Long> 
 	Optional<Reservation> findByReservationId(Long user);
 
 	// 3. 아이디 조회
-	Page<Reservation> findBySiteUser(SiteUser siteUser, Pageable pageable);
+	Page<Reservation> findByReservationUser(SiteUser siteUser, Pageable pageable);
 
 	// 4. 날짜 조회
 	Page<Reservation> findByDate(String date, Pageable pageable);
