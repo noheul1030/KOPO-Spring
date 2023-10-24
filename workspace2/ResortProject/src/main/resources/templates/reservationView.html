@@ -39,9 +39,10 @@
 						<!--이전달-->
 					</a>
 					
-					<span class="this_month">
-						&nbsp;${today_info.search_year}.
-						<c:if test="${today_info.search_month<10}">0</c:if>${today_info.search_month}
+					<span class="this_month" th:if="${today_info != null}">
+					    &nbsp;[[${today_info.search_year}]].
+					    <span th:if="${today_info.search_month < 10}">0</span>
+					    [[${today_info.search_month}]]
 					</span>
 					
 					<a class="before_after_month" href="./reservationView.do?year=${today_info.after_year}&month=${today_infor.after_month}">
@@ -57,7 +58,7 @@
 					
 				
 				<div class="today_botton_div">
-					<input type="button" class="today_button" onclick="javascript:location.href='/reservationView.do" th:value="오늘"/>
+					<input type="button" class="today_button" onclick="javascript:location.href='/reservationView.do'" th:value="오늘"/>
 				</div>
 				
 				<table class="calendar_body">
