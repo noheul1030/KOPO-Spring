@@ -7,8 +7,8 @@ import java.util.Map;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.resort.springboot.dto.DateData;
 
@@ -16,13 +16,14 @@ import jakarta.servlet.http.HttpServletRequest;
 
 @Controller
 public class ReservationController {
-	@RequestMapping(value = "reservationView")
+	@GetMapping(value = "reservationView")
 //	@GetMapping("/reservationView")
 	public String reservationView() {
 		return "reservationView";
 	}
 
-	@RequestMapping(value = "reservationView.do", method = RequestMethod.GET)
+//	@RequestMapping(value = "reservationView.do", method = RequestMethod.GET)
+	@RequestMapping(value = "reservationView")
 	public String calendar(Model model, HttpServletRequest request, DateData dateData) {
 		Calendar cal = Calendar.getInstance();
 		DateData calendarData;
@@ -40,7 +41,7 @@ public class ReservationController {
 			dateList.add(calendarData);
 		}
 
-		for (int i = today_info.get("startDay"); i <= today_info.get("denDay"); i++) {
+		for (int i = today_info.get("startDay"); i <= today_info.get("endDay"); i++) {
 			if (i == today_info.get("today")) {
 				calendarData = new DateData(String.valueOf(dateData.getYear()), String.valueOf(dateData.getMonth()),
 						String.valueOf(i), "today");
