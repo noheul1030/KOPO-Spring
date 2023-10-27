@@ -2,6 +2,20 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <th:block th:replace="fragments/header :: headerFragment"></th:block>
 
+<!--달력 Full 캘린더-->
+<script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.9/index.global.min.js'></script>
+
+<script>
+	document.addEventListener('DOMContentLoaded', function () {
+		var calendarEl = document.getElementById('calendar');
+		var calendar = new FullCalendar.Calendar(calendarEl, {
+			initialView: 'dayGridMonth'
+			, locale: 'ko' // 한국어로 설정			
+		});
+		calendar.render();
+	});
+</script>
+
 <body>
 	<th:block layout:fragment="content">
 
@@ -13,7 +27,9 @@
 
 						<nav aria-label="breadcrumb" data-aos="fade-up" data-aos-delay="200">
 							<ol class="breadcrumb text-center justify-content-center">
-								<li class="breadcrumb-item"><<a href="/">Home</a></li>
+								<li class="breadcrumb-item">
+									<<a href="/">Home</a>
+								</li>
 								<li class="breadcrumb-item"><a href="properties">Room Information</a></li>
 								<li class="breadcrumb-item active text-white-50" aria-current="page">
 									Reservation
@@ -25,10 +41,54 @@
 			</div>
 		</div>
 
+		<div layout:fragment="content" class="container my-3">
+			<br><br>
+			<div>
+				<h4><b>예약 조회</b></h4>
+			</div>
+
+			<input id="date-range" type="text" class="form-control">
+
+			<br><br>
+			<div id='calendar' class="wow fadeInUp"></div>
+			<br><br><br>
+		</div>
+
+
 
 	</th:block>
 </body>
 
 <th:block th:replace="fragments/footer :: footerFragment"></th:block>
+
+<!-- Date Range Picker -->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css">
+
+<script type="text/javascript">
+	$(document).ready(function () {
+		$('#date-range').daterangepicker({
+			"locale": {
+				"format": "YYYY-MM-DD",
+				"separator": " ~ ",
+				"applyLabel": "확인",
+				"cancelLabel": "취소",
+				"fromLabel": "From",
+				"toLabel": "To",
+				"customRangeLabel": "Custom",
+				"weekLabel": "W",
+				"daysOfWeek": ["일", "월", "화", "수", "목", "금", "토"],
+				"monthNames": ["1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"],
+			},
+			"startDate": new Date(),
+			"endDate": new Date(),
+			"drops": "auto"
+		}, function (start, end, label) {
+			console.log('New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')');
+		});
+	});
+</script>
 
 </html>
