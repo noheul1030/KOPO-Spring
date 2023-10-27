@@ -41,7 +41,9 @@ public class ReservationService {
 		Reservation reserve = new Reservation();
 
 		reserve.setReservationUser(user);
-		reserve.setDate(year + month + day);
+		reserve.setYear(year);
+		reserve.setMonth(month);
+		reserve.setDay(day);
 		reserve.setLocalDate(LocalDateTime.now());
 
 		if (room.equals("topSuiteRoom")) {
@@ -86,12 +88,12 @@ public class ReservationService {
 	}
 
 	// 4. 날짜로 검색
-	public Page<Reservation> getDate(String date, int page) {
+	public Page<Reservation> getDate(String year, String month, String day, int page) {
 		List<Sort.Order> sorts = new ArrayList<>();
 		sorts.add(Sort.Order.desc("reservationId"));
 		PageRequest pageable = PageRequest.of(page, 10, Sort.by(sorts)); // 페이지 번호 0부터 시작
 
-		return this.reservationRepository.findByDate(date, pageable);
+		return this.reservationRepository.findByYearAndMonthAndDay(year, month, day, pageable);
 	}
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
