@@ -27,16 +27,17 @@ public class ReservationDto {
 		private String familyRoom;
 		private String businessRoom;
 		private String standardRoom;
+		private String year;
+		private String month;
+		private String day;
 		private LocalDateTime localDate;
 
-		@NotEmpty(message = "예약날짜는 필수항목입니다.")
-		private String date;
 
 		// Dto -> Entity
 		public Reservation toEntity() {
 			Reservation reservation = Reservation.builder().reservationId(reservationId)
 					.reservationUser(reservationUser).topSuiteRoom(topSuiteRoom).familyRoom(familyRoom)
-					.businessRoom(businessRoom).standardRoom(standardRoom).localDate(localDate).date(date).build();
+					.businessRoom(businessRoom).standardRoom(standardRoom).localDate(localDate).year(year).month(month).day(day).build();
 
 			return reservation;
 		}
@@ -50,9 +51,10 @@ public class ReservationDto {
 		private String familyRoom;
 		private String businessRoom;
 		private String standardRoom;
+		private String year;
+		private String month;
+		private String day;
 		private LocalDateTime localDate;
-		private String date;
-
 		// Entity -> Dto
 		public Response(Reservation reservation) {
 			this.reservationId = reservation.getReservationId();
@@ -61,8 +63,10 @@ public class ReservationDto {
 			this.familyRoom = reservation.getFamilyRoom();
 			this.businessRoom = reservation.getBusinessRoom();
 			this.standardRoom = reservation.getStandardRoom();
+			this.year = reservation.getYear();
+			this.month = reservation.getMonth();
+			this.day = reservation.getDay();
 			this.localDate = reservation.getLocalDate();
-			this.date = reservation.getDate();
 		}
 	}
 }
