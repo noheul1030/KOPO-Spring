@@ -50,7 +50,13 @@ public class Reservation {
 	private String standardRoom;
 
 	@Column
-	private String date;
+	private String year;
+	
+	@Column
+	private String month;
+	
+	@Column
+	private String day;
 
 	@Column
 	private LocalDateTime localDate;
