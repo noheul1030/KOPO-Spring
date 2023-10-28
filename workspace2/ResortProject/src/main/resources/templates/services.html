@@ -9,8 +9,16 @@
 	document.addEventListener('DOMContentLoaded', function () {
 		var calendarEl = document.getElementById('calendar');
 		var calendar = new FullCalendar.Calendar(calendarEl, {
-			initialView: 'dayGridMonth'
-			, locale: 'ko' // 한국어로 설정			
+			initialView: 'dayGridMonth',		
+			locale: 'ko', // 한국어로 설정
+			
+			// dateClick : 날짜 셀을 클릭할 때 발생하는 이벤트
+			dateClick: function(info) {
+			  var clickedDate = info.dateStr; // 클릭한 날짜 값을 가져옴 (년/월/일 형식)
+
+                // reservation.html로 이동
+                window.location.href = '/reservationView?selectedDate=' + clickedDate;
+			}		
 		});
 		calendar.render();
 	});
