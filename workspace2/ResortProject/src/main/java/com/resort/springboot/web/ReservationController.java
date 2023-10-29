@@ -23,17 +23,23 @@ public class ReservationController {
 	private final ReservationService reservationService;
 	private final UserService userService;
 
+	// CREATE OK
+	@GetMapping("/reservationOk")
+	public String Ok() {
+		return "reservationOk";
+	}
+
 	// CREATE
 
 	@GetMapping("reservationView")
-	public String Create(ReservationDto.Request reservationDto, String room, Model model) {
+	public String Create(ReservationDto.Request reservationDto, Model model) {
 		model.addAttribute("reservation", reservationDto);
 
 		return "reservationView";
 	}
 
 	@PostMapping("reservationView")
-	public String Create(@Valid @ModelAttribute("reservation") ReservationDto.Request reservationDto, String room,
+	public String Create(@Valid @ModelAttribute("reservation") ReservationDto.Request reservationDto,
 			BindingResult bindingResult, Principal principal) {
 
 		if (bindingResult.hasErrors()) {
@@ -42,7 +48,7 @@ public class ReservationController {
 
 		SiteUser user = this.userService.getUser(principal.getName());
 		this.reservationService.newReserve(reservationDto.getYear(), reservationDto.getMonth(), reservationDto.getDay(),
-				room, user);
+				reservationDto.getTopSuiteRoom(), user);
 
 		return "redirect:/reservationOk"; // 저장 후 예약OK로 이동
 	}
