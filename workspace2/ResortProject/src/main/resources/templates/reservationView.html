@@ -3,93 +3,114 @@
 
 <th:block th:replace="fragments/header :: headerFragment"></th:block>
 
+<style>
+	.form-control[readonly] {
+		background-color: white;
+		/* 다른 스타일 속성을 여기에 추가할 수 있습니다. */
+	}
+    .input-container {
+        display: flex;
+    }
+    .input-container input {
+        flex: 1;
+        margin-right: 10px; /* 오른쪽 여백을 5px로 조정 */
+    }	
+</style>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        function getParameterByName(name, url) {
+            if (!url) url = window.location.href;
+            name = name.replace(/[\[\]]/g, "\\$&");
+
+            var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+                results = regex.exec(url);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, " "));
+        }
+
+        var selectedDateParam = getParameterByName('selectedDate');
+        var dateParts = selectedDateParam.split('-');
+        var year = dateParts[0];
+        var month = dateParts[1];
+        var day = dateParts[2];
+
+        var inputContainer = document.querySelector('.input-container');
+
+        var yearInput = inputContainer.querySelector('input[name="year"]');
+        var monthInput = inputContainer.querySelector('input[name="month"]');
+        var dayInput = inputContainer.querySelector('input[name="day"]');
+
+        yearInput.value = year;
+        monthInput.value = month;
+        dayInput.value = day;
+    });
+</script>
+
 <body>
 	<th:block layout:fragment="content">
 
-<script>
-	// 현재 URL에서 'selectedDate' 매개변수 값을 가져오는 함수
-	function getParameterByName(name, url) {
-	    if (!url) url = window.location.href;
-	    name = name.replace(/[\[\]]/g, "\\$&");
-
-	    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
-	        results = regex.exec(url);
-	    if (!results) return null;
-	    if (!results[2]) return '';
-	    return decodeURIComponent(results[2].replace(/\+/g, " "));
-	}
-	
-	// URL에서 'selectedDate' 값을 가져옵니다.
-	var selectedDateParam = getParameterByName('selectedDate', 'http://localhost:8081/reservationView?selectedDate=2023-10-03');
-	
-	// 날짜 값을 '-'를 기준으로 분리하여 연도, 월, 일로 나눕니다.
-	var dateParts = selectedDateParam.split('-');
-	var year = dateParts[0];
-	var month = dateParts[1];
-	var day = dateParts[2];
-	
-	// 해당 값들을 HTML 폼 요소에 설정합니다.
-	document.querySelector('input[name="year"]').value = year;
-	document.querySelector('input[name="month"]').value = month;
-	document.querySelector('input[name="day"]').value = day;
-</script>
-
 
 	<div layout:fragment="content" class="container my-3">
-		<div style="width: 100%; height: 150px;"></div>
+	<div style="width: 100%; height: 150px;"></div>
+
+	<div>
+		<h4><b>예약 조회</b></h4>
+	</div>
 	
-		<div>
-			<h4><b>예약 조회</b></h4>
-		</div>
-		
-		
-		
-		<form th:action="@{/reservationView}" method='post' th:object="${reservation}">
-			<table border='1'>
-				<!-- 테이블 테두리 1 지정 -->
-				<tr>
-					<!-- 셀 스타일 지정,text 출력 -->
-					<label for="year" class="form-label"><b>Year</b></label>
-					<input type='text' name='year' th:value="${year}" class="form-control"
-						readonly>
-				</tr>
-				<tr>
-					<!-- 셀 스타일 지정,text 출력 -->
-					<label for="month" class="form-label"><b>Month</b></label>
-					<input type='text' name='month' th:value="${month}" class="form-control"
-						readonly>
-				</tr>
-				<tr>
-					<!-- 셀 스타일 지정,text 출력 -->
-					<label for="day" class="form-label"><b>Day</b></label>
-					<input type='text' name='day' th:value="${day}" class="form-control"
-						readonly>
-				</tr>
-				<br />
-				<tr>
-					<!-- 셀 스타일 지정,text 출력 -->
-					<label for="room" class="form-label"><b>Room 선택</b></label>
-					
-					<select th:field="*{room}" class="form-select">
-						<option value="topSuiteRoom">topSuiteRoom</option>
-						<option value="familyRoom">familyRoom</option>
-						<option value="businessRoom">businessRoom</option>
-						<option value="standardRoom">standardRoom</option>
-					</select>
-				</tr>
-
-			</table>
-
-			<br><br>
+	
+	<br>
+	<form th:action="@{/reservationView}" method='post' th:object="${reservation}">
+		<table border='1'>
+			<!-- 테이블 테두리 1 지정 -->
+			<tr>
+				<!-- 셀 스타일 지정,text 출력 -->					
+				<label for="year" class="form-label" style="width: 33.5%;"><b>Year</b></label>
+				<label for="month" class="form-label" style="width: 33.5%;"><b>Month</b></label>
+				<label for="day" class="form-label" style="width: 33%;"><b>Day</b></label>
+			</tr>
+			<tr>
+				<div class="input-container">
+				<!-- 셀 스타일 지정,text 출력 -->
+				<input type='text' name='year' th:value="${year}" class="form-control"
+					 style="width: 30%;" readonly>
+				<input type='text' name='month' th:value="${month}" class="form-control"
+					 style="width: 30%;" readonly>
+				<input type='text' name='day' th:value="${day}" class="form-control"
+					 style="width: 30%;" readonly>
+				 </div>
+			</tr>
 			
-			<button type="button" class="btn btn-primary"
-				onclick="window.location.href='/services'">날짜 재선택</button>
+			
+			
+		 	<!-- Reservation table에 null이 아닌 옵션은 제거 되게끔 코드 수정 예정-->
+			<br />
+			<tr>
+				<!-- 셀 스타일 지정,text 출력 -->
+				<label for="topSuiteRoom" class="form-label"><b>Room Choice</b></label>
+				
+				<select th:field="*{topSuiteRoom}" class="form-select">
+					<option value="topSuiteRoom">topSuiteRoom</option>
+					<option value="familyRoom">familyRoom</option>
+					<option value="businessRoom">businessRoom</option>
+					<option value="standardRoom">standardRoom</option>
+				</select>
+			</tr>
 
-			<button type="button" class="btn btn-primary"
-				onclick="window.location.href='/'">취소</button>
-			<button type="submit" class="btn btn-primary my-2">예약하기</button>
-		</form>				
+		</table>
 		
+		
+
+		<br><br>
+		
+		<button type="button" class="btn btn-primary"
+			onclick="window.location.href='/services'">날짜변경</button>
+		<button type="submit" class="btn btn-primary my-2">예약하기</button>
+
+		<button type="button" class="btn btn-primary"
+			onclick="window.location.href='/'">취소</button>
+	</form>				
+	
 		
 			
 	</div>
