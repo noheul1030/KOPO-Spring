@@ -15,9 +15,19 @@
 			// dateClick : 날짜 셀을 클릭할 때 발생하는 이벤트
 			dateClick: function(info) {
 			  var clickedDate = info.dateStr; // 클릭한 날짜 값을 가져옴 (년/월/일 형식)
-
-                // reservation.html로 이동
+			  var selectedDate = new Date(clickedDate); // 선택한 날짜를 JavaScript Date 객체로 변환
+			  var today = new Date(); // 오늘 날짜
+			  
+			  // 선택한 날짜와 오늘 날짜를 시간 부분을 00:00:00으로 설정하여 날짜만 비교
+			  today.setHours(0, 0, 0, 0);
+ 			  selectedDate.setHours(0, 0, 0, 0);
+			  
+			  if (selectedDate < today) {
+			    alert('날짜 선택 오류입니다. 다시 선택해주세요.');
+			  } else {
+                // reservation.html로 예약 페이지로 이동
                 window.location.href = '/reservationView?selectedDate=' + clickedDate;
+              }
 			}		
 		});
 		calendar.render();
