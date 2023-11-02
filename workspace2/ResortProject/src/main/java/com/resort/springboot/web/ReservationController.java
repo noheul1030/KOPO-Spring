@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.resort.springboot.domain.Room;
 import com.resort.springboot.domain.SiteUser;
 import com.resort.springboot.dto.ReservationDto;
 import com.resort.springboot.service.ReservationService;
@@ -47,8 +48,9 @@ public class ReservationController {
 		}
 
 		SiteUser user = this.userService.getUser(principal.getName());
+		Room room = reservationDto.getRoomId();
 		this.reservationService.newReserve(reservationDto.getYear(), reservationDto.getMonth(), reservationDto.getDay(),
-				reservationDto.getRoomId(), user);
+				room, user);
 
 		return "redirect:/reservationOk"; // 저장 후 예약OK로 이동
 	}
