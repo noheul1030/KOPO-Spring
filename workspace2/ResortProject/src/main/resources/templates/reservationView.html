@@ -83,17 +83,17 @@
 			
 			
 			
-		 	<!-- Reservation table에 null이 아닌 옵션은 제거 되게끔 코드 수정 예정-->
+		 	<!-- Reservation table에 null이 아닌 옵션은 비활성화 되게끔 코드 수정 예정-->
 			<br />
 			<tr>
 				<!-- 셀 스타일 지정,text 출력 -->
-				<label for="topSuiteRoom" class="form-label"><b>Room Choice</b></label>
+				<label for="roomId" class="form-label"><b>Room Choice</b></label>
 				
-				<select th:field="*{topSuiteRoom}" class="form-select">
-					<option value="topSuiteRoom">topSuiteRoom</option>
-					<option value="familyRoom">familyRoom</option>
-					<option value="businessRoom">businessRoom</option>
-					<option value="standardRoom">standardRoom</option>
+				<select th:field="*{roomId}" class="form-select">
+					<option value="1">topSuiteRoom</option>
+					<option value="2">familyRoom</option>
+					<option value="3">businessRoom</option>
+					<option value="4">standardRoom</option>
 				</select>
 			</tr>
 
@@ -105,7 +105,7 @@
 		
 		<button type="button" class="btn btn-primary"
 			onclick="window.location.href='/services'">날짜변경</button>
-		<button type="submit" class="btn btn-primary my-2">예약하기</button>
+		<input type="submit" value="예약" class="btn btn-primary my-2">
 
 		<button type="button" class="btn btn-primary"
 			onclick="window.location.href='/'">취소</button>
