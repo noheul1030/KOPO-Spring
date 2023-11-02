@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.resort.springboot.domain.Reservation;
+import com.resort.springboot.domain.Room;
 import com.resort.springboot.domain.SiteUser;
 import com.resort.springboot.exception.DataNotFoundException;
 import com.resort.springboot.repo.ReservationRepository;
@@ -36,25 +37,16 @@ public class ReservationService {
 	}
 
 	/* CREATE */
-	public void newReserve(String year, String month, String day, String room, SiteUser user) {
+	public void newReserve(String year, String month, String day, Room room, SiteUser user) {
 
 		Reservation reserve = new Reservation();
 
 		reserve.setReservationUser(user);
+		reserve.setRoomId(room);
 		reserve.setYear(year);
 		reserve.setMonth(month);
 		reserve.setDay(day);
 		reserve.setLocalDate(LocalDateTime.now());
-
-		if (room.equals("topSuiteRoom")) {
-			reserve.setTopSuiteRoom("O");
-		} else if (room.equals("familyRoom")) {
-			reserve.setFamilyRoom("O");
-		} else if (room.equals("businessRoom")) {
-			reserve.setBusinessRoom("O");
-		} else if (room.equals("standardRoom")) {
-			reserve.setStandardRoom("O");
-		}
 
 		this.reservationRepository.save(reserve);
 	}

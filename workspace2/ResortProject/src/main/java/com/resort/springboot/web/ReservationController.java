@@ -48,7 +48,7 @@ public class ReservationController {
 
 		SiteUser user = this.userService.getUser(principal.getName());
 		this.reservationService.newReserve(reservationDto.getYear(), reservationDto.getMonth(), reservationDto.getDay(),
-				reservationDto.getTopSuiteRoom(), user);
+				reservationDto.getRoomId(), user);
 
 		return "redirect:/reservationOk"; // 저장 후 예약OK로 이동
 	}
