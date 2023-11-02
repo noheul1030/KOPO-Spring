@@ -10,15 +10,25 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
+@Entity
+@Table(name = "Reservation", 
+	uniqueConstraints = {
+		@UniqueConstraint(
+			name = "UniqueReservation", 
+			columnNames = { "room_id", "year", "month", "day" }
+		) 
+	}
+)
 @AllArgsConstructor
 @RequiredArgsConstructor
-@Entity
 @Getter
 @Setter
 @Builder
@@ -33,29 +43,17 @@ public class Reservation {
 	@JoinColumn(name = "user_id")
 	private SiteUser reservationUser;
 
-	// TOP SUITE ROOM
-	@Column
-	private String topSuiteRoom;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "room_id", nullable = false)
+	private Room roomId;
 
-	// FAMILY ROOM
-	@Column
-	private String familyRoom;
-
-	// BUSINESS ROOM
-	@Column
-	private String businessRoom;
-
-	// STANDARD ROOM
-	@Column
-	private String standardRoom;
-
-	@Column
+	@Column(name = "year", nullable = false)
 	private String year;
 
-	@Column
+	@Column(name = "month", nullable = false)
 	private String month;
 
-	@Column
+	@Column(name = "day", nullable = false)
 	private String day;
 
 	@Column
@@ -64,12 +62,9 @@ public class Reservation {
 
 // TODO: Reservation Table 정규화 예정
 /*
- * 1. Reservation -> Room 으로 연결하는 정규화 방식을 쓸것인지? 
- * 예시) 
- * <Reservation Table> 
- * - (PK)reservation_id / room_id / year / month / day / localDate / user_id
- * <Room Table>
- * - (PK) room_id / room_type
+ * 1. Reservation -> Room 으로 연결하는 정규화 방식을 쓸것인지? 예시) <Reservation Table> -
+ * (PK)reservation_id / room_id / year / month / day / localDate / user_id <Room
+ * Table> - (PK) room_id / room_type
  * 
  * 2. 날짜에 대한 조회를 통해 room 예약 정보를 조회할것인지?
  * 
