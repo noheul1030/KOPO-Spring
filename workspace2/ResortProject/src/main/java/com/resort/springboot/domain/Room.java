@@ -11,7 +11,7 @@ public class Room {
 	
 	@Id
 	@Column(name = "room_id")
-	private Long roomId;
+	private Integer roomId;
 	
 	@Column
 	private String type;
