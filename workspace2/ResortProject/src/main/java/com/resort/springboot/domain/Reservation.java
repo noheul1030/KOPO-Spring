@@ -58,14 +58,5 @@ public class Reservation {
 
 	@Column
 	private LocalDateTime localDate;
-}
 
-// TODO: Reservation Table 정규화 예정
-/*
- * 1. Reservation -> Room 으로 연결하는 정규화 방식을 쓸것인지? 예시) <Reservation Table> -
- * (PK)reservation_id / room_id / year / month / day / localDate / user_id <Room
- * Table> - (PK) room_id / room_type
- * 
- * 2. 날짜에 대한 조회를 통해 room 예약 정보를 조회할것인지?
- * 
- */
+}
