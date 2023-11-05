@@ -2,6 +2,11 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 
 <th:block th:replace="fragments/header :: headerFragment"></th:block>
+<style>
+	span {
+		color: red;
+	}
+</style>
 
 <body>
 	<th:block layout:fragment="content">
@@ -12,7 +17,7 @@
 			<div>
 				<h4><b>회원가입</b></h4>
 				<br>
-				<span style="color: red;">( *는 필수 입력항목 입니다. )</span>
+				<span>( *는 필수 입력항목 입니다. )</span>
 			</div>
 			
 			<br>
