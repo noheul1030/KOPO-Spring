@@ -49,10 +49,4 @@ public class ControllerTest {
 	public String propertySingle() {
 		return "property-single";
 	}
-
-	@GetMapping("/services")
-	public String services() {
-		return "services";
-	}
-
 }
