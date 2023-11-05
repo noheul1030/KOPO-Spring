@@ -31,11 +31,7 @@ public class UserService {
 		return this.userRepository.save(user);
 	}
 
-	public void validateDuplicateUser(SiteUser user) {
-		SiteUser findEmail = userRepository.findByEmail(user.getEmail());
-		if (findEmail != null) {
-			throw new IllegalStateException("이미 가입된 이메일입니다.");
-		}
+	public void validateDuplicateUser(SiteUser user) {		
 		Optional<SiteUser> findId = userRepository.findById(user.getId());
 		if (findId != null) {
 			throw new IllegalStateException("이미 가입된 아이디입니다.");
