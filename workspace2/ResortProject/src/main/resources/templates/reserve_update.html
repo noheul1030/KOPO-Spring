@@ -19,51 +19,6 @@
 		/* 오른쪽 여백을 5px로 조정 */
 	}
 </style>
-<script>
-	document.addEventListener('DOMContentLoaded', function () {
-		function getParameterByName(name, url) {
-			if (!url) url = window.location.href;
-			name = name.replace(/[\[\]]/g, "\\$&");
-
-			var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
-				results = regex.exec(url);
-			if (!results) return null;
-			if (!results[2]) return '';
-			return decodeURIComponent(results[2].replace(/\+/g, " "));
-		}
-
-		var selectedDateParam = getParameterByName('selectedDate');
-		var dateParts = selectedDateParam.split('-');
-		var year = dateParts[0];
-		var month = dateParts[1];
-		var day = dateParts[2];
-
-
-		var yearCheck = parseInt(dateParts[0], 10);
-		var monthCheck = parseInt(dateParts[1], 10);
-		var dayCheck = parseInt(dateParts[2], 10);
-
-		var today = new Date();
-		var currentYear = today.getFullYear();
-		var currentMonth = today.getMonth() + 1;
-		var currentDay = today.getDate();
-
-		var inputContainer = document.querySelector('.input-container');
-
-		var yearInput = inputContainer.querySelector('input[name="year"]');
-		var monthInput = inputContainer.querySelector('input[name="month"]');
-		var dayInput = inputContainer.querySelector('input[name="day"]');
-
-		yearInput.value = year;
-		monthInput.value = month;
-		dayInput.value = day;
-
-		if (yearCheck < currentYear || (yearCheck === currentYear && monthCheck < currentMonth) || (yearCheck === currentYear && monthCheck === currentMonth && dayCheck < currentDay)) {
-			alert('선택한 날짜가 현재 날짜보다 이전입니다.');
-			window.location.href = '/reserveCalendar';
-		}
-	});
-</script>
 
 <body>
 	<th:block layout:fragment="content">
@@ -77,27 +32,31 @@
 
 
 			<br>
-			<form th:action="@{/reserve_update}" method='post' th:object="${reupdate}">
+			<form th:action="@{/reserve_update}" method='post' th:object="${redetail}">
 
-				<!--<div class="alert alert-danger" role="alert" th:if="${#fields.hasGlobalErrors()}">
-					<div th:each="err : ${#fields.globalErrors()}">
-						<span th:text="${err}" />
-					</div>
-				</div>-->
+				<div class="alert alert-danger" role="alert" th:if="${#fields.hasGlobalErrors()}">
+				    <div th:each="err : ${#fields.globalErrors()}">
+				        <span th:text="${err}" />
+				    </div>
+				</div>	
 
 				<table border='1'>
-					<!--<tr>
+					<tr>
 						<label for="year" class="form-label" style="width: 33.5%;"><b>Year</b></label>
 						<label for="month" class="form-label" style="width: 33.5%;"><b>Month</b></label>
 						<label for="day" class="form-label" style="width: 33%;"><b>Day</b></label>
 					</tr>
 					<tr>
 						<div class="input-container">
+							<input type='hidden' th:field="*{reservationId}">
+							<input type='hidden' th:field="*{reservationUser}">
+							<input type='hidden' th:field="*{localDate}">
+							
 							<input type='text' th:field="*{year}" class="form-control" style="width: 30%;" readonly>
 							<input type='text' th:field="*{month}" class="form-control" style="width: 30%;" readonly>
 							<input type='text' th:field="*{day}" class="form-control" style="width: 30%;" readonly>
 						</div>
-					</tr>-->
+					</tr>
 
 
 
@@ -111,6 +70,24 @@
 							<option value="3">businessRoom</option>
 							<option value="4">standardRoom</option>
 						</select>
+					</tr>
+					
+					<br />
+					<tr>
+						<label class="form-label" style="width: 33%;"><b>User ID</b></label>
+		        		<input type='text' th:field="*{reservationUser.id}" class="form-control" readonly>
+					</tr>
+					
+					<br />
+					<tr>
+						<label class="form-label" style="width: 33%;"><b>User Name</b></label>
+		        		<input type='text' th:field="*{reservationUser.Name}" class="form-control" readonly>
+					</tr>
+					
+					<br />
+					<tr>
+						<label class="form-label" style="width: 33%;"><b>Phone Number</b></label>
+		        		<input type='text' th:field="*{reservationUser.phoneNumber}" class="form-control" readonly>
 					</tr>
 
 				</table>
