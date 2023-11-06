@@ -91,18 +91,19 @@
 				<label for="month" class="form-label" style="width: 33.5%;"><b>Month</b></label>
 				<label for="day" class="form-label" style="width: 33%;"><b>Day</b></label>
 			</tr>
+			
+			
 			<tr>
 				<div class="input-container">
-				<!-- 셀 스타일 지정,text 출력 -->
-				<input type='text' th:field="*{year}" class="form-control"
-					 style="width: 30%;" readonly>
-				<input type='text' th:field="*{month}" class="form-control"
-					 style="width: 30%;" readonly>
-				<input type='text' th:field="*{day}" class="form-control"
-					 style="width: 30%;" readonly>
+					<!-- 셀 스타일 지정,text 출력 -->
+					<input type='text' th:field="*{year}" class="form-control"
+						 style="width: 30%;" readonly>
+					<input type='text' th:field="*{month}" class="form-control"
+						 style="width: 30%;" readonly>
+					<input type='text' th:field="*{day}" class="form-control"
+						 style="width: 30%;" readonly>		
 				 </div>
 			</tr>
-			
 			
 			
 		 	<!-- Reservation table에 null이 아닌 옵션은 비활성화 되게끔 코드 수정 예정-->
@@ -118,6 +119,29 @@
 					<option value="4">standardRoom</option>
 				</select>
 			</tr>
+			
+			<br />
+			<tr>
+				<label class="form-label" style="width: 33%;"><b>User ID</b></label>
+				<!-- 현재 로그인된 사용자의 ID를 출력 -->
+        		<input type='text' th:field="*{reservationUser.id}" class="form-control" readonly>
+			</tr>
+			
+			<br />
+			<tr>
+				<label class="form-label" style="width: 33%;"><b>User Name</b></label>
+				<!-- 현재 로그인된 사용자의 이름 출력 -->
+        		<input type='text' th:field="*{reservationUser.Name}" class="form-control" readonly>
+			</tr>
+			
+			<br />
+			<tr>
+				<label class="form-label" style="width: 33%;"><b>Phone Number</b></label>
+				<!-- 현재 로그인된 사용자의 전화번호를 출력 -->
+        		<input type='text' th:field="*{reservationUser.phoneNumber}" class="form-control" readonly>
+			</tr>
+			
+			
 
 		</table>
 		
