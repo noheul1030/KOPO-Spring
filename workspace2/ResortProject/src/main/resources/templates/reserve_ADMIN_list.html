@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<th:block th:replace="fragments/header :: headerFragment"></th:block>
+
+<script type="text/javascript">
+    function confirmDelete() {
+        if (confirm('정말 삭제하시겠습니까?')) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+</script>
+
+<body>
+	<th:block layout:fragment="content">
+
+		<div class="hero page-inner overlay" style="background-image: url('images/hero_bg_1.jpg')">
+			<div class="container">
+				<div class="row justify-content-center align-items-center">
+					<div class="col-lg-9 text-center mt-5">
+						<h1 class="heading" data-aos="fade-up">Reservation Inquiry</h1>
+
+						<nav aria-label="breadcrumb" data-aos="fade-up" data-aos-delay="200">
+							<ol class="breadcrumb text-center justify-content-center">
+								<li class="breadcrumb-item"><a href="/">Home</a></li>
+								<li class="breadcrumb-item active text-white-50" aria-current="page">
+									Reservation Inquiry
+								</li>
+							</ol>
+						</nav>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		<div class="section">
+			<div class="container">
+				<div class="row mb-5 align-items-center">
+					<div class="col-lg-6">
+						<h2 class="font-weight-bold text-primary heading">
+							관리자 예약 조회
+						</h2>
+					</div>
+
+					<div class="item"><br />
+						<div class="table-container deco center inner-bordered">
+							<form method="post">
+								<table border="1" class="table">
+									<colgroup>
+										<col style="width: 10%;">
+										<col style="width: 10%;">
+										<col style="width: 14%;">
+										<col style="width: 14%;">
+										<col style="width: 14%;">
+										<col style="width: 18%;">
+										<col style="width: 10%;">
+										<col style="width: 10%;">
+									</colgroup>
+									<thead>
+										<tr style="background-color: rgb(221, 221, 221);">
+											<th scope="col" style="text-align: center;">번호</th>
+											<th scope="col" style="text-align: center;">예약일</th>
+											<th scope="col" style="text-align: center;">예약아이디</th>
+											<th scope="col" style="text-align: center;">예약자이름</th>
+											<th scope="col" style="text-align: center;">연락처</th>
+											<th scope="col" style="text-align: center;">이메일</th>
+											<th scope="col" style="text-align: center;">수정</th>
+											<th scope="col" style="text-align: center;">삭제</th>
+										</tr>
+									</thead>
+									<tbody>
+
+										<tr th:each="reservation, loop : ${paging}">
+											<td th:text="${reservation.reservationId}" style="text-align: center;"></td>
+											<td th:text="${reservation.year + '-' + reservation.month + '-' + reservation.day}"
+												style="text-align: center;"></td>
+											<td th:text="${reservation.reservationUser.id}" style="text-align: center;">
+											</td>
+											<td th:text="${reservation.reservationUser.name}"
+												style="text-align: center;"></td>
+											<td th:text="${reservation.reservationUser.phoneNumber}"
+												style="text-align: center;"></td>
+											<td th:text="${reservation.reservationUser.email}"
+												style="text-align: center;"></td>
+											<td style="text-align: center;">
+												<a th:href="@{|/reserve_update?selectedDate=${reservation.year + '-' + reservation.month + '-' + reservation.day}|}"
+													style="color: rgb(94, 181, 74);"><b>수정</b></a>
+											</td>
+											<td style="text-align: center;">
+												<a th:href="@{|/reserve_delete?reservationId=${reservation.reservationId}|}"
+													style="color: red;" onclick="return confirmDelete();"><b>삭제</b></a>
+											</td>
+										</tr>
+
+									</tbody>
+								</table>
+							</form>
+
+							<!-- 페이징처리 시작 -->
+							<div th:if="${!paging.isEmpty()}">
+								<ul class="pagination justify-content-center">
+									<li class="page-item" th:classappend="${!paging.hasPrevious} ? 'disabled'">
+										<a class="page-link" th:href="@{|?page=${0}|}">
+											<span>처음</span>
+										</a>
+									</li>
+									<li class="page-item" th:classappend="${!paging.hasPrevious} ? 'disabled'">
+										<a class="page-link" th:href="@{|?page=${paging.number-1}|}">
+											<span>이전</span>
+										</a>
+									</li>
+									<li th:each="page: ${#numbers.sequence(0, paging.totalPages-1)}"
+										th:if="${page >= paging.number-5 and page <= paging.number+5}"
+										th:classappend="${page == paging.number} ? 'active'" class="page-item">
+										<a th:text="${page}" class="page-link" th:href="@{|?page=${page}|}"></a>
+									</li>
+									<li class="page-item" th:classappend="${!paging.hasNext} ? 'disabled'">
+										<a class="page-link" th:href="@{|?page=${paging.number+1}|}">
+											<span>다음</span>
+										</a>
+									</li>
+									<li class="page-item" th:classappend="${!paging.hasNext} ? 'disabled'">
+										<a class="page-link" th:href="@{|?page=${paging.totalPages-1}|}">
+											<span>끝</span>
+										</a>
+									</li>
+								</ul>
+							</div>
+							<!-- 페이징처리 끝 -->
+
+
+
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+
+
+
+
+
+	</th:block>
+</body>
+
+
+<th:block th:replace="fragments/footer :: footerFragment"></th:block>
+
+</html>
