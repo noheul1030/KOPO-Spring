@@ -23,8 +23,7 @@ public class SecurityConfig {
 		// 현재 services url에 대한 접근 권한은 ADMIN만 가능
 //            	.requestMatchers(new AntPathRequestMatcher("/services/**")).hasAuthority("ROLE_ADMIN")
 				.requestMatchers(new AntPathRequestMatcher("/services/**")).hasAnyAuthority("ROLE_ADMIN", "ROLE_USER")
-				.requestMatchers(new AntPathRequestMatcher("/noticeBoard_delete")).hasAnyAuthority("ROLE_ADMIN")
-				.requestMatchers(new AntPathRequestMatcher("/noticeBoard_update")).hasAnyAuthority("ROLE_ADMIN")
+				.requestMatchers(new AntPathRequestMatcher("/reserve_ADMIN_list")).hasAnyAuthority("ROLE_ADMIN")
 				.requestMatchers(new AntPathRequestMatcher("/reserve_create/**")).hasAnyAuthority("ROLE_ADMIN", "ROLE_USER")
 				.requestMatchers(new AntPathRequestMatcher("/**")).permitAll())
 				.csrf((csrf) -> csrf.ignoringRequestMatchers(new AntPathRequestMatcher("/h2-console/**")))
