@@ -11,7 +11,6 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.resort.springboot.domain.Notice;
 import com.resort.springboot.domain.Reservation;
 import com.resort.springboot.domain.Room;
 import com.resort.springboot.domain.SiteUser;
@@ -59,7 +58,12 @@ public class ReservationService {
 	// 1. list
 	public Page<Reservation> getList(int page) {
 		List<Sort.Order> sorts = new ArrayList<>();
-		sorts.add(Sort.Order.desc("reservationId"));
+		
+		sorts.add(Sort.Order.desc("year"));
+		sorts.add(Sort.Order.desc("month"));
+		sorts.add(Sort.Order.desc("day"));
+		sorts.add(Sort.Order.desc("roomId"));
+		
 		PageRequest pageable = PageRequest.of(page, 10, Sort.by(sorts)); // 페이지 번호 0부터 시작
 
 		return this.reservationRepository.findAll(pageable);
