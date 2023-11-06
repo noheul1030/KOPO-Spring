@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<th:block th:replace="fragments/header :: headerFragment"></th:block>
+
+<style>
+	.form-control[readonly] {
+		background-color: white;
+		/* 다른 스타일 속성을 여기에 추가할 수 있습니다. */
+	}
+
+	.input-container {
+		display: flex;
+	}
+
+	.input-container input {
+		flex: 1;
+		margin-right: 10px;
+		/* 오른쪽 여백을 5px로 조정 */
+	}
+</style>
+<script>
+	document.addEventListener('DOMContentLoaded', function () {
+		function getParameterByName(name, url) {
+			if (!url) url = window.location.href;
+			name = name.replace(/[\[\]]/g, "\\$&");
+
+			var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+				results = regex.exec(url);
+			if (!results) return null;
+			if (!results[2]) return '';
+			return decodeURIComponent(results[2].replace(/\+/g, " "));
+		}
+
+		var selectedDateParam = getParameterByName('selectedDate');
+		var dateParts = selectedDateParam.split('-');
+		var year = dateParts[0];
+		var month = dateParts[1];
+		var day = dateParts[2];
+
+
+		var yearCheck = parseInt(dateParts[0], 10);
+		var monthCheck = parseInt(dateParts[1], 10);
+		var dayCheck = parseInt(dateParts[2], 10);
+
+		var today = new Date();
+		var currentYear = today.getFullYear();
+		var currentMonth = today.getMonth() + 1;
+		var currentDay = today.getDate();
+
+		var inputContainer = document.querySelector('.input-container');
+
+		var yearInput = inputContainer.querySelector('input[name="year"]');
+		var monthInput = inputContainer.querySelector('input[name="month"]');
+		var dayInput = inputContainer.querySelector('input[name="day"]');
+
+		yearInput.value = year;
+		monthInput.value = month;
+		dayInput.value = day;
+
+		if (yearCheck < currentYear || (yearCheck === currentYear && monthCheck < currentMonth) || (yearCheck === currentYear && monthCheck === currentMonth && dayCheck < currentDay)) {
+			alert('선택한 날짜가 현재 날짜보다 이전입니다.');
+			window.location.href = '/reserveCalendar';
+		}
+	});
+</script>
+
+<body>
+	<th:block layout:fragment="content">
+
+		<div layout:fragment="content" class="container my-3">
+			<div style="width: 100%; height: 150px;"></div>
+
+			<div>
+				<h4><b>예약 수정</b></h4>
+			</div>
+
+
+			<br>
+			<form th:action="@{/reserve_update}" method='post' th:object="${reupdate}">
+
+				<!--<div class="alert alert-danger" role="alert" th:if="${#fields.hasGlobalErrors()}">
+					<div th:each="err : ${#fields.globalErrors()}">
+						<span th:text="${err}" />
+					</div>
+				</div>-->
+
+				<table border='1'>
+					<!--<tr>
+						<label for="year" class="form-label" style="width: 33.5%;"><b>Year</b></label>
+						<label for="month" class="form-label" style="width: 33.5%;"><b>Month</b></label>
+						<label for="day" class="form-label" style="width: 33%;"><b>Day</b></label>
+					</tr>
+					<tr>
+						<div class="input-container">
+							<input type='text' th:field="*{year}" class="form-control" style="width: 30%;" readonly>
+							<input type='text' th:field="*{month}" class="form-control" style="width: 30%;" readonly>
+							<input type='text' th:field="*{day}" class="form-control" style="width: 30%;" readonly>
+						</div>
+					</tr>-->
+
+
+
+					<br />
+					<tr>
+						<label for="roomId" class="form-label"><b>Room Choice</b></label>
+
+						<select th:field="*{roomId}" class="form-select">
+							<option value="1">topSuiteRoom</option>
+							<option value="2">familyRoom</option>
+							<option value="3">businessRoom</option>
+							<option value="4">standardRoom</option>
+						</select>
+					</tr>
+
+				</table>
+
+
+
+				<br><br>
+
+				<input type="submit" value="수정" class="btn btn-primary my-2">
+
+				<button type="button" class="btn btn-primary" sec:authorize="hasRole('ADMIN')"
+					onclick="window.location.href='/reserve_ADMIN_list'">취소</button>
+				<button type="button" class="btn btn-primary" sec:authorize="hasRole('USER')"
+					onclick="window.location.href='/reserve_USER_list'">취소</button>
+			</form>
+
+
+
+		</div>
+	</th:block>
+</body>
+
+
+<th:block th:replace="fragments/footer :: footerFragment"></th:block>
+
+</html>
