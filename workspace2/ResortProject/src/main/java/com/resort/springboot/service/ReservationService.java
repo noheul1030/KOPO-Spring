@@ -11,6 +11,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.resort.springboot.domain.Notice;
 import com.resort.springboot.domain.Reservation;
 import com.resort.springboot.domain.Room;
 import com.resort.springboot.domain.SiteUser;
@@ -88,6 +89,22 @@ public class ReservationService {
 		return this.reservationRepository.findByYearAndMonthAndDay(year, month, day, pageable);
 	}
 
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+	/* UPDATE */
+	
+	public void update(Reservation reserve) {
+		Reservation reserve2 = reservationRepository.findByReservationId(reserve.getReservationId()).get();
+		// 가져온 글에 수정한 내용을 세팅한다.
+		reserve2.setRoomId(reserve.getRoomId());
+		reserve2.setYear(reserve.getYear());
+		reserve2.setMonth(reserve.getMonth());
+		reserve2.setDay(reserve.getDay());
+
+		// DB에 저장
+		reservationRepository.save(reserve2);
+	}
+	
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	/* DELETE */
