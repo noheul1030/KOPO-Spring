@@ -50,19 +50,21 @@
 							<form method="post">
 								<table border="1" class="table">
 									<colgroup>
+										<col style="width: 7%;">
 										<col style="width: 10%;">
 										<col style="width: 10%;">
-										<col style="width: 14%;">
-										<col style="width: 14%;">
-										<col style="width: 14%;">
-										<col style="width: 18%;">
 										<col style="width: 10%;">
 										<col style="width: 10%;">
+										<col style="width: 17%;">
+										<col style="width: 20%;">
+										<col style="width: 8%;">
+										<col style="width: 8%;">
 									</colgroup>
 									<thead>
 										<tr style="background-color: rgb(221, 221, 221);">
 											<th scope="col" style="text-align: center;">번호</th>
 											<th scope="col" style="text-align: center;">예약일</th>
+											<th scope="col" style="text-align: center;">예약룸</th>
 											<th scope="col" style="text-align: center;">예약아이디</th>
 											<th scope="col" style="text-align: center;">예약자이름</th>
 											<th scope="col" style="text-align: center;">연락처</th>
@@ -77,6 +79,7 @@
 											<td th:text="${reservation.reservationId}" style="text-align: center;"></td>
 											<td th:text="${reservation.year + '-' + reservation.month + '-' + reservation.day}"
 												style="text-align: center;"></td>
+											<td th:text="${reservation.roomId.type}" style="text-align: center;">
 											<td th:text="${reservation.reservationUser.id}" style="text-align: center;">
 											</td>
 											<td th:text="${reservation.reservationUser.name}"
@@ -86,7 +89,7 @@
 											<td th:text="${reservation.reservationUser.email}"
 												style="text-align: center;"></td>
 											<td style="text-align: center;">
-												<a th:href="@{|/reserve_update?selectedDate=${reservation.year + '-' + reservation.month + '-' + reservation.day}|}"
+												<a th:href="@{|/reserve_update?reservationId=${reservation.reservationId}|}"
 													style="color: rgb(94, 181, 74);"><b>수정</b></a>
 											</td>
 											<td style="text-align: center;">
