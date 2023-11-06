@@ -1,8 +1,12 @@
 package com.resort.springboot.web;
 
+import java.io.IOException;
 import java.security.Principal;
 
 import org.springframework.data.domain.Page;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -18,6 +22,7 @@ import com.resort.springboot.dto.ReservationDto;
 import com.resort.springboot.service.ReservationService;
 import com.resort.springboot.service.UserService;
 
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
@@ -32,14 +37,7 @@ public class ReservationController {
 		return "reserveCalendar";
 	}
 	
-	@GetMapping("/reserve_list")
-	public String list(Model model, @RequestParam(value = "page", defaultValue = "0") int page) {
-
-		Page<Reservation> paging = this.reservationService.getList(page);
-		model.addAttribute("paging", paging);
-
-		return "/reserve_list";
-	}
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	// CREATE OK
 	@GetMapping("/reserveOk")
@@ -48,7 +46,6 @@ public class ReservationController {
 	}
 
 	// CREATE
-
 	@GetMapping("reserve_create")
 	public String Create(ReservationDto.Request reservationDto, Model model) {
 		model.addAttribute("reservation", reservationDto);
@@ -71,14 +68,81 @@ public class ReservationController {
 					reservationDto.getDay(), room, user);
 
 			return "redirect:/reserveOk"; // 저장 후 예약OK로 이동
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 			bindingResult.reject("error.reservation.exists", "이미 예약된 ROOM 입니다.");
-			
+
 			return "reserve_create";
 		}
 
+	}
+	
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	// READ		
+	@GetMapping("/reserve_ADMIN_list")
+	public String list(Model model, @RequestParam(value = "page", defaultValue = "0") int page) {
+		
+		Page<Reservation> paging = this.reservationService.getList(page);
+		model.addAttribute("paging", paging);
+		
+		return "/reserve_ADMIN_list";
+	}
+	
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	// UPDATE
+	@GetMapping("reserve_update")
+	public String update(Model model, ReservationDto.Response reservationDto) {
+		Reservation reserve = reservationService.oneSelectView(reservationDto.getReservationId());
+		model.addAttribute("reupdate", reserve);
+		
+		return "reserve_update";
+	}
+	
+
+	@PostMapping("reserve_update")
+	public String update(@Valid @ModelAttribute("reupdate") ReservationDto.Request reservationDto,
+			BindingResult bindingResult, Model model, Reservation reservation) {
+		
+		if (bindingResult.hasErrors()) {
+			return "reserve_update";
+		}
+		
+		try {
+			
+			Reservation reserve = reservationService.oneSelectView(reservation.getReservationId());
+			model.addAttribute("reupdate",reserve);
+			
+			this.reservationService.update(reservation);
+
+			Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+			
+			if (authentication != null && authentication.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ROLE_ADMIN"))) {
+			    return "redirect:/reserve_ADMIN_list"; // ADMIN 페이지로 이동
+			} else {
+			    return "redirect:/reserve_USER_list"; // 일반 사용자 페이지로 이동
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			bindingResult.reject("error.reservation.exists", "이미 예약된 ROOM 입니다.");
+
+			return "reserve_update";
+		}
+	}
+	
+	
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	// DELETE
+	@GetMapping(value= "/reserve_delete")
+	public void deleteBoard(Model model, Reservation reservation, HttpServletResponse resp) throws IOException {
+
+		// 아이디에 해당하는 예약을 삭제합니다.
+		reservationService.deleteId(reservation.getReservationId());
+		resp.sendRedirect("/reserve_ADMIN_list");
 	}
 
 }
