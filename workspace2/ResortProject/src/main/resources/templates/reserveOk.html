@@ -13,7 +13,12 @@
 
 						<nav aria-label="breadcrumb"  data-aos-delay="200">
 							<ol class="breadcrumb text-center justify-content-center">
-								<h3><li class="breadcrumb-item"><a href="/">Home으로 이동</a></li></h3>
+								<h3>
+									<li class="breadcrumb-item">
+									<a href="/reserve_ADMIN_list" sec:authorize="hasRole('ADMIN')">예약조회 이동</a>
+									<a href="/reserve_USER_list" sec:authorize="hasRole('USER')">예약조회 이동</a>
+									</li>
+								</h3>
 							</ol>
 						</nav>
 					</div>

@@ -96,7 +96,8 @@
 
 							<li><a href="/noticeBoard_list">게시판</a></li>
 
-							<li><a href="/reserve_list" sec:authorize="isAuthenticated()">예약조회</a></li>
+							<li><a href="/reserve_ADMIN_list" sec:authorize="hasRole('ADMIN')">예약조회</a></li>
+							<li><a href="/reserve_USER_list" sec:authorize="hasRole('USER')">예약조회</a></li>
 
 							<li>
 								<a class="nav-link" sec:authorize="isAnonymous()" th:href="@{/login}">로그인</a>
