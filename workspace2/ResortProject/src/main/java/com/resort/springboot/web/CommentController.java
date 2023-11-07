@@ -50,16 +50,18 @@ public class CommentController {
 	public String createComment(Model model, @PathVariable Long noticeId,
 			@Valid @ModelAttribute("commentForm") CommentDto.Request commentDto, BindingResult bindingResult,
 			Principal principal) {
+		
 		Notice notice = this.noticeService.getNotice(noticeId);
 		SiteUser user = this.userService.getUser(principal.getName());
+		
 		if (bindingResult.hasErrors()) {
 			model.addAttribute("oneSelectView", notice); // 댓글 작성 오류 시 해당 공지 내용 저장해서 유지
 			return "noticeBoard_detail?noticeId=" + noticeId;
 		}
+		
 		commentService.create(notice, commentDto.getComment(), user);
 
-//		return String.format("redirect:/noticeBoard_detail/%s", noticeId);
-		return "redirect:/noticeBoard_detail?noticeId=" + noticeId; 
+		return "redirect:/noticeBoard_detail?noticeId=" + noticeId + "&incrementVisit=false"; 
 	}
 
 	/* UPDATE */
@@ -67,10 +69,13 @@ public class CommentController {
 	@GetMapping("/update/{commentId}")
 	public String update(CommentDto.Request commentDto, @PathVariable("commentId") Long commentId,
 			Principal principal) {
+		
 		NoticeComment comment = this.commentService.getcomment(commentId);
+		
 		if (!"admin".equals(principal.getName()) && !comment.getCommentUser().getId().equals(principal.getName())) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, principal.getName());
 		}
+		
 		commentDto.setComment(comment.getComment());
 
 		return "#";

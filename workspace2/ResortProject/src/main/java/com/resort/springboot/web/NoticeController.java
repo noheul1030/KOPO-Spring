@@ -70,14 +70,18 @@ public class NoticeController {
 	// 3. 하나의 게시글 조회
 
 	@GetMapping(value = "/noticeBoard_detail")
-	public String oneSelectView(Model model, Notice notice) {
+	public String oneSelectView(Model model, Notice notice, 
+			@RequestParam(value = "incrementVisit", required = false, defaultValue = "true") boolean incrementVisit) {
+		
 		Notice noticeitem = noticeService.oneSelectView(notice.getNoticeId());
 		List<NoticeComment> comment = noticeitem.getComments();
 
 		model.addAttribute("oneSelectView", noticeitem);
 		model.addAttribute("relist", comment);
 
-		noticeService.visit(noticeitem.getNoticeId());
+		if (incrementVisit) {
+	        noticeService.visit(noticeitem.getNoticeId());
+	    }
 		return "/noticeBoard_detail";
 	}
 
