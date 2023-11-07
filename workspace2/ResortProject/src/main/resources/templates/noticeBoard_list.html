@@ -68,8 +68,10 @@
 									<tr th:each="notice, loop : ${paging}">
 										<td th:text="${notice.noticeId}" style="text-align: center;"></td>
 										<td>
-											<a th:href="@{|/noticeBoard_detail?noticeId=${notice.noticeId}|}"
-												th:text="${notice.title}"></a>
+											<a th:href="@{|/noticeBoard_detail?noticeId=${notice.noticeId}|}">
+												<span th:style="'font-size: 15px; font-weight: bold;'" th:text="${notice.title}"></span>
+												<span th:style="'color: orange;'" th:text="' (' + ${#lists.size(notice.comments)} + ')'"></span>
+											</a>
 										</td>
 										<td th:text="${#temporals.format(notice.date, 'yyyy-MM-dd')}" style="text-align: center;"></td>
 										<td th:text="${notice.id.id}" style="text-align: center;"></td>
