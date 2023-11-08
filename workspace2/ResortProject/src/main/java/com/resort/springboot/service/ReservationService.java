@@ -56,14 +56,37 @@ public class ReservationService {
 	/* READ */
 
 	// 1. list
-	public Page<Reservation> getList(int page) {
+	public Page<Reservation> getList(int page, String sort, String search) {
+		if (search != null && !search.isEmpty()) {
+//			return reservationRepository.searchAllColumns(search, PageRequest.of(page, 10));
+			return getSortedList(page, sort);
+		} else {
+			return getSortedList(page, sort);
+		}
+	}
+
+	public Page<Reservation> getSortedList(int page, String sort) {
 		List<Sort.Order> sorts = new ArrayList<>();
-		
-		sorts.add(Sort.Order.desc("year"));
-		sorts.add(Sort.Order.desc("month"));
-		sorts.add(Sort.Order.desc("day"));
-		sorts.add(Sort.Order.desc("roomId"));
-		
+
+		if (sort.equals("")) {
+			sorts.add(Sort.Order.desc("year"));
+			sorts.add(Sort.Order.desc("month"));
+			sorts.add(Sort.Order.desc("day"));
+			sorts.add(Sort.Order.desc("roomId"));
+		} else if (sort.equals("reservationId")) {
+			sorts.add(Sort.Order.asc("reservationId"));
+		} else if (sort.equals("reservationId,desc")) {
+			sorts.add(Sort.Order.desc("reservationId"));
+		} else if (sort.equals("year")) {
+			sorts.add(Sort.Order.asc("year"));
+			sorts.add(Sort.Order.asc("month"));
+			sorts.add(Sort.Order.asc("day"));
+		} else if (sort.equals("year,desc")) {
+			sorts.add(Sort.Order.desc("year"));
+			sorts.add(Sort.Order.desc("month"));
+			sorts.add(Sort.Order.desc("day"));
+		}
+
 		PageRequest pageable = PageRequest.of(page, 10, Sort.by(sorts)); // 페이지 번호 0부터 시작
 
 		return this.reservationRepository.findAll(pageable);
@@ -96,7 +119,7 @@ public class ReservationService {
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	/* UPDATE */
-	
+
 	public void update(Reservation reserve) {
 		Reservation reserve2 = reservationRepository.findByReservationId(reserve.getReservationId()).get();
 		// 가져온 글에 수정한 내용을 세팅한다.
@@ -108,7 +131,7 @@ public class ReservationService {
 		// DB에 저장
 		reservationRepository.save(reserve2);
 	}
-	
+
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	/* DELETE */

@@ -88,9 +88,11 @@ public class ReservationController {
 
 	// READ
 	@GetMapping("/reserve_ADMIN_list")
-	public String list(Model model, @RequestParam(value = "page", defaultValue = "0") int page) {
+	public String list(Model model, @RequestParam(value = "page", defaultValue = "0") int page,
+			@RequestParam(value = "sort", defaultValue = "") String sort,
+			@RequestParam(value = "search", defaultValue = "") String search) {
 
-		Page<Reservation> paging = this.reservationService.getList(page);
+		Page<Reservation> paging = this.reservationService.getList(page, sort, search);
 		model.addAttribute("paging", paging);
 
 		return "/reserve_ADMIN_list";

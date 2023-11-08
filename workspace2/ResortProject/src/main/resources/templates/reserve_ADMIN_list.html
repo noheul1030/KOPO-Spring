@@ -2,15 +2,29 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 
 <th:block th:replace="fragments/header :: headerFragment"></th:block>
+<style>
+	.fourth {
+		background: gold;
+		border-color: white;
+		color: black;
+		background-image: linear-gradient(45deg, yellow 50%, transparent 50%);
+		background-position: 100%;
+		background-size: 400%;
+		transition: background 300ms ease-in-out;
+	}
 
+	.fourth:hover {
+		background-position: 0;
+	}
+</style>
 <script type="text/javascript">
-    function confirmDelete() {
-        if (confirm('정말 삭제하시겠습니까?')) {
-            return true;
-        } else {
-            return false;
-        }
-    }
+	function confirmDelete() {
+		if (confirm('정말 삭제하시겠습니까?')) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 </script>
 
 <body>
@@ -47,6 +61,40 @@
 
 					<div class="item"><br />
 						<div class="table-container deco center inner-bordered">
+							<form method="get" th:action="@{/reserve_ADMIN_list}" th:object="${param}">
+								<table style="width: 450px;">
+									<tr>
+										<td width='50'>
+											<select name="sort" style="height: 30px;">
+												<option value="" th:selected="${param.sort eq null}">선택없음</option>
+												<<option value="reservationId"
+													th:selected="${param.sort == 'reservationId'}">번호 ▲</option>
+													<option value="reservationId,desc"
+														th:selected="${param.sort == 'reservationId,desc'}">번호 ▼
+													</option>
+													<option value="year" th:selected="${param.sort == 'year'}">예약일 ▲
+													</option>
+													<option value="year,desc"
+														th:selected="${param.sort == 'year,desc'}">예약일 ▼</option>
+											</select>
+										</td>
+
+										<td align=left>
+											<input type='text' name='search' th:value='${param.search}'
+												placeholder='검색 키워드를 입력하세요'
+												style="width: 90%; height: 30px; margin-left: 5px;">
+										</td>
+										<td align=right width='70'>
+											<input class='fourth' type="submit" value="검색"
+												style="width: 70px; height: 30px; padding: 0px;font-weight: bold;">
+										</td>
+									</tr>
+								</table>
+							</form>
+
+							<br>
+
+
 							<form method="post">
 								<table border="1" class="table">
 									<colgroup>
