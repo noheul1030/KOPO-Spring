@@ -35,10 +35,10 @@
 			<form th:action="@{/reserve_update}" method='post' th:object="${redetail}">
 
 				<div class="alert alert-danger" role="alert" th:if="${#fields.hasGlobalErrors()}">
-				    <div th:each="err : ${#fields.globalErrors()}">
-				        <span th:text="${err}" />
-				    </div>
-				</div>	
+					<div th:each="err : ${#fields.globalErrors()}">
+						<span th:text="${err}" />
+					</div>
+				</div>
 
 				<table border='1'>
 					<tr>
@@ -51,7 +51,7 @@
 							<input type='hidden' th:field="*{reservationId}">
 							<input type='hidden' th:field="*{reservationUser}">
 							<input type='hidden' th:field="*{localDate}">
-							
+
 							<input type='text' th:field="*{year}" class="form-control" style="width: 30%;" readonly>
 							<input type='text' th:field="*{month}" class="form-control" style="width: 30%;" readonly>
 							<input type='text' th:field="*{day}" class="form-control" style="width: 30%;" readonly>
@@ -71,23 +71,23 @@
 							<option value="4">standardRoom</option>
 						</select>
 					</tr>
-					
+
 					<br />
 					<tr>
 						<label class="form-label" style="width: 33%;"><b>User ID</b></label>
-		        		<input type='text' th:field="*{reservationUser.id}" class="form-control" readonly>
+						<input type='text' th:field="*{reservationUser.id}" class="form-control" readonly>
 					</tr>
-					
+
 					<br />
 					<tr>
 						<label class="form-label" style="width: 33%;"><b>User Name</b></label>
-		        		<input type='text' th:field="*{reservationUser.Name}" class="form-control" readonly>
+						<input type='text' th:field="*{reservationUser.Name}" class="form-control" readonly>
 					</tr>
-					
+
 					<br />
 					<tr>
 						<label class="form-label" style="width: 33%;"><b>Phone Number</b></label>
-		        		<input type='text' th:field="*{reservationUser.phoneNumber}" class="form-control" readonly>
+						<input type='text' th:field="*{reservationUser.phoneNumber}" class="form-control" readonly>
 					</tr>
 
 				</table>

@@ -18,23 +18,21 @@
 
 					<form th:action="@{noticeBoard_update}" method='post' th:object="${update}">
 						<div class="alert alert-danger" role="alert" th:if="${#fields.hasAnyErrors()}">
-				            <div th:each="err : ${#fields.allErrors()}" th:text="${err}" />
-				        </div>
-				        
+							<div th:each="err : ${#fields.allErrors()}" th:text="${err}" />
+						</div>
+
 						<input type="hidden" name="updating" value="updating">
-						
+
 						<div class="mb-3"><br>
-							<input type='hidden' name='noticeId' th:value="${update.noticeId}"
-								class="form-control" readonly>
+							<input type='hidden' name='noticeId' th:value="${update.noticeId}" class="form-control"
+								readonly>
 							<label for="title" class="form-label"><b>제목</b></label>
-							<input type="text" th:field="*{title}" name="title" id="title"
-								th:value="${update.title}" maxlength='70' placeholder='제목을 입력하세요'
-								class="form-control">
+							<input type="text" th:field="*{title}" name="title" id="title" th:value="${update.title}"
+								maxlength='70' placeholder='제목을 입력하세요' class="form-control">
 						</div>
 						<div class="mb-3">
 							<label for="content" class="form-label"><b>내용</b></label>
-							<textarea th:field="*{content}" name="content" id="content"
-								th:value="${update.content}"
+							<textarea th:field="*{content}" name="content" id="content" th:value="${update.content}"
 								style="overflow-x: auto; overflow-y: scroll; resize: none;" maxlength="6000000"
 								class="form-control" rows="10"></textarea>
 						</div>

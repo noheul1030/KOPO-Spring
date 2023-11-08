@@ -9,26 +9,26 @@
 	document.addEventListener('DOMContentLoaded', function () {
 		var calendarEl = document.getElementById('calendar');
 		var calendar = new FullCalendar.Calendar(calendarEl, {
-			initialView: 'dayGridMonth',		
+			initialView: 'dayGridMonth',
 			locale: 'ko', // 한국어로 설정
-			
+
 			// dateClick : 날짜 셀을 클릭할 때 발생하는 이벤트
-			dateClick: function(info) {
-			  var clickedDate = info.dateStr; // 클릭한 날짜 값을 가져옴 (년/월/일 형식)
-			  var selectedDate = new Date(clickedDate); // 선택한 날짜를 JavaScript Date 객체로 변환
-			  var today = new Date(); // 오늘 날짜
-			  
-			  // 선택한 날짜와 오늘 날짜를 시간 부분을 00:00:00으로 설정하여 날짜만 비교
-			  today.setHours(0, 0, 0, 0);
- 			  selectedDate.setHours(0, 0, 0, 0);
-			  
-			  if (selectedDate < today) {
-			    alert('이전 날짜는 선택할 수 없습니다. 다시 선택해주세요.');
-			  } else {
-                // reservation.html로 예약 페이지로 이동
-                window.location.href = '/reserve_create?selectedDate=' + clickedDate;
-              }
-			}		
+			dateClick: function (info) {
+				var clickedDate = info.dateStr; // 클릭한 날짜 값을 가져옴 (년/월/일 형식)
+				var selectedDate = new Date(clickedDate); // 선택한 날짜를 JavaScript Date 객체로 변환
+				var today = new Date(); // 오늘 날짜
+
+				// 선택한 날짜와 오늘 날짜를 시간 부분을 00:00:00으로 설정하여 날짜만 비교
+				today.setHours(0, 0, 0, 0);
+				selectedDate.setHours(0, 0, 0, 0);
+
+				if (selectedDate < today) {
+					alert('이전 날짜는 선택할 수 없습니다. 다시 선택해주세요.');
+				} else {
+					// reservation.html로 예약 페이지로 이동
+					window.location.href = '/reserve_create?selectedDate=' + clickedDate;
+				}
+			}
 		});
 		calendar.render();
 	});

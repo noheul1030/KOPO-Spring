@@ -8,158 +8,157 @@
 		background-color: white;
 		/* 다른 스타일 속성을 여기에 추가할 수 있습니다. */
 	}
-    .input-container {
-        display: flex;
-    }
-    .input-container input {
-        flex: 1;
-        margin-right: 10px; /* 오른쪽 여백을 5px로 조정 */
-    }	
+
+	.input-container {
+		display: flex;
+	}
+
+	.input-container input {
+		flex: 1;
+		margin-right: 10px;
+		/* 오른쪽 여백을 5px로 조정 */
+	}
 </style>
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        function getParameterByName(name, url) {
-            if (!url) url = window.location.href;
-            name = name.replace(/[\[\]]/g, "\\$&");
+	document.addEventListener('DOMContentLoaded', function () {
+		function getParameterByName(name, url) {
+			if (!url) url = window.location.href;
+			name = name.replace(/[\[\]]/g, "\\$&");
 
-            var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
-                results = regex.exec(url);
-            if (!results) return null;
-            if (!results[2]) return '';
-            return decodeURIComponent(results[2].replace(/\+/g, " "));
-        }
+			var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+				results = regex.exec(url);
+			if (!results) return null;
+			if (!results[2]) return '';
+			return decodeURIComponent(results[2].replace(/\+/g, " "));
+		}
 
-        var selectedDateParam = getParameterByName('selectedDate');
-        var dateParts = selectedDateParam.split('-');
-        var year = dateParts[0];
-        var month = dateParts[1];
-        var day = dateParts[2];
-        
-        
-        var yearCheck = parseInt(dateParts[0], 10);
-        var monthCheck = parseInt(dateParts[1], 10);
-        var dayCheck = parseInt(dateParts[2], 10);
+		var selectedDateParam = getParameterByName('selectedDate');
+		var dateParts = selectedDateParam.split('-');
+		var year = dateParts[0];
+		var month = dateParts[1];
+		var day = dateParts[2];
 
-        var today = new Date();
-        var currentYear = today.getFullYear();
-        var currentMonth = today.getMonth() + 1;
-        var currentDay = today.getDate();
 
-        var inputContainer = document.querySelector('.input-container');
+		var yearCheck = parseInt(dateParts[0], 10);
+		var monthCheck = parseInt(dateParts[1], 10);
+		var dayCheck = parseInt(dateParts[2], 10);
 
-        var yearInput = inputContainer.querySelector('input[name="year"]');
-        var monthInput = inputContainer.querySelector('input[name="month"]');
-        var dayInput = inputContainer.querySelector('input[name="day"]');
+		var today = new Date();
+		var currentYear = today.getFullYear();
+		var currentMonth = today.getMonth() + 1;
+		var currentDay = today.getDate();
 
-        yearInput.value = year;
-        monthInput.value = month;
-        dayInput.value = day;
+		var inputContainer = document.querySelector('.input-container');
 
-        if (yearCheck < currentYear || (yearCheck === currentYear && monthCheck < currentMonth) || (yearCheck === currentYear && monthCheck === currentMonth && dayCheck < currentDay)) {
-            alert('선택한 날짜가 현재 날짜보다 이전입니다.');
-            window.location.href = '/reserveCalendar';
-        }
-    });
+		var yearInput = inputContainer.querySelector('input[name="year"]');
+		var monthInput = inputContainer.querySelector('input[name="month"]');
+		var dayInput = inputContainer.querySelector('input[name="day"]');
+
+		yearInput.value = year;
+		monthInput.value = month;
+		dayInput.value = day;
+
+		if (yearCheck < currentYear || (yearCheck === currentYear && monthCheck < currentMonth) || (yearCheck === currentYear && monthCheck === currentMonth && dayCheck < currentDay)) {
+			alert('선택한 날짜가 현재 날짜보다 이전입니다.');
+			window.location.href = '/reserveCalendar';
+		}
+	});
 </script>
 
 <body>
 	<th:block layout:fragment="content">
 
 
-	<div layout:fragment="content" class="container my-3">
-	<div style="width: 100%; height: 150px;"></div>
+		<div layout:fragment="content" class="container my-3">
+			<div style="width: 100%; height: 150px;"></div>
 
-	<div>
-		<h4><b>예약</b></h4>
-	</div>
-	
-	
-	<br>
-	<form th:action="@{/reserve_create}" method='post' th:object="${reservation}">
-		
-		<div class="alert alert-danger" role="alert" th:if="${#fields.hasGlobalErrors()}">
-		    <div th:each="err : ${#fields.globalErrors()}">
-		        <span th:text="${err}" />
-		    </div>
-		</div>		
-		
-		<table border='1'>
-			<!-- 테이블 테두리 1 지정 -->
-			<tr>
-				<!-- 셀 스타일 지정,text 출력 -->					
-				<label for="year" class="form-label" style="width: 33.5%;"><b>Year</b></label>
-				<label for="month" class="form-label" style="width: 33.5%;"><b>Month</b></label>
-				<label for="day" class="form-label" style="width: 33%;"><b>Day</b></label>
-			</tr>
-			
-			
-			<tr>
-				<div class="input-container">
-					<!-- 셀 스타일 지정,text 출력 -->
-					<input type='text' th:field="*{year}" class="form-control"
-						 style="width: 30%;" readonly>
-					<input type='text' th:field="*{month}" class="form-control"
-						 style="width: 30%;" readonly>
-					<input type='text' th:field="*{day}" class="form-control"
-						 style="width: 30%;" readonly>		
-				 </div>
-			</tr>
-			
-			
-		 	<!-- Reservation table에 null이 아닌 옵션은 비활성화 되게끔 코드 수정 예정-->
-			<br />
-			<tr>
-				<!-- 셀 스타일 지정,text 출력 -->
-				<label for="roomId" class="form-label"><b>Room Choice</b></label>
-				
-				<select th:field="*{roomId}" class="form-select">
-					<option value="1">topSuiteRoom</option>
-					<option value="2">familyRoom</option>
-					<option value="3">businessRoom</option>
-					<option value="4">standardRoom</option>
-				</select>
-			</tr>
-			
-			<br />
-			<tr>
-				<label class="form-label" style="width: 33%;"><b>User ID</b></label>
-				<!-- 현재 로그인된 사용자의 ID를 출력 -->
-        		<input type='text' th:field="*{reservationUser.id}" class="form-control" readonly>
-			</tr>
-			
-			<br />
-			<tr>
-				<label class="form-label" style="width: 33%;"><b>User Name</b></label>
-				<!-- 현재 로그인된 사용자의 이름 출력 -->
-        		<input type='text' th:field="*{reservationUser.Name}" class="form-control" readonly>
-			</tr>
-			
-			<br />
-			<tr>
-				<label class="form-label" style="width: 33%;"><b>Phone Number</b></label>
-				<!-- 현재 로그인된 사용자의 전화번호를 출력 -->
-        		<input type='text' th:field="*{reservationUser.phoneNumber}" class="form-control" readonly>
-			</tr>
-			
-			
+			<div>
+				<h4><b>예약</b></h4>
+			</div>
 
-		</table>
-		
-		
 
-		<br><br>
-		
-		<button type="button" class="btn btn-primary"
-			onclick="window.location.href='/reserveCalendar'">날짜변경</button>
-		<input type="submit" value="예약" class="btn btn-primary my-2">
+			<br>
+			<form th:action="@{/reserve_create}" method='post' th:object="${reservation}">
 
-		<button type="button" class="btn btn-primary"
-			onclick="window.location.href='/'">취소</button>
-	</form>				
-	
-		
-			
-	</div>
+				<div class="alert alert-danger" role="alert" th:if="${#fields.hasGlobalErrors()}">
+					<div th:each="err : ${#fields.globalErrors()}">
+						<span th:text="${err}" />
+					</div>
+				</div>
+
+				<table border='1'>
+					<!-- 테이블 테두리 1 지정 -->
+					<tr>
+						<!-- 셀 스타일 지정,text 출력 -->
+						<label for="year" class="form-label" style="width: 33.5%;"><b>Year</b></label>
+						<label for="month" class="form-label" style="width: 33.5%;"><b>Month</b></label>
+						<label for="day" class="form-label" style="width: 33%;"><b>Day</b></label>
+					</tr>
+
+
+					<tr>
+						<div class="input-container">
+							<!-- 셀 스타일 지정,text 출력 -->
+							<input type='text' th:field="*{year}" class="form-control" style="width: 30%;" readonly>
+							<input type='text' th:field="*{month}" class="form-control" style="width: 30%;" readonly>
+							<input type='text' th:field="*{day}" class="form-control" style="width: 30%;" readonly>
+						</div>
+					</tr>
+
+
+					<!-- Reservation table에 null이 아닌 옵션은 비활성화 되게끔 코드 수정 예정-->
+					<br />
+					<tr>
+						<!-- 셀 스타일 지정,text 출력 -->
+						<label for="roomId" class="form-label"><b>Room Choice</b></label>
+
+						<select th:field="*{roomId}" class="form-select">
+							<option value="1">topSuiteRoom</option>
+							<option value="2">familyRoom</option>
+							<option value="3">businessRoom</option>
+							<option value="4">standardRoom</option>
+						</select>
+					</tr>
+
+					<br />
+					<tr>
+						<label class="form-label" style="width: 33%;"><b>User ID</b></label>
+						<!-- 현재 로그인된 사용자의 ID를 출력 -->
+						<input type='text' th:field="*{reservationUser.id}" class="form-control" readonly>
+					</tr>
+
+					<br />
+					<tr>
+						<label class="form-label" style="width: 33%;"><b>User Name</b></label>
+						<!-- 현재 로그인된 사용자의 이름 출력 -->
+						<input type='text' th:field="*{reservationUser.Name}" class="form-control" readonly>
+					</tr>
+
+					<br />
+					<tr>
+						<label class="form-label" style="width: 33%;"><b>Phone Number</b></label>
+						<!-- 현재 로그인된 사용자의 전화번호를 출력 -->
+						<input type='text' th:field="*{reservationUser.phoneNumber}" class="form-control" readonly>
+					</tr>
+
+
+
+				</table>
+
+
+
+				<br><br>
+
+				<button type="button" class="btn btn-primary"
+					onclick="window.location.href='/reserveCalendar'">날짜변경</button>
+				<input type="submit" value="예약" class="btn btn-primary my-2">
+
+				<button type="button" class="btn btn-primary" onclick="window.location.href='/'">취소</button>
+			</form>
+
+
+
+		</div>
 	</th:block>
 </body>
 
