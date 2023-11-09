@@ -63,7 +63,7 @@
 					<div class="site-navigation">
 						<a href="/" class="logo m-0 float-start">SUNSET RESORT</a>
 						<ul class="js-clone-nav d-none d-lg-inline-block text-start site-menu float-end">
-							<li class="active"><a href="/index">홈페이지</a></li>
+							<li class="active"><a href="/">홈페이지</a></li>
 
 							<li class="has-children">
 								<a href="/properties">객실안내</a>
@@ -86,13 +86,13 @@
 								</ul>
 							</li>
 
-							<li class="has-children">
+							<!--<li class="has-children">
 								<a href="#">주변관광지</a>
 								<ul class="dropdown">
 									<li><a href="#">Tour</a></li>
 									<li><a href="#">Festival</a></li>
 								</ul>
-							</li>
+							</li>-->
 
 							<li><a href="/noticeBoard_list">게시판</a></li>
 
@@ -100,6 +100,7 @@
 							<li><a href="/reserve_USER_list" sec:authorize="hasRole('USER')">예약조회</a></li>
 
 							<li>
+								<a class="nav-link"th:text="${#authorization.expression('isAuthenticated()') ? #authentication.name : ''}"></a>
 								<a class="nav-link" sec:authorize="isAnonymous()" th:href="@{/login}">로그인</a>
 								<a class="nav-link" sec:authorize="isAuthenticated()" th:href="@{/logout}">로그아웃</a>
 							</li>
