@@ -42,6 +42,7 @@
 				document.getElementById("signup-li").style.display = "block";
 			}
 		});
+		
 	</script>
 
 
@@ -100,7 +101,8 @@
 							<li><a href="/reserve_USER_list" sec:authorize="hasRole('USER')">예약조회</a></li>
 
 							<li>
-								<a class="nav-link"th:text="${#authorization.expression('isAuthenticated()') ? #authentication.name : ''}"></a>
+								<a sec:authorize="isAuthenticated()" style="color: darkorange; font-weight: bold; font-size: 14px;" 
+								th:text="|접속자: ${#authorization.expression('isAuthenticated()') ? #authentication.name : ''}|"></a>
 								<a class="nav-link" sec:authorize="isAnonymous()" th:href="@{/login}">로그인</a>
 								<a class="nav-link" sec:authorize="isAuthenticated()" th:href="@{/logout}">로그아웃</a>
 							</li>
