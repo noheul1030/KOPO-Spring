@@ -93,7 +93,17 @@ public class ReservationController {
 			@RequestParam(value = "search", defaultValue = "") String search) {
 
 		Page<Reservation> paging = this.reservationService.getList(page, sort, search);
+		int pageNumber = paging.getPageable().getPageNumber();
+	    int totalPages = paging.getTotalPages();
+	    int pageBlock = 10;
+	    int startBlockPage = ((pageNumber) / pageBlock) * pageBlock + 1;
+	    int endBlockPage = startBlockPage + pageBlock - 1;
+	    endBlockPage = totalPages < endBlockPage ? totalPages : endBlockPage;
+	    
+	    model.addAttribute("startBlockPage", startBlockPage);
+		model.addAttribute("endBlockPage", endBlockPage);
 		model.addAttribute("paging", paging);
+		model.addAttribute("search", search);
 
 		return "/reserve_ADMIN_list";
 	}

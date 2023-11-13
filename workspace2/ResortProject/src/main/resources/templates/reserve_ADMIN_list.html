@@ -67,7 +67,7 @@
 										<td width='50'>
 											<select name="sort" style="height: 30px;">
 												<option value="" th:selected="${param.sort eq null}">선택없음</option>
-												<<option value="reservationId"
+												<option value="reservationId"
 													th:selected="${param.sort == 'reservationId'}">번호 ▲</option>
 													<option value="reservationId,desc"
 														th:selected="${param.sort == 'reservationId,desc'}">번호 ▼
@@ -148,7 +148,6 @@
 
 									</tbody>
 								</table>
-							</form>
 
 							<!-- 페이징처리 시작 -->
 							<div th:if="${!paging.isEmpty()}">
@@ -183,6 +182,7 @@
 							<!-- 페이징처리 끝 -->
 
 
+							</form>
 
 
 						</div>
