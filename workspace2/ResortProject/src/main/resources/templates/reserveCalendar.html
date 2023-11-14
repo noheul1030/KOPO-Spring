@@ -11,7 +11,26 @@
 		var calendar = new FullCalendar.Calendar(calendarEl, {
 			initialView: 'dayGridMonth',
 			locale: 'ko', // 한국어로 설정
-
+			events: [
+				{
+					title: 'The Title', // 제목
+					start: '2023-11-14', // 시작일자
+					end: '2023-11-14' // 종료일자
+				},
+				{
+					title: 'The Title', // 제목
+					start: '2023-11-14', // 시작일자
+					end: '2023-11-14' // 종료일자
+				}, {
+					title: 'The Title', // 제목
+					start: '2023-11-14', // 시작일자
+					end: '2023-11-14' // 종료일자
+				}, {
+					title: 'The Title', // 제목
+					start: '2023-11-14', // 시작일자
+					end: '2023-11-14' // 종료일자
+				}
+			],
 			// dateClick : 날짜 셀을 클릭할 때 발생하는 이벤트
 			dateClick: function (info) {
 				var clickedDate = info.dateStr; // 클릭한 날짜 값을 가져옴 (년/월/일 형식)
@@ -29,8 +48,41 @@
 					window.location.href = '/reserve_create?selectedDate=' + clickedDate;
 				}
 			}
+
 		});
 		calendar.render();
+	});
+
+
+	$(function () {
+
+		var request = $.ajax({
+			url: "/reserveCalendar",
+			method: "GET",
+			dataType: "json"
+		});
+
+		request.done(function (data) {
+			console.log(data);
+
+			var calendarEl = document.getElementById('calendar');
+
+			var calendar = new FullCalendar.Calendar(calendarEl, {
+				initialView: 'dayGridMonth',
+				headerToolbar: {
+					left: 'prev,next today',
+					center: 'title',
+					right: 'dayGridMonth,timeGridWeek,timeGridDay'
+				},
+				events: data
+			});
+
+			calendar.render();
+		});
+
+		request.fail(function (jqXHR, textStatus) {
+			alert("Request failed: " + textStatus);
+		});
 	});
 </script>
 
