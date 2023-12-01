@@ -26,28 +26,10 @@
 		<title>
 			SUNSET RESORT
 		</title>
-	</head>
-
-	<script>
-		// JavaScript 코드
-		document.addEventListener("DOMContentLoaded", function () {
-			// 여기서 로그인 상태를 확인하는 방법에 따라 isUserLoggedIn() 함수를 사용합니다.
-			// 이 함수는 로그인 상태를 확인하는 사용자 정의 함수여야 합니다.
-
-			if (isUserLoggedIn()) {
-				// 로그인 상태인 경우 회원가입 <li> 엘리먼트를 숨깁니다.
-				document.getElementById("signup-li").style.display = "none";
-			} else {
-				// 로그아웃 상태인 경우 회원가입 <li> 엘리먼트를 보이게 합니다.
-				document.getElementById("signup-li").style.display = "block";
-			}
-		});
-		
-	</script>
-
+	</head>	
 
 	<body>
-
+		
 
 		<div class="site-mobile-menu site-navbar-target">
 			<div class="site-mobile-menu-header">
@@ -58,69 +40,75 @@
 			<div class="site-mobile-menu-body"></div>
 		</div>
 
-		<nav class="site-nav">
-			<div class="container">
-				<div class="menu-bg-wrap">
-					<div class="site-navigation">
-						<a href="/" class="logo m-0 float-start">SUNSET RESORT</a>
-						<ul class="js-clone-nav d-none d-lg-inline-block text-start site-menu float-end">
-							<li class="active"><a href="/">홈페이지</a></li>
-
-							<li class="has-children">
-								<a href="/properties">객실안내</a>
-								<ul class="dropdown">
-									<li><a href="#">TOP SUITE ROOM</a></li>
-									<li><a href="#">FAMILY ROOM</a></li>
-									<li><a href="#">BUSINESS ROOM</a></li>
-									<li><a href="#">STANDARD ROOM</a></li>
-								</ul>
-							</li>
-
-							<li><a href="/reserveCalendar">&nbsp;예약</a></li>
-
-							<li class="has-children">
-								<a href="/location">찾아오는길</a>
-								<ul class="dropdown">
-									<li><a href="#">찾아오는길</a></li>
-									<li><a href="#">대중교통이용</a></li>
-									<li><a href="#">자가용이용</a></li>
-								</ul>
-							</li>
-
-							<!--<li class="has-children">
-								<a href="#">주변관광지</a>
-								<ul class="dropdown">
-									<li><a href="#">Tour</a></li>
-									<li><a href="#">Festival</a></li>
-								</ul>
-							</li>-->
-
-							<li><a href="/noticeBoard_list">게시판</a></li>
-
-							<li><a href="/reserve_ADMIN_list" sec:authorize="hasRole('ADMIN')">예약조회</a></li>
-							<li><a href="/reserve_USER_list" sec:authorize="hasRole('USER')">예약조회</a></li>
-
-							<li>
-								<a sec:authorize="isAuthenticated()" style="color: darkorange; font-weight: bold; font-size: 14px;" 
-								th:text="|접속자: ${#authorization.expression('isAuthenticated()') ? #authentication.name : ''}|"></a>
-								<a class="nav-link" sec:authorize="isAnonymous()" th:href="@{/login}">로그인</a>
-								<a class="nav-link" sec:authorize="isAuthenticated()" th:href="@{/logout}">로그아웃</a>
-							</li>
-							<li id="signup-li">
-								<a class="nav-link" sec:authorize="isAnonymous()" th:href="@{/signUp}">회원가입</a>
-							</li>
-						</ul>
-
-						<a href="#"
-							class="burger light me-auto float-end mt-1 site-menu-toggle js-menu-toggle d-inline-block d-lg-none"
-							data-toggle="collapse" data-target="#main-navbar">
-							<span></span>
-						</a>
-					</div>
+		<div class="site-nav">
+			<div style="background-color: white;">
+				<div class="container" style="text-align: right;">	
+		            <div class="nav-link">
+						<a style="text-align: right; color: rgb(64, 128, 128); font-weight: bold; font-size: 14px;"
+		            		sec:authorize="isAuthenticated()" th:text="|환영합니다! ${#authorization.expression('isAuthenticated()') ? #authentication.name : ''} 님|"></a>
+		                <a th:href="@{/login}" sec:authorize="isAnonymous()">로그인 /</a>
+		                <a th:href="@{/mypage}" sec:authorize="isAuthenticated()">/ 마이페이지</a>
+		                <a th:href="@{/logout}" sec:authorize="isAuthenticated()">/ 로그아웃</a>
+		                <a th:href="@{/signUp}" sec:authorize="isAnonymous()">회원가입</a>
+		            </div>
 				</div>
 			</div>
-		</nav>
-
+			
+			
+			<nav style="padding-top: 20px;">
+				
+				<div class="container">
+					<div class="menu-bg-wrap">
+						<div class="site-navigation">
+							<a href="/" class="logo m-0 float-start">SUNSET RESORT</a>
+							<ul class="js-clone-nav d-none d-lg-inline-block text-start site-menu float-end">
+								<li class="active"><a href="/">Home</a></li>
+	
+								<li class="has-children">
+									<a href="/room">Room&nbsp;</a>
+									<ul class="dropdown">
+										<li><a href="#">TOP SUITE ROOM</a></li>
+										<li><a href="#">FAMILY ROOM</a></li>
+										<li><a href="#">BUSINESS ROOM</a></li>
+										<li><a href="#">STANDARD ROOM</a></li>
+									</ul>
+								</li>
+	
+								<li><a href="/reserveCalendar">Reservation</a></li>
+	
+								<li class="has-children">
+									<a href="/location">Location&nbsp;</a>
+									<ul class="dropdown">
+										<li><a href="#">찾아오는길</a></li>
+										<li><a href="#">대중교통이용</a></li>
+										<li><a href="#">자가용이용</a></li>
+									</ul>
+								</li>
+	
+								<!--<li class="has-children">
+									<a href="#">주변관광지</a>
+									<ul class="dropdown">
+										<li><a href="#">Tour</a></li>
+										<li><a href="#">Festival</a></li>
+									</ul>
+								</li>-->
+	
+								<li><a href="/noticeBoard_list">Notice Board</a></li>
+	
+								<li><a href="/reserve_ADMIN_list" sec:authorize="hasRole('ADMIN')">Inquiry</a></li>
+								<li><a href="/reserve_USER_list" sec:authorize="hasRole('USER')">Inquiry</a></li>
+							</ul>
+	
+							<a href="#"
+								class="burger light me-auto float-end mt-1 site-menu-toggle js-menu-toggle d-inline-block d-lg-none"
+								data-toggle="collapse" data-target="#main-navbar">
+								<span></span>
+							</a>
+						</div>
+					</div>
+				</div>
+			</nav>
+		</div>
 	</body>
 
 </html>
