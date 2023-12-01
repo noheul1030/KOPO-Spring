@@ -40,9 +40,9 @@ public class ControllerTest {
 		return "index_1";
 	}
 
-	@GetMapping("/properties")
-	public String properties() {
-		return "properties";
+	@GetMapping("/room")
+	public String room() {
+		return "room";
 	}
 
 	@GetMapping("/propertySingle")
