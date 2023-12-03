@@ -1,5 +1,6 @@
 package com.resort.springboot.web;
 
+import java.security.Principal;
 import java.util.Map;
 
 import org.springframework.dao.DataIntegrityViolationException;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.resort.springboot.domain.SiteUser;
 import com.resort.springboot.dto.UserDto;
 import com.resort.springboot.service.UserService;
 
@@ -65,6 +67,46 @@ public class UserController {
 	@GetMapping("/login")
 	public String login() {
 		return "login";
+	}
+
+	@GetMapping("/mypage")
+	public String mypage(Model model, Principal principal) {
+		SiteUser useritem = this.userService.getUser(principal.getName());
+		model.addAttribute("mypage", useritem);
+		
+		return "mypage";
+	}
+
+	@GetMapping("/user_Update")
+	public String userUpdate(Model model, SiteUser user) {
+		SiteUser useritem = userService.oneSelectView(user.getUserId());
+		model.addAttribute("userUpdate", useritem);
+
+		return "user_Update";
+	}
+
+	@PostMapping("/user_Update")
+	public String userUpdate(@Valid @ModelAttribute("userUpdate") UserDto.Request userDto, BindingResult bindingResult,
+			Model model, SiteUser user) {
+		
+		if (bindingResult.hasErrors()) {
+			model.addAttribute("userUpdate", userDto);
+
+			Map<String, String> validatedResult = userService.validateHandling(bindingResult);
+			for (String key : validatedResult.keySet()) {
+				model.addAttribute(key, validatedResult.get(key));
+			}
+
+			return "user_Update";
+		}
+		
+		
+		SiteUser useritem = userService.oneSelectView(user.getUserId());
+		model.addAttribute("userUpdate", useritem);
+		
+		this.userService.update(user);
+		
+		return "redirect:/";
 	}
 
 }
