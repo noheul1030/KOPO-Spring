@@ -1,7 +1,6 @@
 package main;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
@@ -9,25 +8,29 @@ public class Main {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 
-		List<Integer> list_x = new ArrayList<>();
-		List<Integer> list_y = new ArrayList<>();
+		while (true) {
 
-		for (int i = 0; i < 3; i++) {
-			int x = sc.nextInt();
-			int y = sc.nextInt();
+			int[] arr = new int[3];
 
-			if (list_x.contains(x))
-				list_x.remove(Integer.valueOf(x));
+			for (int i = 0; i < 3; i++) {
+				arr[i] = sc.nextInt();
+			}
+
+			if (arr[0] == 0 && arr[1] == 0 && arr[2] == 0)
+				break;
+
+			Arrays.sort(arr);
+
+			if (arr[2] >= arr[0] + arr[1])
+				System.out.println("Invalid");
+			else if (arr[0] == arr[1] && arr[1] == arr[2])
+				System.out.println("Equilateral");
+			else if (arr[0] == arr[1] || arr[1] == arr[2] || arr[0] == arr[2])
+				System.out.println("Isosceles");
 			else
-				list_x.add(x);
-
-			if (list_y.contains(y))
-				list_y.remove(Integer.valueOf(y));
-			else
-				list_y.add(y);
+				System.out.println("Scalene");
 		}
+		
 		sc.close();
-
-		System.out.println(list_x.get(0) + " " + list_y.get(0));
 	}
 }
